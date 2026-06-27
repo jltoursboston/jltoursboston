@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+import type { Lang } from '../data/i18n';
+import { t } from '../data/i18n';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+}
+
+const {
+  lang,
+  title = t(lang, 'seo.title'),
+  description = t(lang, 'seo.description'),
+  ogImage = '/og-image.jpg',
+  canonicalURL = Astro.url.href,
+} = Astro.props;
+
+const altLang = lang === 'es' ? 'en' : 'es';
+const altHref = lang === 'es'
+  ? `https://jltoursboston.com/en/`
+  : `https://jltoursboston.com/`;
+const canonicalHref = lang === 'es'
+  ? `https://jltoursboston.com/`
+  : `https://jltoursboston.com/en/`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TravelAgency',
+  name: 'JL Tours Inc',
+  description: 'Agencia de tours y excursiones desde Boston al noreste de EE.UU.',
+  url: 'https://jltoursboston.com',
+  telephone: '+18573899523',
+  sameAs: [
+    'https://www.instagram.com/jltoursboston',
+    'https://www.facebook.com/jaime.lopez.7946281',
+    'https://www.tiktok.com/@jltoursboston',
+  ],
+  areaServed: 'Boston, MA, USA',
+  founder: {
+    '@type': 'Person',
+    name: 'Alex López',
+  },
+};
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalHref} />
+
+    <!-- Hreflang for bilingual SEO -->
+    <link rel="alternate" hreflang="es" href="https://jltoursboston.com/" />
+    <link rel="alternate" hreflang="en" href="https://jltoursboston.com/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://jltoursboston.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalHref} />
+    <meta property="og:title" content={t(lang, 'seo.og.title')} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`https://jltoursboston.com${ogImage}`} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_US' : 'en_US'} />
+    <meta property="og:site_name" content="JL Tours Boston" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={t(lang, 'seo.og.title')} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`https://jltoursboston.com${ogImage}`} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="/logo.jpeg" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="bg-cream font-sans text-navy antialiased">
+    <slot />
+  </body>
+</html>

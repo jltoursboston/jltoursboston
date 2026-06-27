@@ -1,0 +1,89 @@
+---
+import type { Lang } from '../../data/i18n';
+import { t, WA_GENERAL } from '../../data/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const waHero = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'hero.cta.message'));
+---
+
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background image with overlay -->
+  <div class="absolute inset-0">
+    <!-- TODO: replace with real photo from @jltoursboston -->
+    <img
+      src="https://images.unsplash.com/photo-1501446529957-6226bd447c46?w=1600&q=80"
+      alt="Viajeros disfrutando una excursión"
+      class="w-full h-full object-cover object-center"
+      loading="eager"
+      width="1600"
+      height="900"
+    />
+    <!-- Gradient overlay: dark at bottom-left for text readability -->
+    <div class="absolute inset-0 bg-gradient-to-br from-navy/85 via-navy/65 to-navy/30"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 text-white">
+    <div class="max-w-3xl">
+      <!-- Eyebrow -->
+      <p class="inline-flex items-center gap-2 text-amber font-semibold text-sm tracking-wider uppercase mb-4">
+        <span class="w-8 h-0.5 bg-amber"></span>
+        JL Tours Boston
+      </p>
+
+      <!-- Main headline -->
+      <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6">
+        {t(lang, 'hero.title')}
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-white/85 text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl">
+        {t(lang, 'hero.subtitle')}
+      </p>
+
+      <!-- CTA Button -->
+      <a
+        href={waHero}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-3 px-8 py-4 bg-whatsapp hover:bg-whatsapp-dark text-white text-lg font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+      >
+        <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.847L.057 23.49a.5.5 0 0 0 .609.61l5.71-1.494A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.852 0-3.587-.504-5.073-1.383l-.364-.217-3.77.987.998-3.686-.237-.381A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+        </svg>
+        {t(lang, 'hero.cta')}
+      </a>
+
+      <!-- Trust stats -->
+      <div class="mt-12 flex flex-wrap gap-6 sm:gap-10">
+        <div class="text-center sm:text-left">
+          <p class="text-3xl font-display font-black text-amber">{t(lang, 'hero.stat1.value')}</p>
+          <p class="text-white/70 text-sm mt-1">{t(lang, 'hero.stat1.label')}</p>
+        </div>
+        <div class="w-px bg-white/20 hidden sm:block"></div>
+        <div class="text-center sm:text-left">
+          <p class="text-3xl font-display font-black text-amber">{t(lang, 'hero.stat2.value')}</p>
+          <p class="text-white/70 text-sm mt-1">{t(lang, 'hero.stat2.label')}</p>
+        </div>
+        <div class="w-px bg-white/20 hidden sm:block"></div>
+        <div class="text-center sm:text-left">
+          <p class="text-3xl font-display font-black text-amber">{t(lang, 'hero.stat3.value')}</p>
+          <p class="text-white/70 text-sm mt-1">{t(lang, 'hero.stat3.label')}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 animate-bounce">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </div>
+</section>

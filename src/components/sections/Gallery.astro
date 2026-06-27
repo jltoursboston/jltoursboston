@@ -1,0 +1,67 @@
+---
+import type { Lang } from '../../data/i18n';
+import { t } from '../../data/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+// TODO: replace ALL placeholder images with real photos from @jltoursboston Instagram
+const placeholders = [
+  { src: 'https://images.unsplash.com/photo-1489447068241-b3490214e879?w=500&q=75', alt: lang === 'es' ? 'Cataratas del Niágara' : 'Niagara Falls' },
+  { src: 'https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=500&q=75', alt: lang === 'es' ? 'Estatua de la Libertad, Nueva York' : 'Statue of Liberty, NYC' },
+  { src: 'https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=500&q=75', alt: lang === 'es' ? 'Monumento a Lincoln, Washington D.C.' : 'Lincoln Memorial, DC' },
+  { src: 'https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?w=500&q=75', alt: lang === 'es' ? 'Times Square de noche' : 'Times Square at night' },
+  { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=75', alt: lang === 'es' ? 'Atlantic City boardwalk' : 'Atlantic City boardwalk' },
+  { src: 'https://images.unsplash.com/photo-1546436836-07a91091f160?w=500&q=75', alt: lang === 'es' ? 'Manhattan desde las alturas' : 'Manhattan from above' },
+  { src: 'https://images.unsplash.com/photo-1570103650559-db3dd0c59a72?w=500&q=75', alt: lang === 'es' ? 'Six Flags — familia' : 'Six Flags — family' },
+  { src: 'https://images.unsplash.com/photo-1625125886064-a5577a9bd84b?w=500&q=75', alt: lang === 'es' ? 'Templo Hindú New Jersey' : 'Hindu Temple New Jersey' },
+  { src: 'https://images.unsplash.com/photo-1520637836993-5078b9e82f83?w=500&q=75', alt: lang === 'es' ? 'Cavernas subterráneas' : 'Underground caverns' },
+];
+---
+
+<section id="galeria" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="text-sky font-semibold text-sm tracking-widest uppercase mb-3">
+        {lang === 'es' ? 'Instagram @jltoursboston' : 'Instagram @jltoursboston'}
+      </p>
+      <h2 class="font-display font-bold text-4xl lg:text-5xl text-navy mb-4">{t(lang, 'gallery.title')}</h2>
+      <p class="text-navy/65 text-lg max-w-xl mx-auto">{t(lang, 'gallery.subtitle')}</p>
+    </div>
+
+    <!-- Masonry-style grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+      {placeholders.map((img, i) => (
+        <div class={`overflow-hidden rounded-xl ${i === 0 || i === 4 ? 'md:col-span-1 row-span-1' : ''} group`}>
+          <img
+            src={img.src}
+            alt={img.alt}
+            class="w-full h-44 sm:h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            width="400"
+            height="224"
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Instagram CTA -->
+    <div class="text-center mt-10">
+      <a
+        href="https://www.instagram.com/jltoursboston"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 border-2 border-navy text-navy hover:bg-navy hover:text-white font-semibold rounded-full transition-all"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        {lang === 'es' ? 'Ver más en Instagram' : 'See more on Instagram'}
+      </a>
+    </div>
+  </div>
+</section>

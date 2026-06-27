@@ -1,0 +1,226 @@
+---
+import type { Lang } from '../../data/i18n';
+import { t } from '../../data/i18n';
+import { tours } from '../../data/tours';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+
+<!-- Tours Section -->
+<section id="tours" class="py-20 lg:py-28 bg-cream">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="text-center mb-14">
+      <p class="text-sky font-semibold text-sm tracking-widest uppercase mb-3">{lang === 'es' ? 'Excursiones' : 'Excursions'}</p>
+      <h2 class="font-display font-bold text-4xl lg:text-5xl text-navy mb-4">{t(lang, 'tours.title')}</h2>
+      <p class="text-navy/70 text-lg max-w-2xl mx-auto">{t(lang, 'tours.subtitle')}</p>
+    </div>
+
+    <!-- Tour cards grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {tours.map((tour) => {
+        const content = tour[lang];
+        return (
+          <article
+            class="tour-card group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+            data-tour-id={tour.id}
+          >
+            <!-- Card image -->
+            <div class="relative h-52 overflow-hidden">
+              <img
+                src={tour.image}
+                alt={tour.imageAlt[lang]}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                width="400"
+                height="208"
+              />
+              <!-- Duration badge -->
+              <span class="absolute top-3 right-3 bg-navy/90 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+                {content.duration}
+              </span>
+              {content.capacity && (
+                <span class="absolute top-3 left-3 bg-amber text-navy text-xs font-bold px-2.5 py-1 rounded-full">
+                  {content.capacity}
+                </span>
+              )}
+            </div>
+
+            <!-- Card content -->
+            <div class="p-5">
+              <p class="text-sky text-xs font-semibold tracking-wider uppercase mb-1">{content.tagline}</p>
+              <h3 class="font-display font-bold text-xl text-navy mb-3 group-hover:text-sky transition-colors">
+                {content.name}
+              </h3>
+              <p class="text-navy/65 text-sm leading-relaxed line-clamp-2 mb-4">{content.description}</p>
+
+              <!-- Price + CTA -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-xs text-navy/50 uppercase tracking-wide">{t(lang, 'tours.card.from')}</p>
+                  <p class="font-display font-bold text-2xl text-amber">{content.price}</p>
+                </div>
+                <button
+                  type="button"
+                  class="open-tour-modal px-4 py-2.5 bg-navy hover:bg-sky text-white text-sm font-semibold rounded-xl transition-colors"
+                  data-tour-id={tour.id}
+                  aria-label={`${lang === 'es' ? 'Ver detalles de' : 'See details for'} ${content.name}`}
+                >
+                  {t(lang, 'tours.card.cta')}
+                </button>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<!-- Tour Modal (shared, populated by JS) -->
+<div
+  id="tour-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+  class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+>
+  <!-- Backdrop -->
+  <div id="modal-backdrop" class="absolute inset-0 bg-navy/70 backdrop-blur-sm"></div>
+
+  <!-- Modal panel -->
+  <div class="relative bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+    <!-- Modal image -->
+    <div class="relative h-56 sm:h-64 overflow-hidden rounded-t-3xl">
+      <img id="modal-image" src="" alt="" class="w-full h-full object-cover" width="672" height="256" />
+      <!-- Close button -->
+      <button
+        id="modal-close"
+        type="button"
+        class="absolute top-4 right-4 w-9 h-9 bg-white/90 hover:bg-white rounded-full flex items-center justify-center text-navy transition-colors shadow-md"
+        aria-label={t(lang, 'tours.modal.close')}
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal body -->
+    <div class="p-6 sm:p-8">
+      <p id="modal-tagline" class="text-sky text-xs font-semibold tracking-widest uppercase mb-2"></p>
+      <h2 id="modal-title" class="font-display font-bold text-3xl text-navy mb-1"></h2>
+      <p id="modal-price-label" class="font-display font-bold text-2xl text-amber mb-4"></p>
+      <p id="modal-description" class="text-navy/70 leading-relaxed mb-6"></p>
+
+      <!-- Includes list -->
+      <div class="mb-6">
+        <h3 class="font-semibold text-navy mb-3 flex items-center gap-2">
+          <svg class="w-5 h-5 text-sky flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          {t(lang, 'tours.modal.includes')}
+        </h3>
+        <ul id="modal-includes" class="space-y-2"></ul>
+      </div>
+
+      <!-- Schedule -->
+      <div class="bg-cream rounded-xl p-4 mb-4">
+        <p class="text-xs font-semibold text-navy/50 uppercase tracking-wider mb-1">{t(lang, 'tours.modal.schedule')}</p>
+        <p id="modal-schedule" class="text-navy font-medium"></p>
+      </div>
+
+      <!-- Price note -->
+      <p id="modal-price-note" class="text-sm text-navy/60 mb-6 hidden"></p>
+
+      <!-- CTA -->
+      <a
+        id="modal-wa-link"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center gap-3 w-full py-4 bg-whatsapp hover:bg-whatsapp-dark text-white text-lg font-bold rounded-2xl transition-colors shadow-md"
+      >
+        <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.847L.057 23.49a.5.5 0 0 0 .609.61l5.71-1.494A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.852 0-3.587-.504-5.073-1.383l-.364-.217-3.77.987.998-3.686-.237-.381A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+        </svg>
+        {t(lang, 'tours.modal.cta')}
+      </a>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ toursData: tours, lang }}>
+  // Tour data embedded at build time for the modal
+  const modal = document.getElementById('tour-modal');
+  const backdrop = document.getElementById('modal-backdrop');
+  const closeBtn = document.getElementById('modal-close');
+
+  function openModal(tourId) {
+    const tour = toursData.find(t => t.id === tourId);
+    if (!tour) return;
+    const content = tour[lang];
+
+    document.getElementById('modal-image').src = tour.image;
+    document.getElementById('modal-image').alt = tour.imageAlt[lang];
+    document.getElementById('modal-tagline').textContent = content.tagline;
+    document.getElementById('modal-title').textContent = content.name;
+    document.getElementById('modal-price-label').textContent = content.price;
+    document.getElementById('modal-description').textContent = content.description;
+    document.getElementById('modal-schedule').textContent = content.schedule;
+    document.getElementById('modal-wa-link').href = tour.whatsappMessage[lang];
+
+    // Includes list
+    const ul = document.getElementById('modal-includes');
+    ul.innerHTML = content.includes.map(item => `
+      <li class="flex items-start gap-2 text-sm text-navy/80">
+        <svg class="w-4 h-4 text-whatsapp flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+        </svg>
+        ${item}
+      </li>
+    `).join('');
+
+    // Price note
+    const noteEl = document.getElementById('modal-price-note');
+    if (content.priceNote) {
+      noteEl.textContent = content.priceNote;
+      noteEl.classList.remove('hidden');
+    } else {
+      noteEl.classList.add('hidden');
+    }
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.classList.remove('modal-open');
+  }
+
+  // Open modal on card or button click
+  document.querySelectorAll('.tour-card, .open-tour-modal').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const tourId = el.dataset.tourId;
+      if (tourId) openModal(tourId);
+    });
+  });
+
+  // Close on backdrop or button
+  backdrop?.addEventListener('click', closeModal);
+  closeBtn?.addEventListener('click', closeModal);
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>

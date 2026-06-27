@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jltoursboston.com/sitemap-index.xml

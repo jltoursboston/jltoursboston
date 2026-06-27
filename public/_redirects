@@ -1,0 +1,2 @@
+# Redirect www to non-www (configure in Cloudflare dashboard instead if preferred)
+# https://www.jltoursboston.com/* https://jltoursboston.com/:splat 301

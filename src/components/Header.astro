@@ -1,0 +1,150 @@
+---
+import type { Lang } from '../data/i18n';
+import { t, WA_GENERAL } from '../data/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-navy/95 backdrop-blur-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+
+      <!-- Logo -->
+      <a href={lang === 'es' ? '/' : '/en/'} class="flex-shrink-0">
+        <img
+          src="/logo.jpeg"
+          alt="JL Tours Inc — Turismo en constante evolución"
+          class="h-12 md:h-14 w-auto object-contain"
+          width="120"
+          height="56"
+        />
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8" aria-label="Navegación principal">
+        <a href={lang === 'es' ? '#tours' : '/en/#tours'}
+           class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
+          {t(lang, 'nav.tours')}
+        </a>
+        <a href={lang === 'es' ? '#proximas-salidas' : '/en/#proximas-salidas'}
+           class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
+          {t(lang, 'nav.dates')}
+        </a>
+        <a href={lang === 'es' ? '#galeria' : '/en/#galeria'}
+           class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
+          {t(lang, 'nav.gallery')}
+        </a>
+        <a href={lang === 'es' ? '#contacto' : '/en/#contacto'}
+           class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
+          {t(lang, 'nav.contact')}
+        </a>
+      </nav>
+
+      <!-- Right: Language switcher + WhatsApp CTA -->
+      <div class="flex items-center gap-3">
+        <!-- Language switcher -->
+        <a
+          href={t(lang, 'nav.lang.href')}
+          class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/30 text-white/80 hover:border-amber hover:text-amber transition-all text-sm font-medium"
+          aria-label={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+        >
+          <span class="text-base">{lang === 'es' ? '🇺🇸' : '🇲🇽'}</span>
+          {t(lang, 'nav.lang')}
+        </a>
+
+        <!-- WhatsApp button -->
+        <a
+          href={WA_GENERAL[lang]}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-4 py-2 bg-whatsapp hover:bg-whatsapp-dark text-white rounded-full font-semibold text-sm transition-colors"
+          aria-label="Contactar por WhatsApp"
+        >
+          <!-- WhatsApp icon -->
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.847L.057 23.49a.5.5 0 0 0 .609.61l5.71-1.494A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.852 0-3.587-.504-5.073-1.383l-.364-.217-3.77.987.998-3.686-.237-.381A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+          </svg>
+          <span class="hidden sm:inline">{t(lang, 'nav.whatsapp')}</span>
+        </a>
+
+        <!-- Mobile menu button -->
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          class="md:hidden p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg class="w-6 h-6" id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg class="w-6 h-6 hidden" id="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 py-4" aria-label="Navegación móvil">
+      <nav class="flex flex-col gap-1">
+        <a href={lang === 'es' ? '#tours' : '/en/#tours'}
+           class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
+          {t(lang, 'nav.tours')}
+        </a>
+        <a href={lang === 'es' ? '#proximas-salidas' : '/en/#proximas-salidas'}
+           class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
+          {t(lang, 'nav.dates')}
+        </a>
+        <a href={lang === 'es' ? '#galeria' : '/en/#galeria'}
+           class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
+          {t(lang, 'nav.gallery')}
+        </a>
+        <a href={lang === 'es' ? '#contacto' : '/en/#contacto'}
+           class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
+          {t(lang, 'nav.contact')}
+        </a>
+        <div class="mt-3 pt-3 border-t border-white/10">
+          <a
+            href={t(lang, 'nav.lang.href')}
+            class="flex items-center gap-2 px-3 py-2.5 text-white/70 hover:text-amber transition-colors font-medium"
+          >
+            <span>{lang === 'es' ? '🇺🇸' : '🇲🇽'}</span>
+            {t(lang, 'nav.lang')}
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const hamburger = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden', isOpen);
+    hamburger?.classList.toggle('hidden', !isOpen);
+    closeIcon?.classList.toggle('hidden', isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  // Close mobile menu on nav link click
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+      hamburger?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      btn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors */
+  --color-navy: #10243E;
+  --color-sky: #2D7DD2;
+  --color-amber: #F2A541;
+  --color-whatsapp: #1FA463;
+  --color-whatsapp-dark: #178F56;
+  --color-cream: #FDFAF5;
+
+  /* Typography */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid #2D7DD2;
+  outline-offset: 2px;
+}
+
+/* Modal body lock */
+body.modal-open {
+  overflow: hidden;
+}
