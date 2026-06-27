@@ -33,3 +33,9 @@ AGENTS.md
 # Project brief and source assets (no van al repo)
 PROMPT_JLTours_ClaudeCode.md
 logo.jpeg
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
