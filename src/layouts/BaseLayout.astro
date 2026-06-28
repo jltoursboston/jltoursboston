@@ -17,7 +17,7 @@ const {
   lang,
   title = t(lang, 'seo.title'),
   description = t(lang, 'seo.description'),
-  ogImage = '/og-image.jpg',
+  ogImage = 'https://jltoursboston.com/logo.jpeg',
   canonicalURL = Astro.url.href,
   hreflangEs,
   hreflangEn,
@@ -32,6 +32,8 @@ const ogImageAbsolute = ogImage.startsWith('http')
   : `https://jltoursboston.com${ogImage}`;
 
 // LocalBusiness + TravelAgency schema (SEO local — East Boston)
+const gaId = import.meta.env.PUBLIC_GA_ID as string | undefined;
+
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['LocalBusiness', 'TravelAgency'],
@@ -103,16 +105,43 @@ const localBusinessSchema = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageAbsolute} />
 
-    <!-- Favicon -->
+    <!-- Favicon & manifest -->
     <link rel="icon" type="image/jpeg" href="/logo.jpeg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#10243E" />
 
     <!-- LocalBusiness + TravelAgency schema (SEO local) -->
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 
     <!-- Slot para schemas adicionales por página (TouristTrip, FAQPage, BreadcrumbList) -->
     <slot name="head-schemas" />
+
+    <!-- Google Analytics 4 (solo si PUBLIC_GA_ID está configurado) -->
+    {gaId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} is:inline></script>
+        <script define:vars={{ gaId }} is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaId);
+        </script>
+      </>
+    )}
   </head>
   <body class="bg-cream font-sans text-navy antialiased">
     <slot />
+    {gaId && (
+      <script define:vars={{ lang }} is:inline>
+        document.addEventListener('click', function(e) {
+          const link = e.target.closest('a[href*="wa.me"]');
+          if (!link) return;
+          const tour = link.dataset.waTour || 'general';
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'whatsapp_click', { tour: tour, language: lang });
+          }
+        });
+      </script>
+    )}
   </body>
 </html>

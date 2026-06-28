@@ -1,0 +1,90 @@
+---
+import type { Lang } from '../../data/i18n';
+import { t } from '../../data/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const faqs = [
+  { q: t(lang, 'homefaq.q1'), a: t(lang, 'homefaq.a1') },
+  { q: t(lang, 'homefaq.q2'), a: t(lang, 'homefaq.a2') },
+  { q: t(lang, 'homefaq.q3'), a: t(lang, 'homefaq.a3') },
+  { q: t(lang, 'homefaq.q4'), a: t(lang, 'homefaq.a4') },
+  { q: t(lang, 'homefaq.q5'), a: t(lang, 'homefaq.a5') },
+];
+---
+
+<section class="py-20 lg:py-28 bg-cream" id="faq">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="text-sky font-semibold text-sm tracking-widest uppercase mb-3">FAQ</p>
+      <h2 class="font-display font-bold text-4xl lg:text-5xl text-navy mb-4">{t(lang, 'homefaq.title')}</h2>
+      <p class="text-navy/60 text-lg">{t(lang, 'homefaq.subtitle')}</p>
+    </div>
+
+    <!-- Accordion -->
+    <div class="space-y-3" id="home-faq-list">
+      {faqs.map((item, i) => (
+        <div
+          class="home-faq-item bg-white border border-navy/10 rounded-2xl overflow-hidden shadow-sm"
+          itemscope
+          itemtype="https://schema.org/Question"
+        >
+          <button
+            type="button"
+            class="home-faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+            aria-expanded="false"
+            data-idx={i}
+          >
+            <span class="font-semibold text-navy" itemprop="name">{item.q}</span>
+            <svg
+              class="home-faq-arrow w-5 h-5 text-navy/40 flex-shrink-0 transition-transform duration-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div
+            class="home-faq-answer hidden px-6 pb-5 text-navy/70 text-sm leading-relaxed border-t border-navy/5 pt-4"
+            itemscope
+            itemtype="https://schema.org/Answer"
+            itemprop="acceptedAnswer"
+          >
+            <span itemprop="text">{item.a}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.home-faq-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.home-faq-item');
+      const answer = item?.querySelector('.home-faq-answer');
+      const arrow = btn.querySelector('.home-faq-arrow');
+      const isOpen = !answer?.classList.contains('hidden');
+
+      // Close all others
+      document.querySelectorAll('.home-faq-item').forEach(el => {
+        el.querySelector('.home-faq-answer')?.classList.add('hidden');
+        el.querySelector('.home-faq-arrow')?.classList.remove('rotate-180');
+        el.querySelector('.home-faq-trigger')?.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        answer?.classList.remove('hidden');
+        arrow?.classList.add('rotate-180');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>

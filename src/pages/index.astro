@@ -9,20 +9,46 @@ import WhyUs from '../components/sections/WhyUs.astro';
 import FamilyParks from '../components/sections/FamilyParks.astro';
 import UpcomingDates from '../components/sections/UpcomingDates.astro';
 import Testimonials from '../components/sections/Testimonials.astro';
+import HomeFAQ from '../components/sections/HomeFAQ.astro';
+import QuickQuote from '../components/sections/QuickQuote.astro';
 import FinalCTA from '../components/sections/FinalCTA.astro';
+import { t } from '../data/i18n';
+
+const lang = 'es' as const;
+
+const faqPairs: Array<[keyof typeof import('../data/i18n').ui.es, keyof typeof import('../data/i18n').ui.es]> = [
+  ['homefaq.q1', 'homefaq.a1'],
+  ['homefaq.q2', 'homefaq.a2'],
+  ['homefaq.q3', 'homefaq.a3'],
+  ['homefaq.q4', 'homefaq.a4'],
+  ['homefaq.q5', 'homefaq.a5'],
+];
+
+const homeFaqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqPairs.map(([qKey, aKey]) => ({
+    '@type': 'Question',
+    name: t(lang, qKey),
+    acceptedAnswer: { '@type': 'Answer', text: t(lang, aKey) },
+  })),
+};
 ---
 
-<BaseLayout lang="es">
-  <Header lang="es" />
+<BaseLayout lang={lang}>
+  <script slot="head-schemas" type="application/ld+json" set:html={JSON.stringify(homeFaqSchema)} />
+  <Header lang={lang} />
   <main>
-    <Hero lang="es" />
-    <Tours lang="es" />
-    <WhyUs lang="es" />
-    <FamilyParks lang="es" />
-    <UpcomingDates lang="es" />
-    <Testimonials lang="es" />
-    <FinalCTA lang="es" />
+    <Hero lang={lang} />
+    <Tours lang={lang} />
+    <QuickQuote lang={lang} />
+    <WhyUs lang={lang} />
+    <FamilyParks lang={lang} />
+    <UpcomingDates lang={lang} />
+    <Testimonials lang={lang} />
+    <HomeFAQ lang={lang} />
+    <FinalCTA lang={lang} />
   </main>
-  <Footer lang="es" />
-  <WhatsAppFloat lang="es" />
+  <Footer lang={lang} />
+  <WhatsAppFloat lang={lang} />
 </BaseLayout>

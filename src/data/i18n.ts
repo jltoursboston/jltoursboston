@@ -99,6 +99,32 @@ export const ui = {
     'footer.ceo': 'Alex López — CEO',
     'footer.privacy': 'Aviso de Privacidad',
 
+    // Quick quote widget
+    'quote.eyebrow': '¿No sabes cuál elegir?',
+    'quote.title': 'Cotiza tu tour en segundos',
+    'quote.subtitle': 'Elige destino, personas y mes — te enviamos la disponibilidad por WhatsApp.',
+    'quote.destination': 'Destino',
+    'quote.destination.placeholder': 'Selecciona un tour',
+    'quote.people': 'Personas',
+    'quote.month': 'Mes preferido',
+    'quote.month.any': 'Cualquier mes',
+    'quote.cta': 'Ver disponibilidad por WhatsApp',
+    'quote.message': 'Hola, me interesa el tour a {tour} para {people} persona(s) en {month}. ¿Tienen disponibilidad?',
+
+    // FAQ homepage
+    'homefaq.title': 'Preguntas Frecuentes',
+    'homefaq.subtitle': 'Todo lo que necesitas saber antes de reservar.',
+    'homefaq.q1': '¿Qué incluye el precio del tour?',
+    'homefaq.a1': 'Transporte en van o bus moderno, guía profesional en español durante todo el recorrido, refrigerio (café y snacks) y una foto impresa de recuerdo. Algunas actividades opcionales tienen costo adicional.',
+    'homefaq.q2': '¿Con cuánta anticipación debo reservar?',
+    'homefaq.a2': 'Recomendamos reservar con al menos 1 semana de anticipación. Los cupos son limitados y se aseguran únicamente con el depósito del 50%. Para fechas de temporada alta (verano y feriados) conviene reservar con más tiempo.',
+    'homefaq.q3': '¿Los tours son 100% en español?',
+    'homefaq.a3': 'Sí. Todos nuestros tours se realizan con guías bilingües que conducen el recorrido completamente en español. Somos la opción #1 para la comunidad hispanohablante de Boston y sus alrededores.',
+    'homefaq.q4': '¿Cuál es la política de cancelación?',
+    'homefaq.a4': 'Puedes cancelar o reprogramar hasta 72 horas antes de la salida sin perder tu depósito. Cancelaciones con menos tiempo pueden perder el 50% del depósito. Escríbenos por WhatsApp para cualquier cambio.',
+    'homefaq.q5': '¿Los tours son aptos para niños y adultos mayores?',
+    'homefaq.a5': 'Sí, somos una operadora familiar. Los niños viajan a precio especial y nuestras rutas están diseñadas para todos los públicos. Cuéntanos las necesidades de tu grupo al reservar para que podamos orientarte mejor.',
+
     // SEO
     'seo.title': 'JL Tours Boston | Tours desde Boston en Español — Niágara, Nueva York, Washington',
     'seo.description': 'Tours y excursiones desde East Boston en español: Cataratas del Niágara, Nueva York, Washington D.C., Atlantic City. Transporte incluido, guía profesional. Reserva con 50%. ☎ +1 857-389-9523.',
@@ -201,6 +227,32 @@ export const ui = {
     'footer.rights': '© 2026 JL Tours Inc. All rights reserved.',
     'footer.ceo': 'Alex López — CEO',
     'footer.privacy': 'Privacy Notice',
+
+    // Quick quote widget
+    'quote.eyebrow': "Can't decide?",
+    'quote.title': 'Get a quick quote',
+    'quote.subtitle': 'Choose your destination, group size, and preferred month — we\'ll confirm availability on WhatsApp.',
+    'quote.destination': 'Destination',
+    'quote.destination.placeholder': 'Select a tour',
+    'quote.people': 'People',
+    'quote.month': 'Preferred month',
+    'quote.month.any': 'Any month',
+    'quote.cta': 'Check availability on WhatsApp',
+    'quote.message': 'Hello, I\'m interested in the {tour} tour for {people} person(s) in {month}. Do you have availability?',
+
+    // FAQ homepage
+    'homefaq.title': 'Frequently Asked Questions',
+    'homefaq.subtitle': 'Everything you need to know before booking.',
+    'homefaq.q1': 'What is included in the tour price?',
+    'homefaq.a1': 'Transportation in a modern van or bus, a professional bilingual guide throughout the tour, refreshments (coffee and snacks), and a printed souvenir photo. Some optional activities have an additional cost.',
+    'homefaq.q2': 'How far in advance should I book?',
+    'homefaq.a2': 'We recommend booking at least 1 week in advance. Spots are limited and secured only with a 50% deposit. For peak season dates (summer and holidays), booking earlier is strongly recommended.',
+    'homefaq.q3': 'Are the tours 100% in Spanish?',
+    'homefaq.a3': 'Yes. All our tours are led by bilingual guides who conduct the entire experience in Spanish. We are the #1 option for the Spanish-speaking community in Boston and surrounding areas.',
+    'homefaq.q4': 'What is the cancellation policy?',
+    'homefaq.a4': 'You can cancel or reschedule up to 72 hours before departure without losing your deposit. Cancellations with less notice may forfeit 50% of the deposit. Message us on WhatsApp for any changes.',
+    'homefaq.q5': 'Are the tours suitable for children and seniors?',
+    'homefaq.a5': 'Yes, we are a family-friendly operator. Children travel at a special rate and our itineraries are designed for all ages. Let us know your group\'s needs when booking so we can best accommodate you.',
 
     // SEO
     'seo.title': 'JL Tours Boston | Tours from Boston in Spanish — Niagara, NYC, Washington DC',
