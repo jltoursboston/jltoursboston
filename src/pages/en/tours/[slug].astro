@@ -19,14 +19,80 @@ const lang = 'en';
 const content = tour[lang];
 
 const waBook = tour.whatsappMessage[lang];
+
+const priceAmount = /\$(\d+)/.exec(content.price)?.[1] ?? '0';
+
+const pageUrl = `https://jltoursboston.com/en/tours/${tour.slug}`;
+const pageTitle = `${content.name} Tour from Boston | ${content.price.split(' ')[0]} | JL Tours Boston`;
+
+const touristTripSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  name: `${content.name} Tour from Boston in Spanish`,
+  description: content.description,
+  url: pageUrl,
+  image: tour.image,
+  touristType: { '@type': 'Audience', audienceType: 'Spanish-speaking travelers from Boston' },
+  availableLanguage: { '@type': 'Language', name: 'Spanish' },
+  duration: content.duration,
+  offers: {
+    '@type': 'Offer',
+    price: priceAmount,
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    url: waBook,
+  },
+  provider: {
+    '@type': 'TravelAgency',
+    name: 'JL Tours Boston',
+    telephone: '+18573899523',
+    url: 'https://jltoursboston.com',
+  },
+  departureLocation: {
+    '@type': 'Place',
+    name: tour.departurePoints[0] ?? 'East Boston, MA',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Boston',
+      addressRegion: 'MA',
+      addressCountry: 'US',
+    },
+  },
+};
+
+const faqSchema = content.faq && content.faq.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: content.faq.map(item => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+} : null;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'JL Tours Boston', item: 'https://jltoursboston.com/en/' },
+    { '@type': 'ListItem', position: 2, name: 'Tours', item: 'https://jltoursboston.com/en/tours/' },
+    { '@type': 'ListItem', position: 3, name: content.name },
+  ],
+};
+
+const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])];
 ---
 
 <BaseLayout
   lang={lang}
-  title={`${content.name} — JL Tours Boston`}
+  title={pageTitle}
   description={content.description}
-  canonicalURL={`https://jltoursboston.com/en/tours/${tour.slug}`}
+  ogImage={tour.image}
+  canonicalURL={pageUrl}
+  hreflangEs={`https://jltoursboston.com/tours/${tour.slug}`}
+  hreflangEn={pageUrl}
 >
+  <script slot="head-schemas" type="application/ld+json" set:html={JSON.stringify(schemas)} />
   <Header lang={lang} />
 
   <main class="pt-16">
@@ -41,6 +107,7 @@ const waBook = tour.whatsappMessage[lang];
           width="1200"
           height="600"
           loading="eager"
+          fetchpriority="high"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/50 to-navy/10"></div>
       </div>
@@ -220,20 +287,20 @@ const waBook = tour.whatsappMessage[lang];
           <h2 class="font-display font-bold text-3xl text-navy mb-6">{t(lang, 'tour.faq')}</h2>
           <div class="space-y-3" id="faq-list">
             {content.faq.map((item, i) => (
-              <div class="faq-item bg-white border border-navy/10 rounded-2xl overflow-hidden shadow-sm">
+              <div class="faq-item bg-white border border-navy/10 rounded-2xl overflow-hidden shadow-sm" itemscope itemtype="https://schema.org/Question">
                 <button
                   type="button"
                   class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
                   aria-expanded="false"
                   data-faq={i}
                 >
-                  <span class="font-semibold text-navy">{item.q}</span>
+                  <span class="font-semibold text-navy" itemprop="name">{item.q}</span>
                   <svg class="faq-arrow w-5 h-5 text-navy/40 flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                   </svg>
                 </button>
-                <div class="faq-answer hidden px-6 pb-5 text-navy/70 text-sm leading-relaxed border-t border-navy/5 pt-4">
-                  {item.a}
+                <div class="faq-answer hidden px-6 pb-5 text-navy/70 text-sm leading-relaxed border-t border-navy/5 pt-4" itemscope itemtype="https://schema.org/Answer" itemprop="acceptedAnswer">
+                  <span itemprop="text">{item.a}</span>
                 </div>
               </div>
             ))}

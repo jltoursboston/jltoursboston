@@ -9,6 +9,8 @@ interface Props {
   description?: string;
   ogImage?: string;
   canonicalURL?: string;
+  hreflangEs?: string;
+  hreflangEn?: string;
 }
 
 const {
@@ -17,29 +19,47 @@ const {
   description = t(lang, 'seo.description'),
   ogImage = '/og-image.jpg',
   canonicalURL = Astro.url.href,
+  hreflangEs,
+  hreflangEn,
 } = Astro.props;
 
-const altLang = lang === 'es' ? 'en' : 'es';
-const altHref = lang === 'es'
-  ? `https://jltoursboston.com/en/`
-  : `https://jltoursboston.com/`;
 const canonicalHref = lang === 'es'
   ? `https://jltoursboston.com/`
   : `https://jltoursboston.com/en/`;
 
-const jsonLd = {
+const ogImageAbsolute = ogImage.startsWith('http')
+  ? ogImage
+  : `https://jltoursboston.com${ogImage}`;
+
+// LocalBusiness + TravelAgency schema (SEO local — East Boston)
+const localBusinessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'TravelAgency',
-  name: 'JL Tours Inc',
-  description: 'Agencia de tours y excursiones desde Boston al noreste de EE.UU.',
+  '@type': ['LocalBusiness', 'TravelAgency'],
+  name: 'JL Tours Boston',
+  description: 'Tours y excursiones desde East Boston en español: Cataratas del Niágara, Nueva York, Washington D.C., Atlantic City y más.',
   url: 'https://jltoursboston.com',
   telephone: '+18573899523',
+  // TODO: confirmar con dirección real del punto de salida para que coincida con el Google Business Profile
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'East Boston',
+    addressLocality: 'Boston',
+    addressRegion: 'MA',
+    postalCode: '02128', // TODO: confirmar código postal exacto del punto de salida
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 42.3737, // TODO: confirmar coordenadas exactas del punto de salida
+    longitude: -71.0393,
+  },
+  // TODO: confirmar zonas reales de origen de los clientes (¿Lynn, Lawrence, Chelsea?)
+  areaServed: ['Boston, MA', 'East Boston, MA'],
   sameAs: [
     'https://www.instagram.com/jltoursboston',
     'https://www.facebook.com/jaime.lopez.7946281',
     'https://www.tiktok.com/@jltoursboston',
   ],
-  areaServed: 'Boston, MA, USA',
   founder: {
     '@type': 'Person',
     name: 'Alex López',
@@ -54,36 +74,43 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Font preconnect (Core Web Vitals) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <!-- Primary SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalHref} />
+    <link rel="canonical" href={canonicalURL ?? canonicalHref} />
 
-    <!-- Hreflang for bilingual SEO -->
-    <link rel="alternate" hreflang="es" href="https://jltoursboston.com/" />
-    <link rel="alternate" hreflang="en" href="https://jltoursboston.com/en/" />
+    <!-- Hreflang — dinámico para páginas de tour, fallback al homepage -->
+    <link rel="alternate" hreflang="es" href={hreflangEs ?? 'https://jltoursboston.com/'} />
+    <link rel="alternate" hreflang="en" href={hreflangEn ?? 'https://jltoursboston.com/en/'} />
     <link rel="alternate" hreflang="x-default" href="https://jltoursboston.com/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalHref} />
-    <meta property="og:title" content={t(lang, 'seo.og.title')} />
+    <meta property="og:url" content={canonicalURL ?? canonicalHref} />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`https://jltoursboston.com${ogImage}`} />
+    <meta property="og:image" content={ogImageAbsolute} />
     <meta property="og:locale" content={lang === 'es' ? 'es_US' : 'en_US'} />
     <meta property="og:site_name" content="JL Tours Boston" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={t(lang, 'seo.og.title')} />
+    <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`https://jltoursboston.com${ogImage}`} />
+    <meta name="twitter:image" content={ogImageAbsolute} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="/logo.jpeg" />
 
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <!-- LocalBusiness + TravelAgency schema (SEO local) -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+
+    <!-- Slot para schemas adicionales por página (TouristTrip, FAQPage, BreadcrumbList) -->
+    <slot name="head-schemas" />
   </head>
   <body class="bg-cream font-sans text-navy antialiased">
     <slot />

@@ -100,8 +100,8 @@ export const ui = {
     'footer.privacy': 'Aviso de Privacidad',
 
     // SEO
-    'seo.title': 'JL Tours Boston | Tours y Excursiones desde Boston en Español',
-    'seo.description': 'Excursiones desde Boston a Niágara, Nueva York, Washington D.C., Atlantic City y más. Guía en español, transporte incluido. Llámanos al +1 857-389-9523.',
+    'seo.title': 'JL Tours Boston | Tours desde Boston en Español — Niágara, Nueva York, Washington',
+    'seo.description': 'Tours y excursiones desde East Boston en español: Cataratas del Niágara, Nueva York, Washington D.C., Atlantic City. Transporte incluido, guía profesional. Reserva con 50%. ☎ +1 857-389-9523.',
     'seo.og.title': 'JL Tours Boston — Viaja con Nosotros',
   },
   en: {
@@ -203,8 +203,8 @@ export const ui = {
     'footer.privacy': 'Privacy Notice',
 
     // SEO
-    'seo.title': 'JL Tours Boston | Tours & Excursions from Boston',
-    'seo.description': 'Tours from Boston to Niagara Falls, New York City, Washington D.C., Atlantic City and more. Bilingual guide, transportation included. Call +1 857-389-9523.',
+    'seo.title': 'JL Tours Boston | Tours from Boston in Spanish — Niagara, NYC, Washington DC',
+    'seo.description': 'Tours from East Boston in Spanish: Niagara Falls, New York City, Washington D.C., Atlantic City. Transportation included, bilingual guide. Book with 50% deposit. ☎ +1 857-389-9523.',
     'seo.og.title': 'JL Tours Boston — Travel With Us',
   },
 } as const;
