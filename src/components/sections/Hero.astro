@@ -7,10 +7,9 @@ interface Props {
 }
 const { lang } = Astro.props;
 
-const waHero = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'hero.cta.message'));
+const waBook = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'hero.cta.book.message'));
 ---
 
-<!-- Hero Section -->
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
   <!-- Background image with overlay -->
   <div class="absolute inset-0">
@@ -23,65 +22,79 @@ const waHero = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'h
       width="1600"
       height="900"
     />
-    <!-- Gradient overlay: dark at bottom-left for text readability -->
-    <div class="absolute inset-0 bg-gradient-to-br from-navy/85 via-navy/65 to-navy/30"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/70 to-navy/90"></div>
   </div>
 
   <!-- Content -->
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 text-white">
-    <div class="max-w-3xl">
-      <!-- Eyebrow -->
-      <p class="inline-flex items-center gap-2 text-amber font-semibold text-sm tracking-wider uppercase mb-4">
-        <span class="w-8 h-0.5 bg-amber"></span>
-        JL Tours Boston
-      </p>
+  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 text-white text-center">
 
-      <!-- Main headline -->
-      <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6">
-        {t(lang, 'hero.title')}
-      </h1>
+    <!-- Eyebrow badge -->
+    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-sm font-semibold text-white/90 mb-8">
+      <span class="w-2 h-2 rounded-full bg-whatsapp animate-pulse"></span>
+      {t(lang, 'hero.eyebrow')}
+    </div>
 
-      <!-- Subtitle -->
-      <p class="text-white/85 text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl">
-        {t(lang, 'hero.subtitle')}
-      </p>
+    <!-- Main headline -->
+    <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6">
+      {t(lang, 'hero.title')}
+    </h1>
 
-      <!-- CTA Button -->
+    <!-- Subtitle -->
+    <p class="text-white/80 text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
+      {t(lang, 'hero.subtitle')}
+    </p>
+
+    <!-- 3 CTA Buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10">
+      <!-- Ver Tours -->
       <a
-        href={waHero}
+        href="#tours"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-navy font-bold rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 text-base"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+        {t(lang, 'hero.cta.tours')}
+      </a>
+
+      <!-- Ver Calendario -->
+      <a
+        href="#calendario"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/15 backdrop-blur-sm border border-white/30 text-white font-bold rounded-2xl hover:bg-white/25 hover:-translate-y-0.5 transition-all duration-300 text-base"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        {t(lang, 'hero.cta.calendar')}
+      </a>
+
+      <!-- Reservar (WhatsApp) -->
+      <a
+        href={waBook}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-3 px-8 py-4 bg-whatsapp hover:bg-whatsapp-dark text-white text-lg font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-whatsapp hover:bg-whatsapp-dark text-white font-bold rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 text-base"
       >
-        <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
           <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.847L.057 23.49a.5.5 0 0 0 .609.61l5.71-1.494A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.852 0-3.587-.504-5.073-1.383l-.364-.217-3.77.987.998-3.686-.237-.381A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
         </svg>
-        {t(lang, 'hero.cta')}
+        {t(lang, 'hero.cta.book')}
       </a>
-
-      <!-- Trust stats -->
-      <div class="mt-12 flex flex-wrap gap-6 sm:gap-10">
-        <div class="text-center sm:text-left">
-          <p class="text-3xl font-display font-black text-amber">{t(lang, 'hero.stat1.value')}</p>
-          <p class="text-white/70 text-sm mt-1">{t(lang, 'hero.stat1.label')}</p>
-        </div>
-        <div class="w-px bg-white/20 hidden sm:block"></div>
-        <div class="text-center sm:text-left">
-          <p class="text-3xl font-display font-black text-amber">{t(lang, 'hero.stat2.value')}</p>
-          <p class="text-white/70 text-sm mt-1">{t(lang, 'hero.stat2.label')}</p>
-        </div>
-        <div class="w-px bg-white/20 hidden sm:block"></div>
-        <div class="text-center sm:text-left">
-          <p class="text-3xl font-display font-black text-amber">{t(lang, 'hero.stat3.value')}</p>
-          <p class="text-white/70 text-sm mt-1">{t(lang, 'hero.stat3.label')}</p>
-        </div>
-      </div>
     </div>
+
+    <!-- Departures badge -->
+    <p class="text-white/60 text-sm flex items-center justify-center gap-2">
+      <svg class="w-4 h-4 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+      {t(lang, 'hero.departures')}
+    </p>
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 animate-bounce">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 animate-bounce">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
     </svg>

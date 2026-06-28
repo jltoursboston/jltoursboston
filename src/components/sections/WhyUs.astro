@@ -1,0 +1,40 @@
+---
+import type { Lang } from '../../data/i18n';
+import { t } from '../../data/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const cards = [
+  { icon: '🚌', titleKey: 'whyus.1.title', descKey: 'whyus.1.desc' },
+  { icon: '🇺🇸', titleKey: 'whyus.2.title', descKey: 'whyus.2.desc' },
+  { icon: '☕', titleKey: 'whyus.3.title', descKey: 'whyus.3.desc' },
+  { icon: '📸', titleKey: 'whyus.4.title', descKey: 'whyus.4.desc' },
+  { icon: '📅', titleKey: 'whyus.5.title', descKey: 'whyus.5.desc' },
+  { icon: '💳', titleKey: 'whyus.6.title', descKey: 'whyus.6.desc' },
+] as const;
+---
+
+<section class="py-20 lg:py-28 bg-navy text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="text-center mb-14">
+      <h2 class="font-display font-bold text-4xl lg:text-5xl mb-4">{t(lang, 'whyus.title')}</h2>
+      <p class="text-white/70 text-lg max-w-2xl mx-auto">{t(lang, 'whyus.subtitle')}</p>
+    </div>
+
+    <!-- 6-card grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {cards.map(card => (
+        <div class="bg-white/8 border border-white/10 rounded-2xl p-6 hover:border-amber/30 transition-colors">
+          <div class="text-4xl mb-4">{card.icon}</div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">{t(lang, card.titleKey)}</h3>
+          <p class="text-white/65 text-sm leading-relaxed">{t(lang, card.descKey)}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
