@@ -121,9 +121,22 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
         <div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/50 to-navy/10"></div>
       </div>
       <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 w-full">
-        <a href="/" class="inline-flex items-center gap-1.5 text-white/60 hover:text-white text-sm mb-4 transition-colors">
-          {t(lang, 'tour.back')}
-        </a>
+        <div class="flex flex-wrap items-center gap-2 mb-5">
+          <a href="/"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm border border-white/25 text-white text-xs font-medium transition-all">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+            </svg>
+            Inicio
+          </a>
+          <a href="/#tours"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber/90 hover:bg-amber text-navy text-xs font-bold transition-all shadow-sm">
+            Ver todos los tours
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
         <div class="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p class="text-amber text-sm font-semibold uppercase tracking-wider mb-2">{content.tagline}</p>
