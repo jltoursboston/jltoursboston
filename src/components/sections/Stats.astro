@@ -26,7 +26,7 @@ const stats = lang === 'es'
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
       {stats.map((stat, i) => (
         <div class="text-center" data-reveal style={`--rd: ${i * 80}ms`}>
-          <p class="font-display font-black text-4xl lg:text-5xl text-navy leading-none">
+          <p class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-navy leading-none">
             <span data-count={stat.value} data-suffix={stat.suffix}>0{stat.suffix}</span>
           </p>
           <p class="font-semibold text-navy text-base mt-1">{stat.label}</p>
