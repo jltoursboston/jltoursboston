@@ -38,6 +38,7 @@ export interface Tour {
   slug: string;
   image: string;
   imageAlt: { es: string; en: string };
+  gallery?: string[];
   whatsappMessage: { es: string; en: string };
   departurePoints: string[];
   nextDates: string[];
@@ -56,6 +57,12 @@ export const tours: Tour[] = [
       es: 'Cataratas del Niágara',
       en: 'Niagara Falls',
     },
+    gallery: [
+      '/images/tours/niagara-bus.jpg',
+      '/images/tours/niagara-poncho.jpg',
+      '/images/tours/niagara-arcoiris-bote.jpg',
+      '/images/tours/niagara-vista.jpg',
+    ],
     whatsappMessage: {
       es: WA_BASE + encodeURIComponent('Hola, quiero reservar el tour a las Cataratas del Niágara. ¿Podrían darme más información?'),
       en: WA_BASE + encodeURIComponent('Hello, I want to book the Niagara Falls tour. Could you give me more information?'),
@@ -186,6 +193,12 @@ export const tours: Tour[] = [
       es: 'Estatua de la Libertad, Nueva York',
       en: 'Statue of Liberty, New York City',
     },
+    gallery: [
+      '/images/tours/nyc-timessquare.jpg',
+      '/images/tours/nyc-onewtc.jpg',
+      '/images/tours/nyc-brooklyn.jpg',
+      '/images/tours/nyc-atardecer.jpg',
+    ],
     whatsappMessage: {
       es: WA_BASE + encodeURIComponent('Hola, quiero reservar el tour Nueva York – Experiencia Completa. ¿Podrían darme más información?'),
       en: WA_BASE + encodeURIComponent('Hello, I want to book the New York Complete Experience tour. Could you give me more information?'),
@@ -307,6 +320,12 @@ export const tours: Tour[] = [
       es: 'Manhattan desde mirador, Nueva York VIP',
       en: 'Manhattan skyline from observation deck, NYC VIP',
     },
+    gallery: [
+      '/images/tours/nyc-timessquare.jpg',
+      '/images/tours/nyc-onewtc.jpg',
+      '/images/tours/nyc-brooklyn.jpg',
+      '/images/tours/nyc-atardecer.jpg',
+    ],
     whatsappMessage: {
       es: WA_BASE + encodeURIComponent('Hola, quiero reservar el tour New York VIP – Miradores & Íconos. ¿Podrían darme más información?'),
       en: WA_BASE + encodeURIComponent('Hello, I want to book the New York VIP – Skylines & Icons tour. Could you give me more information?'),
@@ -432,6 +451,10 @@ export const tours: Tour[] = [
       es: 'Atlantic City boardwalk y Philadelphia',
       en: 'Atlantic City boardwalk and Philadelphia',
     },
+    gallery: [
+      '/images/tours/atlantic-city-noche.jpg',
+      '/images/tours/atlantic-city-boardwalk.jpg',
+    ],
     whatsappMessage: {
       es: WA_BASE + encodeURIComponent('Hola, quiero reservar el tour Atlantic City & Philadelphia. ¿Podrían darme más información?'),
       en: WA_BASE + encodeURIComponent('Hello, I want to book the Atlantic City & Philadelphia tour. Could you give me more information?'),

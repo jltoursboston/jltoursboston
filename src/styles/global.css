@@ -15,9 +15,14 @@
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 }
 
-/* Smooth scroll */
+/* Smooth scroll + overscroll fix */
 html {
   scroll-behavior: smooth;
+  background-color: #10243E; /* navy — evita gap blanco en overscroll iOS/Mac */
+}
+
+body {
+  overscroll-behavior-y: none;
 }
 
 /* Focus visible for accessibility */

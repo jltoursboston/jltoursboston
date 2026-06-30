@@ -139,6 +139,28 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
       </div>
     </section>
 
+    <!-- Gallery -->
+    {tour.gallery && tour.gallery.length > 0 && (
+      <section class="bg-navy/5 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+            {tour.gallery.map((img) => (
+              <div class="aspect-[4/3] overflow-hidden rounded-lg">
+                <img
+                  src={img}
+                  alt={tour.imageAlt[lang]}
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  width="400"
+                  height="300"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
     <!-- Sticky book bar -->
     <div class="sticky top-16 z-40 bg-white border-b border-navy/10 shadow-sm">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
