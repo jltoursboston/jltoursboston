@@ -908,7 +908,6 @@ export const tours: Tour[] = [
   },
 ];
 
-// Excursión #8 — Parques familiares (precio variable, se maneja separado)
 export const familyParks = {
   parks: [
     'Six Flags New England',
