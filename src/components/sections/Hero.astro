@@ -8,45 +8,65 @@ interface Props {
 const { lang } = Astro.props;
 
 const waBook = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'hero.cta.book.message'));
+
+const slides = [
+  {
+    src: '/images/tours/niagara.jpg',
+    alt: lang === 'es' ? 'Cataratas del Niágara' : 'Niagara Falls',
+  },
+  {
+    src: '/images/tours/nyc-completa.jpg',
+    alt: lang === 'es' ? 'Nueva York' : 'New York City',
+  },
+  {
+    src: '/images/tours/atlantic-city.jpg',
+    alt: lang === 'es' ? 'Atlantic City' : 'Atlantic City',
+  },
+];
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-  <!-- Background image with overlay -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden" data-hero>
+
+  <!-- Slideshow background -->
   <div class="absolute inset-0">
-    <!-- TODO: replace with real photo from @jltoursboston -->
-    <img
-      src="https://images.unsplash.com/photo-1501446529957-6226bd447c46?w=1600&q=80"
-      alt={lang === 'es' ? 'Viajeros disfrutando una excursión con JL Tours' : 'Travelers enjoying a tour with JL Tours'}
-      class="w-full h-full object-cover object-center"
-      loading="eager"
-      width="1600"
-      height="900"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/70 to-navy/90"></div>
+    {slides.map((slide, i) => (
+      <div class:list={['hero-slide', { 'hero-slide--first': i === 0 }]} aria-hidden={i > 0 ? 'true' : undefined}>
+        <img
+          src={slide.src}
+          alt={slide.alt}
+          class="w-full h-full object-cover object-center"
+          loading={i === 0 ? 'eager' : 'lazy'}
+          width="1600"
+          height="900"
+          fetchpriority={i === 0 ? 'high' : 'auto'}
+        />
+      </div>
+    ))}
+    <!-- Gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-navy/85 via-navy/70 to-navy/92 pointer-events-none"></div>
   </div>
 
   <!-- Content -->
   <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 text-white text-center">
 
     <!-- Eyebrow badge -->
-    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-sm font-semibold text-white/90 mb-8">
+    <div class="hero-badge inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-sm font-semibold text-white/90 mb-8">
       <span class="w-2 h-2 rounded-full bg-whatsapp animate-pulse"></span>
       {t(lang, 'hero.eyebrow')}
     </div>
 
     <!-- Main headline -->
-    <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6">
+    <h1 class="hero-title font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6">
       {t(lang, 'hero.title')}
     </h1>
 
     <!-- Subtitle -->
-    <p class="text-white/80 text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
+    <p class="hero-sub text-white/80 text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
       {t(lang, 'hero.subtitle')}
     </p>
 
     <!-- 3 CTA Buttons -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10">
-      <!-- Ver Tours -->
+    <div class="hero-cta flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10">
       <a
         href="#tours"
         class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-navy font-bold rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 text-base"
@@ -57,7 +77,6 @@ const waBook = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'h
         {t(lang, 'hero.cta.tours')}
       </a>
 
-      <!-- Ver Calendario -->
       <a
         href="#calendario"
         class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/15 backdrop-blur-sm border border-white/30 text-white font-bold rounded-2xl hover:bg-white/25 hover:-translate-y-0.5 transition-all duration-300 text-base"
@@ -68,7 +87,6 @@ const waBook = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'h
         {t(lang, 'hero.cta.calendar')}
       </a>
 
-      <!-- Reservar (WhatsApp) -->
       <a
         href={waBook}
         target="_blank"
@@ -84,7 +102,7 @@ const waBook = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'h
     </div>
 
     <!-- Departures badge -->
-    <p class="text-white/60 text-sm flex items-center justify-center gap-2">
+    <p class="hero-loc text-white/60 text-sm flex items-center justify-center gap-2">
       <svg class="w-4 h-4 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -94,9 +112,52 @@ const waBook = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'h
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 animate-bounce">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 animate-bounce" aria-hidden="true">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
     </svg>
   </div>
+
+  <!-- Slide dots -->
+  <div class="absolute bottom-8 right-6 flex gap-1.5 hero-dots" aria-hidden="true">
+    {slides.map((_, i) => (
+      <span class:list={['hero-dot', { 'hero-dot--active': i === 0 }]}></span>
+    ))}
+  </div>
 </section>
+
+<script>
+  (function () {
+    const slides = document.querySelectorAll<HTMLElement>('.hero-slide');
+    const dots = document.querySelectorAll<HTMLElement>('.hero-dot');
+    if (!slides.length) return;
+
+    let current = 0;
+
+    function goTo(n: number) {
+      slides[current].classList.remove('hero-slide--active');
+      dots[current]?.classList.remove('hero-dot--active');
+      current = n;
+      slides[current].classList.add('hero-slide--active');
+      dots[current]?.classList.add('hero-dot--active');
+    }
+
+    // Activate first slide immediately
+    slides[0].classList.add('hero-slide--active');
+    setInterval(() => goTo((current + 1) % slides.length), 5500);
+
+    // Animate hero content on load
+    const targets = ['.hero-badge', '.hero-title', '.hero-sub', '.hero-cta', '.hero-loc'];
+    targets.forEach((sel, i) => {
+      const el = document.querySelector<HTMLElement>(sel);
+      if (!el) return;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(22px)';
+      setTimeout(() => {
+        el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, 100 + i * 120);
+    });
+  })();
+</script>

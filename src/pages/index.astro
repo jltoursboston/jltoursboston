@@ -12,6 +12,7 @@ import Testimonials from '../components/sections/Testimonials.astro';
 import HomeFAQ from '../components/sections/HomeFAQ.astro';
 import QuickQuote from '../components/sections/QuickQuote.astro';
 import FinalCTA from '../components/sections/FinalCTA.astro';
+import Marquee from '../components/ui/Marquee.astro';
 import { t } from '../data/i18n';
 
 const lang = 'es' as const;
@@ -40,6 +41,7 @@ const homeFaqSchema = {
   <Header lang={lang} />
   <main>
     <Hero lang={lang} />
+    <Marquee items={['Cataratas del Niágara', 'Nueva York', 'Washington D.C.', 'Atlantic City', 'Philadelphia', 'New Jersey', 'Cavernas de Howe', 'Templo Hindú NJ']} />
     <Tours lang={lang} />
     <QuickQuote lang={lang} />
     <WhyUs lang={lang} />

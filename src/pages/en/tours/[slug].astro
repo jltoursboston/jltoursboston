@@ -132,24 +132,51 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
 
     <!-- Gallery -->
     {tour.gallery && tour.gallery.length > 0 && (
-      <section class="bg-navy/5 py-4">
+      <section class="py-6 bg-cream/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
-            {tour.gallery.map((img) => (
-              <div class="aspect-[4/3] overflow-hidden rounded-lg">
+          <p class="text-xs font-semibold text-navy/35 uppercase tracking-widest mb-3">Photo Gallery</p>
+          <div class={`grid gap-2 md:gap-3 ${tour.gallery.length >= 4 ? 'grid-cols-4 md:grid-cols-4' : 'grid-cols-2'}`}>
+            {tour.gallery.map((img, gi) => (
+              <div
+                class:list={[
+                  'relative overflow-hidden rounded-xl cursor-pointer group',
+                  gi === 0 && tour.gallery!.length >= 4 ? 'col-span-2 row-span-1' : '',
+                ]}
+                style={gi === 0 && tour.gallery!.length >= 4 ? 'aspect-ratio: 16/9' : 'aspect-ratio: 4/3'}
+                data-lightbox={gi}
+              >
                 <img
                   src={img}
-                  alt={tour.imageAlt[lang]}
-                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  alt={`${tour.imageAlt[lang]} ${gi + 1}`}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-107"
                   loading="lazy"
-                  width="400"
-                  height="300"
+                  width="600"
+                  height="400"
                 />
+                <div class="absolute inset-0 bg-navy/0 group-hover:bg-navy/25 transition-colors duration-400 flex items-center justify-center">
+                  <svg class="w-9 h-9 text-white opacity-0 group-hover:opacity-90 transition-opacity duration-300 drop-shadow-lg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/>
+                  </svg>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+    )}
+
+    <!-- Lightbox -->
+    {tour.gallery && tour.gallery.length > 0 && (
+      <div id="lightbox" class="fixed inset-0 z-[100] bg-navy/95 hidden items-center justify-center p-4" role="dialog" aria-modal="true">
+        <button id="lb-close" class="absolute top-4 right-5 text-white/60 hover:text-white text-3xl leading-none" aria-label="Close">&times;</button>
+        <button id="lb-prev" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white p-3" aria-label="Previous">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <img id="lb-img" src="" alt="" class="max-h-[88vh] max-w-full rounded-lg shadow-2xl object-contain" />
+        <button id="lb-next" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white p-3" aria-label="Next">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
     )}
 
     <!-- Sticky book bar -->
@@ -375,6 +402,7 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
 </BaseLayout>
 
 <script>
+  // FAQ accordion
   document.querySelectorAll('.faq-trigger').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
@@ -393,4 +421,46 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
       }
     });
   });
+
+  // Lightbox
+  (function () {
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img') as HTMLImageElement | null;
+    if (!lb || !lbImg) return;
+
+    const sources: string[] = [];
+    document.querySelectorAll<HTMLDivElement>('[data-lightbox]').forEach(el => {
+      const idx = parseInt(el.dataset.lightbox ?? '0');
+      const src = el.querySelector('img')?.src ?? '';
+      sources[idx] = src;
+      el.addEventListener('click', () => open(idx));
+    });
+
+    let current = 0;
+
+    function open(n: number) {
+      current = n;
+      lbImg!.src = sources[current] ?? '';
+      lb!.classList.remove('hidden');
+      lb!.classList.add('flex');
+      document.body.classList.add('modal-open');
+    }
+
+    function close() {
+      lb!.classList.add('hidden');
+      lb!.classList.remove('flex');
+      document.body.classList.remove('modal-open');
+    }
+
+    document.getElementById('lb-close')?.addEventListener('click', close);
+    document.getElementById('lb-prev')?.addEventListener('click', () => open((current - 1 + sources.length) % sources.length));
+    document.getElementById('lb-next')?.addEventListener('click', () => open((current + 1) % sources.length));
+    lb.addEventListener('click', e => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('flex')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') open((current - 1 + sources.length) % sources.length);
+      if (e.key === 'ArrowRight') open((current + 1) % sources.length);
+    });
+  })();
 </script>

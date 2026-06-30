@@ -136,5 +136,44 @@ const localBusinessSchema = {
         });
       </script>
     )}
+    <!-- Global animation system: scroll reveals + card tilt -->
+    <script>
+      (function () {
+        // ── Reveal on scroll ──
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              io.unobserve(e.target);
+            }
+          }),
+          { threshold: 0.06, rootMargin: '0px 0px -40px 0px' }
+        );
+        document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+
+        // Safety net: reveal anything still hidden after 5s
+        setTimeout(() => {
+          document.querySelectorAll('[data-reveal]:not(.visible)').forEach((el) => el.classList.add('visible'));
+        }, 5000);
+
+        // ── Card 3D tilt (desktop only) ──
+        if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+        document.querySelectorAll<HTMLElement>('[data-tilt]').forEach((card) => {
+          card.addEventListener('mousemove', (e) => {
+            const r = card.getBoundingClientRect();
+            const x = ((e as MouseEvent).clientX - r.left) / r.width - 0.5;
+            const y = ((e as MouseEvent).clientY - r.top) / r.height - 0.5;
+            card.style.transform = `perspective(900px) rotateY(${x * 8}deg) rotateX(${-y * 5}deg) translateY(-6px)`;
+            card.style.boxShadow = `${-x * 8}px ${-y * 4}px 24px rgba(16,36,62,0.18)`;
+            card.style.transition = 'transform 0.08s linear, box-shadow 0.08s linear';
+          });
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+            card.style.boxShadow = '';
+            card.style.transition = 'transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease';
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
