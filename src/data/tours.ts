@@ -693,8 +693,7 @@ export const tours: Tour[] = [
   {
     id: 'templo-hindu',
     slug: 'templo-hindu-new-jersey',
-    // TODO: replace with real photo from @jltoursboston
-    image: 'https://images.unsplash.com/photo-1625125886064-a5577a9bd84b?w=800&q=80',
+    image: '/images/tours/templo-hindu.jpg',
     imageAlt: {
       es: 'Templo Hindú BAPS en Robbinsville, New Jersey',
       en: 'BAPS Hindu Temple in Robbinsville, New Jersey',
@@ -803,8 +802,7 @@ export const tours: Tour[] = [
   {
     id: 'cavernas',
     slug: 'cavernas-nueva-york',
-    // TODO: replace with real photo from @jltoursboston
-    image: 'https://images.unsplash.com/photo-1520637836993-5078b9e82f83?w=800&q=80',
+    image: '/images/tours/cavernas.jpg',
     imageAlt: {
       es: 'Cavernas subterráneas en Nueva York',
       en: 'Underground caverns in New York',
