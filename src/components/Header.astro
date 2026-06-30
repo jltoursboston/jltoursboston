@@ -13,14 +13,18 @@ const { lang } = Astro.props;
     <div class="flex items-center justify-between h-16 md:h-20">
 
       <!-- Logo -->
-      <a href={lang === 'es' ? '/' : '/en/'} class="flex-shrink-0">
+      <a href={lang === 'es' ? '/' : '/en/'} class="flex items-center gap-3 flex-shrink-0">
         <img
           src="/logo.jpeg"
-          alt="JL Tours Inc — Turismo en constante evolución"
-          class="h-12 md:h-14 w-auto object-contain"
-          width="120"
-          height="56"
+          alt="JL Tours Boston"
+          class="h-14 md:h-16 w-auto object-contain drop-shadow-md"
+          width="64"
+          height="64"
         />
+        <div class="hidden sm:block">
+          <span class="block text-white font-black text-base md:text-lg leading-tight tracking-tight">JL Tours Boston</span>
+          <span class="block text-amber text-xs font-medium tracking-wide">{lang === 'es' ? 'Tours desde Boston' : 'Tours from Boston'}</span>
+        </div>
       </a>
 
       <!-- Desktop nav -->

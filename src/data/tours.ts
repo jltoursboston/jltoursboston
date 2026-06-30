@@ -51,8 +51,7 @@ export const tours: Tour[] = [
   {
     id: 'niagara',
     slug: 'cataratas-niagara',
-    // TODO: replace with real photo from @jltoursboston
-    image: 'https://images.unsplash.com/photo-1489447068241-b3490214e879?w=800&q=80',
+    image: '/images/tours/niagara.jpg',
     imageAlt: {
       es: 'Cataratas del Niágara',
       en: 'Niagara Falls',
@@ -182,8 +181,7 @@ export const tours: Tour[] = [
   {
     id: 'nyc-completa',
     slug: 'nueva-york-completa',
-    // TODO: replace with real photo from @jltoursboston
-    image: 'https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=800&q=80',
+    image: '/images/tours/nyc-completa.jpg',
     imageAlt: {
       es: 'Estatua de la Libertad, Nueva York',
       en: 'Statue of Liberty, New York City',
@@ -304,8 +302,7 @@ export const tours: Tour[] = [
   {
     id: 'nyc-vip',
     slug: 'nueva-york-vip',
-    // TODO: replace with real photo from @jltoursboston
-    image: 'https://images.unsplash.com/photo-1546436836-07a91091f160?w=800&q=80',
+    image: '/images/tours/nyc-vip.jpg',
     imageAlt: {
       es: 'Manhattan desde mirador, Nueva York VIP',
       en: 'Manhattan skyline from observation deck, NYC VIP',
@@ -430,8 +427,7 @@ export const tours: Tour[] = [
   {
     id: 'atlantic-city',
     slug: 'atlantic-city-philadelphia',
-    // TODO: replace with real photo from @jltoursboston
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+    image: '/images/tours/atlantic-city.jpg',
     imageAlt: {
       es: 'Atlantic City boardwalk y Philadelphia',
       en: 'Atlantic City boardwalk and Philadelphia',

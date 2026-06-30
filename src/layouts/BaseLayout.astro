@@ -38,28 +38,21 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['LocalBusiness', 'TravelAgency'],
   name: 'JL Tours Boston',
-  description: 'Tours y excursiones desde East Boston en español: Cataratas del Niágara, Nueva York, Washington D.C., Atlantic City y más.',
+  description: 'JL Tours Boston offers bilingual guided tours (Spanish & English) departing from East Boston to top destinations: Niagara Falls, New York City, Washington DC, Atlantic City, Philadelphia, Hindu Temple NJ, and more. Family-friendly trips with comfortable transportation and experienced guides. Easy booking via WhatsApp — no complicated reservations. Serving the Latino community of Greater Boston. Call or text: 857-389-9523.',
   url: 'https://jltoursboston.com',
   telephone: '+18573899523',
-  // TODO: confirmar con dirección real del punto de salida para que coincida con el Google Business Profile
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'East Boston',
-    addressLocality: 'Boston',
+    addressLocality: 'East Boston',
     addressRegion: 'MA',
-    postalCode: '02128', // TODO: confirmar código postal exacto del punto de salida
+    postalCode: '02128',
     addressCountry: 'US',
   },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 42.3737, // TODO: confirmar coordenadas exactas del punto de salida
-    longitude: -71.0393,
-  },
-  // TODO: confirmar zonas reales de origen de los clientes (¿Lynn, Lawrence, Chelsea?)
-  areaServed: ['Boston, MA', 'East Boston, MA'],
+  openingHours: ['Mo-Su 09:00-19:00'],
+  areaServed: ['Boston, MA', 'East Boston, MA', 'Massachusetts, US'],
   sameAs: [
     'https://www.instagram.com/jltoursboston',
-    'https://www.facebook.com/jaime.lopez.7946281',
+    'https://www.facebook.com/jltoursboston',
     'https://www.tiktok.com/@jltoursboston',
   ],
   founder: {
