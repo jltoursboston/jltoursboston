@@ -126,10 +126,31 @@ const { lang } = Astro.props;
       </div>
     </div>
 
-    <!-- Bottom bar -->
-    <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-white/50 text-sm">
-      <p>{t(lang, 'footer.rights')}</p>
-      <p class="text-white/30">Boston, MA · {lang === 'es' ? 'Punto de salida: Walgreens East Boston' : 'Departure point: Walgreens East Boston'}</p>
+    <!-- NAP structured data (local SEO) -->
+    <div class="mt-12 pt-6 border-t border-white/10">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <p class="text-white/50 text-sm">{t(lang, 'footer.rights')}</p>
+        <address
+          class="not-italic text-white/35 text-xs leading-relaxed text-left sm:text-right"
+          itemscope
+          itemtype="https://schema.org/TravelAgency"
+        >
+          <span itemprop="name" class="sr-only">JL Tours Boston</span>
+          <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+            <span itemprop="addressLocality">East Boston</span>,
+            <span itemprop="addressRegion">MA</span>
+            <span itemprop="postalCode">02128</span> ·
+          </span>
+          <a
+            href="tel:+18573899523"
+            itemprop="telephone"
+            class="hover:text-amber transition-colors"
+          >+1 857-389-9523</a>
+          <span class="block mt-0.5">
+            {lang === 'es' ? 'Punto de salida: Walgreens East Boston' : 'Departure point: Walgreens East Boston'}
+          </span>
+        </address>
+      </div>
     </div>
   </div>
 </footer>

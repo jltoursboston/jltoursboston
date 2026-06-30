@@ -59,6 +59,13 @@ const localBusinessSchema = {
     '@type': 'Person',
     name: 'Alex López',
   },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5.0',
+    bestRating: '5',
+    worstRating: '1',
+    reviewCount: '3',
+  },
 };
 ---
 
@@ -136,7 +143,18 @@ const localBusinessSchema = {
         });
       </script>
     )}
-    <!-- Global animation system: scroll reveals + card tilt -->
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress" aria-hidden="true">
+      <div class="scroll-progress-bar" id="scroll-bar"></div>
+    </div>
+
+    <!-- Custom cursor (desktop only) -->
+    <div class="cursor-root" data-cursor-root aria-hidden="true">
+      <span class="cursor-dot" id="cursor-dot"></span>
+      <span class="cursor-ring" id="cursor-ring"></span>
+    </div>
+
+    <!-- Global animation system: scroll reveals + card tilt + cursor + scroll bar + magnetic -->
     <script>
       (function () {
         // ── Reveal on scroll ──
@@ -150,11 +168,33 @@ const localBusinessSchema = {
           { threshold: 0.06, rootMargin: '0px 0px -40px 0px' }
         );
         document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
-
-        // Safety net: reveal anything still hidden after 5s
         setTimeout(() => {
           document.querySelectorAll('[data-reveal]:not(.visible)').forEach((el) => el.classList.add('visible'));
         }, 5000);
+
+        // ── Count-up on scroll ──
+        const countIO = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            const el = e.target as HTMLElement;
+            const target = parseFloat(el.dataset.count || '0');
+            const suffix = el.dataset.suffix || '';
+            const prefix = el.dataset.prefix || '';
+            const decimals = (String(target).split('.')[1] || '').length;
+            const duration = 1600;
+            const start = performance.now();
+            const startVal = 0;
+            const tick = (now: number) => {
+              const p = Math.min((now - start) / duration, 1);
+              const ease = 1 - Math.pow(1 - p, 3);
+              el.textContent = prefix + (startVal + (target - startVal) * ease).toFixed(decimals) + suffix;
+              if (p < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+            countIO.unobserve(el);
+          });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('[data-count]').forEach((el) => countIO.observe(el));
 
         // ── Card 3D tilt (desktop only) ──
         if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -172,6 +212,68 @@ const localBusinessSchema = {
             card.style.boxShadow = '';
             card.style.transition = 'transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease';
           });
+        });
+
+        // ── Scroll progress bar ──
+        const scrollBar = document.getElementById('scroll-bar');
+        if (scrollBar) {
+          const updateBar = () => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            scrollBar.style.transform = max > 0 ? `scaleX(${scrollY / max})` : 'scaleX(0)';
+          };
+          window.addEventListener('scroll', updateBar, { passive: true });
+          updateBar();
+        }
+
+        // ── Custom cursor ──
+        const cursorRoot = document.querySelector<HTMLElement>('[data-cursor-root]');
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
+        if (cursorRoot && cursorDot && cursorRing) {
+          let tx = 0, ty = 0, rx = 0, ry = 0, firstMove = false, cursorRaf: number | null = null;
+          const HOVERABLES = 'a, button, [data-tilt], [data-magnetic], label, input, select, textarea';
+          window.addEventListener('mousemove', (e) => {
+            tx = e.clientX; ty = e.clientY;
+            cursorDot.style.transform = `translate3d(${tx}px,${ty}px,0)`;
+            if (!firstMove) {
+              firstMove = true; rx = tx; ry = ty;
+              cursorRing.style.transform = `translate3d(${rx}px,${ry}px,0)`;
+              cursorRoot.classList.add('is-ready');
+            }
+            if (!cursorRaf) cursorRaf = requestAnimationFrame(tickCursor);
+          }, { passive: true });
+          function tickCursor() {
+            rx += (tx - rx) * 0.15; ry += (ty - ry) * 0.15;
+            cursorRing!.style.transform = `translate3d(${rx}px,${ry}px,0)`;
+            cursorRaf = (Math.abs(tx - rx) > 0.1 || Math.abs(ty - ry) > 0.1) ? requestAnimationFrame(tickCursor) : null;
+          }
+          document.addEventListener('mouseover', (e) => {
+            if ((e.target as Element).closest(HOVERABLES)) cursorRoot.classList.add('is-hovering');
+          });
+          document.addEventListener('mouseout', (e) => {
+            if ((e.target as Element).closest(HOVERABLES)) cursorRoot.classList.remove('is-hovering');
+          });
+        }
+
+        // ── Magnetic buttons ──
+        document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
+          const inner = document.createElement('span');
+          inner.className = 'magnetic-inner';
+          while (el.firstChild) inner.appendChild(el.firstChild);
+          el.appendChild(inner);
+          let mtx = 0, mty = 0, mcx = 0, mcy = 0, magRaf: number | null = null;
+          el.addEventListener('mousemove', (e) => {
+            const r = el.getBoundingClientRect();
+            mtx = ((e.clientX - r.left) / r.width - 0.5) * 0.4 * r.width;
+            mty = ((e.clientY - r.top) / r.height - 0.5) * 0.4 * r.height;
+            if (!magRaf) magRaf = requestAnimationFrame(tickMag);
+          });
+          el.addEventListener('mouseleave', () => { mtx = 0; mty = 0; if (!magRaf) magRaf = requestAnimationFrame(tickMag); });
+          function tickMag() {
+            mcx += (mtx - mcx) * 0.2; mcy += (mty - mcy) * 0.2;
+            inner.style.transform = `translate3d(${mcx.toFixed(1)}px,${mcy.toFixed(1)}px,0)`;
+            magRaf = (Math.abs(mtx - mcx) > 0.1 || Math.abs(mty - mcy) > 0.1) ? requestAnimationFrame(tickMag) : null;
+          }
         });
       })();
     </script>

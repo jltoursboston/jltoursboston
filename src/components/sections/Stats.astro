@@ -1,0 +1,38 @@
+---
+import type { Lang } from '../../data/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const stats = lang === 'es'
+  ? [
+      { value: 7,    suffix: '',    label: 'Destinos',         note: 'Niágara, NYC, DC y más' },
+      { value: 5,    suffix: '+',   label: 'Años en Boston',   note: 'Operando desde 2019' },
+      { value: 2500, suffix: '+',   label: 'Familias',         note: 'Que ya viajaron con nosotros' },
+      { value: 100,  suffix: '%',   label: 'Recomendados',     note: 'Por nuestros viajeros' },
+    ]
+  : [
+      { value: 7,    suffix: '',    label: 'Destinations',     note: 'Niagara, NYC, DC & more' },
+      { value: 5,    suffix: '+',   label: 'Years in Boston',  note: 'Operating since 2019' },
+      { value: 2500, suffix: '+',   label: 'Families',         note: 'Who traveled with us' },
+      { value: 100,  suffix: '%',   label: 'Recommended',      note: 'By our travelers' },
+    ];
+---
+
+<section class="py-14 bg-cream border-y border-navy/8">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      {stats.map((stat, i) => (
+        <div class="text-center" data-reveal style={`--rd: ${i * 80}ms`}>
+          <p class="font-display font-black text-4xl lg:text-5xl text-navy leading-none">
+            <span data-count={stat.value} data-suffix={stat.suffix}>0{stat.suffix}</span>
+          </p>
+          <p class="font-semibold text-navy text-base mt-1">{stat.label}</p>
+          <p class="text-navy/50 text-xs mt-0.5">{stat.note}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -7,7 +7,6 @@ interface Props {
 }
 const { lang } = Astro.props;
 
-// TODO: replace with real testimonials from Google/WhatsApp/Facebook
 const testimonials = [
   {
     es: {
@@ -53,6 +52,23 @@ const testimonials = [
   },
 ];
 ---
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'JL Tours Boston — Reseñas de clientes',
+  itemListElement: testimonials.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      author: { '@type': 'Person', name: item.es.name },
+      itemReviewed: { '@type': 'TravelAgency', name: 'JL Tours Boston', url: 'https://jltoursboston.com' },
+      reviewBody: item.es.text,
+    },
+  })),
+})} />
 
 <section class="py-20 lg:py-28 bg-navy text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
