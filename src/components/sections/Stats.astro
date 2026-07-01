@@ -22,6 +22,7 @@ const stats = lang === 'es'
 ---
 
 <section class="py-14 bg-cream border-y border-navy/8">
+  <h2 class="sr-only">{lang === 'es' ? 'JL Tours en números' : 'JL Tours in numbers'}</h2>
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
       {stats.map((stat, i) => (
@@ -30,7 +31,7 @@ const stats = lang === 'es'
             <span data-count={stat.value} data-suffix={stat.suffix}>0{stat.suffix}</span>
           </p>
           <p class="font-semibold text-navy text-base mt-1">{stat.label}</p>
-          <p class="text-navy/50 text-xs mt-0.5">{stat.note}</p>
+          <p class="text-navy/70 text-xs mt-0.5">{stat.note}</p>
         </div>
       ))}
     </div>

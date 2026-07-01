@@ -15,7 +15,7 @@ const { lang } = Astro.props;
 
     <!-- Section header -->
     <div class="text-center mb-14" data-reveal>
-      <p class="text-sky font-semibold text-sm tracking-widest uppercase mb-3">{t(lang, 'tours.eyebrow')}</p>
+      <p class="text-sky-text font-semibold text-sm tracking-widest uppercase mb-3">{t(lang, 'tours.eyebrow')}</p>
       <h2 class="font-display font-bold text-4xl lg:text-5xl text-navy mb-4">{t(lang, 'tours.title')}</h2>
       <p class="text-navy/70 text-lg max-w-2xl mx-auto">{t(lang, 'tours.subtitle')}</p>
     </div>
@@ -62,14 +62,14 @@ const { lang } = Astro.props;
 
             <!-- Card content -->
             <div class="p-5">
-              <p class="text-sky text-xs font-semibold tracking-wider uppercase mb-1">{content.tagline}</p>
+              <p class="text-sky-text text-xs font-semibold tracking-wider uppercase mb-1">{content.tagline}</p>
               <h3 class="font-display font-bold text-xl text-navy mb-3 group-hover:text-sky transition-colors" set:html={styledAmpersand(content.name)} />
               <p class="text-navy/65 text-sm leading-relaxed line-clamp-2 mb-4">{content.description}</p>
 
               <!-- Price + CTA -->
               <div class="flex items-center justify-between">
                 <div>
-                  <p class="text-xs text-navy/50 uppercase tracking-wide">{t(lang, 'tours.card.from')}</p>
+                  <p class="text-xs text-navy/70 uppercase tracking-wide">{t(lang, 'tours.card.from')}</p>
                   <p class="font-display font-bold text-2xl text-amber">{content.price}</p>
                 </div>
                 <span class="px-4 py-2.5 bg-navy group-hover:bg-sky text-white text-sm font-semibold rounded-xl transition-colors">

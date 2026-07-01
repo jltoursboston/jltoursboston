@@ -4,16 +4,21 @@ interface Props {
   separator?: string;
 }
 const { items, separator = '·' } = Astro.props;
-// Duplicate for seamless loop
-const doubled = [...items, ...items];
 ---
 
 <div class="marquee-wrapper overflow-hidden bg-navy border-y border-white/8 py-4 select-none">
   <div class="marquee-track inline-flex items-center gap-0">
-    {doubled.map((item) => (
+    {items.map((item) => (
       <span class="inline-flex items-center gap-6 px-6">
-        <span class="text-white/40 text-xs font-semibold tracking-[0.22em] uppercase">{item}</span>
+        <span class="text-white/60 text-xs font-semibold tracking-[0.22em] uppercase">{item}</span>
         <span class="text-amber text-xs" aria-hidden="true">{separator}</span>
+      </span>
+    ))}
+    <!-- Copia duplicada solo visual, para el loop continuo -->
+    {items.map((item) => (
+      <span class="inline-flex items-center gap-6 px-6" aria-hidden="true">
+        <span class="text-white/60 text-xs font-semibold tracking-[0.22em] uppercase">{item}</span>
+        <span class="text-amber text-xs">{separator}</span>
       </span>
     ))}
   </div>

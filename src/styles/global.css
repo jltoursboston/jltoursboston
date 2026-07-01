@@ -5,9 +5,13 @@
   /* Brand colors */
   --color-navy: #10243E;
   --color-sky: #2D7DD2;
+  /* Variantes oscuras de sky/amber para texto sobre fondos claros (contraste AA) */
+  --color-sky-text: #1E5FA8;
+  --color-amber-text: #A85408;
   --color-amber: #F2A541;
-  --color-whatsapp: #1FA463;
-  --color-whatsapp-dark: #178F56;
+  /* Verde WhatsApp oscurecido para cumplir contraste AA (4.5:1) con texto blanco */
+  --color-whatsapp: #10804A;
+  --color-whatsapp-dark: #0C6B3E;
   --color-cream: #FDFAF5;
 
   /* Typography */
