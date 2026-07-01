@@ -571,12 +571,17 @@ export const tours: Tour[] = [
   {
     id: 'washington',
     slug: 'washington-dc',
-    // TODO: replace with real photo from @jltoursboston
-    image: 'https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=800&q=80',
+    image: '/images/tours/washington-lincoln.jpg',
     imageAlt: {
       es: 'Monumento a Lincoln en Washington D.C.',
       en: 'Lincoln Memorial in Washington D.C.',
     },
+    gallery: [
+      '/images/tours/washington-monumento.jpg',
+      '/images/tours/washington-casablanca.jpg',
+      '/images/tours/washington-mlk.jpg',
+      '/images/tours/washington-obelisco.jpg',
+    ],
     whatsappMessage: {
       es: WA_BASE + encodeURIComponent('Hola, quiero reservar el tour a Washington D.C. ¿Podrían darme más información?'),
       en: WA_BASE + encodeURIComponent('Hello, I want to book the Washington D.C. tour. Could you give me more information?'),
@@ -698,6 +703,12 @@ export const tours: Tour[] = [
       es: 'Templo Hindú BAPS en Robbinsville, New Jersey',
       en: 'BAPS Hindu Temple in Robbinsville, New Jersey',
     },
+    gallery: [
+      '/images/tours/templo-hindu.jpg',
+      '/images/tours/templo-hindu-estatua.jpg',
+      '/images/tours/templo-hindu-elefantes.jpg',
+      '/images/tours/templo-hindu-musico.jpg',
+    ],
     whatsappMessage: {
       es: WA_BASE + encodeURIComponent('Hola, quiero reservar el tour al Templo Hindú & New Jersey. ¿Podrían darme más información?'),
       en: WA_BASE + encodeURIComponent('Hello, I want to book the Hindu Temple & New Jersey tour. Could you give me more information?'),
