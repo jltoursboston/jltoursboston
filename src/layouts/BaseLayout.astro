@@ -11,6 +11,7 @@ interface Props {
   canonicalURL?: string;
   hreflangEs?: string;
   hreflangEn?: string;
+  preloadImage?: string;
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   canonicalURL = Astro.url.href,
   hreflangEs,
   hreflangEn,
+  preloadImage,
 } = Astro.props;
 
 const canonicalHref = lang === 'es'
@@ -64,7 +66,7 @@ const localBusinessSchema = {
     ratingValue: '5.0',
     bestRating: '5',
     worstRating: '1',
-    reviewCount: '3',
+    reviewCount: '6',
   },
 };
 ---
@@ -79,6 +81,10 @@ const localBusinessSchema = {
     <!-- Font preconnect (Core Web Vitals) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" />
+
+    <!-- Preload de la imagen LCP (hero) -->
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
 
     <!-- Primary SEO -->
     <title>{title}</title>
@@ -157,6 +163,16 @@ const localBusinessSchema = {
     <!-- Global animation system: scroll reveals + card tilt + cursor + scroll bar + magnetic -->
     <script>
       (function () {
+        const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reducedMotion) {
+          // Sin animaciones: revela todo y muestra los valores finales de los contadores
+          document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('visible'));
+          document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
+            el.textContent = (el.dataset.prefix || '') + (el.dataset.count || '0') + (el.dataset.suffix || '');
+          });
+          return;
+        }
+
         // ── Reveal on scroll ──
         const io = new IntersectionObserver(
           (entries) => entries.forEach((e) => {

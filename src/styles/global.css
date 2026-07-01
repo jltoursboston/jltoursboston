@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@400;500;600;700&display=swap');
+/* Fonts se cargan vía <link> en BaseLayout.astro (no @import: evita bloquear el render) */
 @import "tailwindcss";
 
 @theme {
@@ -192,4 +192,28 @@ body.modal-open {
 /* ── Count-up stats ── */
 [data-count] {
   display: inline-block;
+}
+
+/* ── Reduced motion: desactiva animaciones, cursor custom y smooth scroll ── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .cursor-root {
+    display: none !important;
+  }
+  body, a, button, [data-tilt], [data-magnetic], label, input, select, textarea {
+    cursor: auto !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

@@ -92,7 +92,7 @@ export const tours: Tour[] = [
       priceNote: 'Cuarto privado para pareja: +$55/persona. Reserva con 50%.',
       duration: '2 días / 1 noche',
       capacity: 'Cuartos compartidos (3+ personas)',
-      departure: '4:00 AM — East Boston, MA',
+      departure: '4:00 AM — Walgreens East Boston, MA',
       return: '10:00 PM del día siguiente',
       itinerary: [
         { time: '4:00 AM', label: 'Salida desde East Boston' },
@@ -147,7 +147,7 @@ export const tours: Tour[] = [
       priceNote: 'Private room for couples: +$55/person. 50% deposit to book.',
       duration: '2 days / 1 night',
       capacity: 'Shared rooms (3+ people)',
-      departure: '4:00 AM — East Boston, MA',
+      departure: '4:00 AM — Walgreens East Boston, MA',
       return: '10:00 PM next day',
       itinerary: [
         { time: '4:00 AM', label: 'Departure from East Boston' },
@@ -227,7 +227,7 @@ export const tours: Tour[] = [
       price: '$270 USD/persona',
       duration: '1 día',
       capacity: '⚡ Solo 13 cupos',
-      departure: '6:00 AM — East Boston, MA',
+      departure: '6:00 AM — Walgreens East Boston, MA',
       return: '11:00 PM',
       itinerary: [
         { time: '6:00 AM', label: 'Salida desde East Boston 🚌' },
@@ -278,7 +278,7 @@ export const tours: Tour[] = [
       price: '$270 USD/person',
       duration: '1 day',
       capacity: '⚡ Only 13 spots',
-      departure: '6:00 AM — East Boston, MA',
+      departure: '6:00 AM — Walgreens East Boston, MA',
       return: '11:00 PM',
       itinerary: [
         { time: '6:00 AM', label: 'Departure from East Boston 🚌' },
@@ -352,7 +352,7 @@ export const tours: Tour[] = [
       price: '$280 USD/persona',
       duration: '1 día',
       capacity: '⚡ Solo 13 cupos',
-      departure: '6:00 AM — East Boston, MA',
+      departure: '6:00 AM — Walgreens East Boston, MA',
       return: '1:00 AM',
       itinerary: [
         { time: '6:00 AM', label: 'Salida desde East Boston 🚌' },
@@ -405,7 +405,7 @@ export const tours: Tour[] = [
       price: '$280 USD/person',
       duration: '1 day',
       capacity: '⚡ Only 13 spots',
-      departure: '6:00 AM — East Boston, MA',
+      departure: '6:00 AM — Walgreens East Boston, MA',
       return: '1:00 AM',
       itinerary: [
         { time: '6:00 AM', label: 'Departure from East Boston 🚌' },
@@ -481,7 +481,7 @@ export const tours: Tour[] = [
       schedule: 'Salida sábado 4:00 AM · Regreso domingo 10:00 PM',
       price: '$420 USD/persona',
       duration: '2 días / 1 noche',
-      departure: '4:00 AM (sábado) — East Boston, MA',
+      departure: '4:00 AM (sábado) — Walgreens East Boston, MA',
       return: '10:00 PM (domingo)',
       itinerary: [
         { time: 'Sábado 4:00 AM', label: 'Salida desde East Boston 🚌' },
@@ -532,7 +532,7 @@ export const tours: Tour[] = [
       schedule: 'Departure Saturday 4:00 AM · Return Sunday 10:00 PM',
       price: '$420 USD/person',
       duration: '2 days / 1 night',
-      departure: '4:00 AM (Saturday) — East Boston, MA',
+      departure: '4:00 AM (Saturday) — Walgreens East Boston, MA',
       return: '10:00 PM (Sunday)',
       itinerary: [
         { time: 'Saturday 4:00 AM', label: 'Departure from East Boston 🚌' },
@@ -609,7 +609,7 @@ export const tours: Tour[] = [
       schedule: 'Salida sábado · Regreso domingo 10:00 PM',
       price: '$430 USD/persona',
       duration: '2 días / 1 noche',
-      departure: 'East Boston, MA',
+      departure: 'Walgreens East Boston, MA',
       return: 'Domingo 10:00 PM',
       itinerary: [
         { time: 'Sábado — AM', label: 'Salida desde East Boston 🚌' },
@@ -660,7 +660,7 @@ export const tours: Tour[] = [
       schedule: 'Departure Saturday · Return Sunday 10:00 PM',
       price: '$430 USD/person',
       duration: '2 days / 1 night',
-      departure: 'East Boston, MA',
+      departure: 'Walgreens East Boston, MA',
       return: 'Sunday 10:00 PM',
       itinerary: [
         { time: 'Saturday — AM', label: 'Departure from East Boston 🚌' },
@@ -733,7 +733,7 @@ export const tours: Tour[] = [
       schedule: 'Salida 5:00 AM · Regreso 10:30 PM',
       price: '$190 USD/persona',
       duration: '1 día',
-      departure: '5:00 AM — East Boston, MA',
+      departure: '5:00 AM — Walgreens East Boston, MA',
       return: '10:30 PM',
       itinerary: [
         { time: '5:00 AM', label: 'Salida desde East Boston 🚌' },
@@ -778,7 +778,7 @@ export const tours: Tour[] = [
       schedule: 'Departure 5:00 AM · Return 10:30 PM',
       price: '$190 USD/person',
       duration: '1 day',
-      departure: '5:00 AM — East Boston, MA',
+      departure: '5:00 AM — Walgreens East Boston, MA',
       return: '10:30 PM',
       itinerary: [
         { time: '5:00 AM', label: 'Departure from East Boston 🚌' },
@@ -839,7 +839,7 @@ export const tours: Tour[] = [
       price: '$190 USD/persona',
       priceNote: 'Consultar fecha de próxima salida vía WhatsApp.',
       duration: '1 día',
-      departure: '7:00 AM — East Boston, MA',
+      departure: '7:00 AM — Walgreens East Boston, MA',
       return: 'Al atardecer',
       itinerary: [
         { time: '7:00 AM', label: 'Salida desde East Boston 🚌' },
@@ -885,7 +885,7 @@ export const tours: Tour[] = [
       price: '$190 USD/person',
       priceNote: 'Ask for next departure date via WhatsApp.',
       duration: '1 day',
-      departure: '7:00 AM — East Boston, MA',
+      departure: '7:00 AM — Walgreens East Boston, MA',
       return: 'At sunset',
       itinerary: [
         { time: '7:00 AM', label: 'Departure from East Boston 🚌' },

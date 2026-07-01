@@ -37,7 +37,7 @@ const homeFaqSchema = {
 };
 ---
 
-<BaseLayout lang={lang}>
+<BaseLayout lang={lang} preloadImage="/images/tours/niagara.jpg">
   <script slot="head-schemas" type="application/ld+json" set:html={JSON.stringify(homeFaqSchema)} />
   <Header lang={lang} />
   <main>

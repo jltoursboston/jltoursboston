@@ -92,6 +92,7 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
   canonicalURL={pageUrl}
   hreflangEs={`https://jltoursboston.com/tours/${tour.slug}`}
   hreflangEn={pageUrl}
+  preloadImage={tour.image}
 >
   <script slot="head-schemas" type="application/ld+json" set:html={JSON.stringify(schemas)} />
   <Header lang={lang} />
