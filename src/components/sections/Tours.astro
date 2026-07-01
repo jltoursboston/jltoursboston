@@ -2,6 +2,7 @@
 import type { Lang } from '../../data/i18n';
 import { t } from '../../data/i18n';
 import { tours } from '../../data/tours';
+import { styledAmpersand } from '../../utils/text';
 
 interface Props {
   lang: Lang;
@@ -62,9 +63,7 @@ const { lang } = Astro.props;
             <!-- Card content -->
             <div class="p-5">
               <p class="text-sky text-xs font-semibold tracking-wider uppercase mb-1">{content.tagline}</p>
-              <h3 class="font-display font-bold text-xl text-navy mb-3 group-hover:text-sky transition-colors">
-                {content.name}
-              </h3>
+              <h3 class="font-display font-bold text-xl text-navy mb-3 group-hover:text-sky transition-colors" set:html={styledAmpersand(content.name)} />
               <p class="text-navy/65 text-sm leading-relaxed line-clamp-2 mb-4">{content.description}</p>
 
               <!-- Price + CTA -->

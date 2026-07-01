@@ -6,6 +6,7 @@ import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
 import CalendarWidget from '../../components/ui/CalendarWidget.astro';
 import { tours } from '../../data/tours';
 import { t } from '../../data/i18n';
+import { styledAmpersand } from '../../utils/text';
 
 export async function getStaticPaths() {
   return tours.map(tour => ({
@@ -140,9 +141,7 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
         <div class="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p class="text-amber text-sm font-semibold uppercase tracking-wider mb-2">{content.tagline}</p>
-            <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
-              {content.name}
-            </h1>
+            <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white leading-tight" set:html={styledAmpersand(content.name)} />
           </div>
           <div class="text-right">
             <p class="text-white/60 text-sm">{t(lang, 'tours.card.from')}</p>
@@ -207,7 +206,7 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
     <div class="sticky top-16 z-40 bg-white border-b border-navy/10 shadow-sm">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
         <div class="flex items-center gap-3 text-sm text-navy/70 overflow-hidden">
-          <span class="font-display font-bold text-navy text-base truncate">{content.name}</span>
+          <span class="font-display font-bold text-navy text-base truncate" set:html={styledAmpersand(content.name)} />
           <span class="hidden sm:inline text-navy/30">·</span>
           <span class="hidden sm:inline font-bold text-amber">{content.price}</span>
         </div>
