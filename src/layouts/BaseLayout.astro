@@ -164,7 +164,9 @@ const localBusinessSchema = {
           if (!link) return;
           const tour = link.dataset.waTour || 'general';
           if (typeof gtag !== 'undefined') {
-            gtag('event', 'whatsapp_click', { tour: tour, language: lang });
+            // transport_type: 'beacon' — garantiza el envío aunque la app de WhatsApp
+            // tome el foco de inmediato y la pestaña quede en segundo plano.
+            gtag('event', 'whatsapp_click', { tour: tour, language: lang, transport_type: 'beacon' });
           }
         });
       </script>
