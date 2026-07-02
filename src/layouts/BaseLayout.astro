@@ -164,9 +164,11 @@ const localBusinessSchema = {
           if (!link) return;
           const tour = link.dataset.waTour || 'general';
           if (typeof gtag !== 'undefined') {
-            // transport_type: 'beacon' — garantiza el envío aunque la app de WhatsApp
-            // tome el foco de inmediato y la pestaña quede en segundo plano.
-            gtag('event', 'whatsapp_click', { tour: tour, language: lang, transport_type: 'beacon' });
+            // Sin transport_type: 'beacon' — los links de WhatsApp abren en pestaña
+            // nueva (target="_blank"), la pagina original nunca se descarga, y
+            // navigator.sendBeacon es un blanco comun de bloqueadores de privacidad
+            // (se ejecuta como no-op silencioso, dando falsa sensacion de exito).
+            gtag('event', 'whatsapp_click', { tour: tour, language: lang });
           }
         });
       </script>
