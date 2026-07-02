@@ -9,20 +9,27 @@ const { lang } = Astro.props;
 
 const waBook = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'hero.cta.book.message'));
 
+// Cada slide tiene variante 828w (móvil) y original 1600w (desktop)
 const slides = [
   {
-    src: '/images/tours/niagara.jpg',
+    src: '/images/tours/niagara-828w.jpg',
+    srcset: '/images/tours/niagara-828w.jpg 828w, /images/tours/niagara.jpg 1600w',
     alt: lang === 'es' ? 'Cataratas del Niágara' : 'Niagara Falls',
   },
   {
-    src: '/images/tours/nyc-completa.jpg',
+    src: '/images/tours/nyc-completa-828w.jpg',
+    srcset: '/images/tours/nyc-completa-828w.jpg 828w, /images/tours/nyc-completa.jpg 1600w',
     alt: lang === 'es' ? 'Nueva York' : 'New York City',
   },
   {
-    src: '/images/tours/atlantic-city.jpg',
+    src: '/images/tours/atlantic-city-828w.jpg',
+    srcset: '/images/tours/atlantic-city-828w.jpg 828w, /images/tours/atlantic-city.jpg 1600w',
     alt: lang === 'es' ? 'Atlantic City' : 'Atlantic City',
   },
 ];
+
+// Placeholder transparente para los slides diferidos (cargan tras window.load)
+const BLANK = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="1600" height="900"%3E%3C/svg%3E';
 ---
 
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden" data-hero>
@@ -32,7 +39,11 @@ const slides = [
     {slides.map((slide, i) => (
       <div class:list={['hero-slide', { 'hero-slide--first': i === 0 }]} aria-hidden={i > 0 ? 'true' : undefined}>
         <img
-          src={slide.src}
+          src={i === 0 ? slide.src : BLANK}
+          srcset={i === 0 ? slide.srcset : undefined}
+          sizes={i === 0 ? '100vw' : undefined}
+          data-src={i > 0 ? slide.src : undefined}
+          data-srcset={i > 0 ? slide.srcset : undefined}
           alt={slide.alt}
           class="w-full h-full object-cover object-center"
           loading={i === 0 ? 'eager' : 'lazy'}
@@ -164,6 +175,20 @@ const slides = [
     // Activate first slide immediately
     slides[0].classList.add('hero-slide--active');
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Carga diferida de slides 2-3: después de window.load para no competir con el LCP
+    function hydrateSlides() {
+      document.querySelectorAll<HTMLImageElement>('.hero-slide img[data-src]').forEach((img) => {
+        img.srcset = img.dataset.srcset || '';
+        img.sizes = '100vw';
+        img.src = img.dataset.src || '';
+        img.removeAttribute('data-src');
+        img.removeAttribute('data-srcset');
+      });
+    }
+    if (document.readyState === 'complete') hydrateSlides();
+    else window.addEventListener('load', hydrateSlides, { once: true });
+
     setInterval(() => goTo((current + 1) % slides.length), 5500);
 
     // Animate hero content on load

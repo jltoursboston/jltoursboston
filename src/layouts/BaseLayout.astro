@@ -12,6 +12,7 @@ interface Props {
   hreflangEs?: string;
   hreflangEn?: string;
   preloadImage?: string;
+  preloadImageSrcset?: string;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   hreflangEs,
   hreflangEn,
   preloadImage,
+  preloadImageSrcset,
 } = Astro.props;
 
 const canonicalHref = lang === 'es'
@@ -92,8 +94,13 @@ const localBusinessSchema = {
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" />
     </noscript>
 
-    <!-- Preload de la imagen LCP (hero) -->
-    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+    <!-- Preload de la imagen LCP (hero); con srcset el navegador elige la variante correcta -->
+    {preloadImage && preloadImageSrcset && (
+      <link rel="preload" as="image" href={preloadImage} imagesrcset={preloadImageSrcset} imagesizes="100vw" fetchpriority="high" />
+    )}
+    {preloadImage && !preloadImageSrcset && (
+      <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />
+    )}
 
     <!-- Primary SEO -->
     <title>{title}</title>
