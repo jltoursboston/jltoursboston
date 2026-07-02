@@ -164,11 +164,11 @@ const localBusinessSchema = {
           if (!link) return;
           const tour = link.dataset.waTour || 'general';
           if (typeof gtag !== 'undefined') {
-            // Sin transport_type: 'beacon' — los links de WhatsApp abren en pestaña
-            // nueva (target="_blank"), la pagina original nunca se descarga, y
-            // navigator.sendBeacon es un blanco comun de bloqueadores de privacidad
-            // (se ejecuta como no-op silencioso, dando falsa sensacion de exito).
-            gtag('event', 'whatsapp_click', { tour: tour, language: lang });
+            // transport_type: 'beacon' — en movil, tocar el link cambia a la app
+            // de WhatsApp casi al instante; sin beacon la peticion de red se
+            // cancela a mitad de camino (confirmado: ni el evento "click" nativo
+            // de GA4 llega en ese escenario). sendBeacon sobrevive el cambio de app.
+            gtag('event', 'whatsapp_click', { tour: tour, language: lang, transport_type: 'beacon' });
           }
         });
       </script>
