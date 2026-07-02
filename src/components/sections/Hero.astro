@@ -12,14 +12,15 @@ const waBook = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'h
 
 // Slides optimizados vía astro:assets (WebP + srcset responsive)
 const slideDefs = [
-  { file: 'niagara.jpg', alt: lang === 'es' ? 'Cataratas del Niágara' : 'Niagara Falls' },
-  { file: 'nyc-completa.jpg', alt: lang === 'es' ? 'Nueva York' : 'New York City' },
-  { file: 'atlantic-city.jpg', alt: lang === 'es' ? 'Atlantic City' : 'Atlantic City' },
+  { file: 'niagara.jpg', alt: lang === 'es' ? 'Cataratas del Niágara' : 'Niagara Falls', objectPosition: 'center' },
+  // Foto vertical (contrapicado): object-position sube el foco para no perder corona/antorcha/rostro en pantallas anchas
+  { file: 'nyc-completa.jpg', alt: lang === 'es' ? 'Nueva York' : 'New York City', objectPosition: '50% 16%' },
+  { file: 'atlantic-city.jpg', alt: lang === 'es' ? 'Atlantic City' : 'Atlantic City', objectPosition: 'center' },
 ];
 const slides = await Promise.all(
   slideDefs.map(async (s) => {
     const img = await heroImage(tourImg(s.file));
-    return { src: img.src, srcset: img.srcSet.attribute, alt: s.alt };
+    return { src: img.src, srcset: img.srcSet.attribute, alt: s.alt, objectPosition: s.objectPosition };
   })
 );
 
@@ -40,7 +41,8 @@ const BLANK = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" widt
           data-src={i > 0 ? slide.src : undefined}
           data-srcset={i > 0 ? slide.srcset : undefined}
           alt={slide.alt}
-          class="w-full h-full object-cover object-center"
+          class="w-full h-full object-cover"
+          style={`object-position: ${slide.objectPosition}`}
           loading={i === 0 ? 'eager' : 'lazy'}
           width="1600"
           height="900"

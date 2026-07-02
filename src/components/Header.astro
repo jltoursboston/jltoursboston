@@ -31,19 +31,19 @@ const { lang } = Astro.props;
 
       <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-6 lg:gap-8" aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}>
-        <a href={lang === 'es' ? '#tours' : '/en/#tours'}
+        <a href={lang === 'es' ? '/#tours' : '/en/#tours'}
            class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
           {t(lang, 'nav.tours')}
         </a>
-        <a href={lang === 'es' ? '#calendario' : '/en/#calendario'}
+        <a href={lang === 'es' ? '/#calendario' : '/en/#calendario'}
            class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
           {t(lang, 'nav.dates')}
         </a>
-        <a href={lang === 'es' ? '#galeria' : '/en/#galeria'}
+        <a href={lang === 'es' ? '/#galeria' : '/en/#galeria'}
            class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
           {lang === 'es' ? 'Galería' : 'Gallery'}
         </a>
-        <a href={lang === 'es' ? '#contacto' : '/en/#contacto'}
+        <a href={lang === 'es' ? '/#contacto' : '/en/#contacto'}
            class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
           {t(lang, 'nav.contact')}
         </a>
@@ -101,19 +101,19 @@ const { lang } = Astro.props;
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 py-4">
       <nav class="flex flex-col gap-1" aria-label={lang === 'es' ? 'Navegación móvil' : 'Mobile navigation'}>
-        <a href={lang === 'es' ? '#tours' : '/en/#tours'}
+        <a href={lang === 'es' ? '/#tours' : '/en/#tours'}
            class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
           {t(lang, 'nav.tours')}
         </a>
-        <a href={lang === 'es' ? '#calendario' : '/en/#calendario'}
+        <a href={lang === 'es' ? '/#calendario' : '/en/#calendario'}
            class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
           {t(lang, 'nav.dates')}
         </a>
-        <a href={lang === 'es' ? '#galeria' : '/en/#galeria'}
+        <a href={lang === 'es' ? '/#galeria' : '/en/#galeria'}
            class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
           {lang === 'es' ? 'Galería' : 'Gallery'}
         </a>
-        <a href={lang === 'es' ? '#contacto' : '/en/#contacto'}
+        <a href={lang === 'es' ? '/#contacto' : '/en/#contacto'}
            class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
           {t(lang, 'nav.contact')}
         </a>
