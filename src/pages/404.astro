@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { WA_GENERAL } from '../data/i18n';
+
+const lang = 'es' as const;
+---
+
+<BaseLayout
+  lang={lang}
+  title="Página no encontrada | JL Tours Boston"
+  description="La página que buscas no existe. Explora nuestros tours desde Boston en español."
+>
+  <Header lang={lang} />
+  <main class="pt-16 md:pt-20 min-h-[70vh] flex items-center bg-cream">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+      <p class="font-display font-black text-7xl sm:text-8xl text-navy/15 mb-4">404</p>
+      <h1 class="font-display font-bold text-3xl sm:text-4xl text-navy mb-4">
+        Página no encontrada
+      </h1>
+      <p class="text-navy/75 text-lg mb-2">
+        La página que buscas no existe o fue movida.
+      </p>
+      <p class="text-navy/75 text-base mb-10">
+        Page not found — the page you're looking for doesn't exist.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="/#tours"
+          class="inline-flex items-center gap-2 px-7 py-3.5 bg-navy hover:bg-navy/90 text-white font-bold rounded-2xl transition-colors"
+        >
+          Ver todos los tours
+        </a>
+        <a
+          href={WA_GENERAL[lang]}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-7 py-3.5 bg-whatsapp hover:bg-whatsapp-dark text-white font-bold rounded-2xl transition-colors"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.847L.057 23.49a.5.5 0 0 0 .609.61l5.71-1.494A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.852 0-3.587-.504-5.073-1.383l-.364-.217-3.77.987.998-3.686-.237-.381A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+          </svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>

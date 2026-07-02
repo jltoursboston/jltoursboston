@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import WhatsAppFloat from '../../../components/WhatsAppFloat.astro';
+import Tours from '../../../components/sections/Tours.astro';
+import UpcomingDates from '../../../components/sections/UpcomingDates.astro';
+
+const lang = 'en' as const;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'JL Tours Boston', item: 'https://jltoursboston.com/en/' },
+    { '@type': 'ListItem', position: 2, name: 'Tours' },
+  ],
+};
+---
+
+<BaseLayout
+  lang={lang}
+  title="All Tours from Boston | JL Tours Boston"
+  description="Complete catalog of tours from East Boston in Spanish: Niagara Falls, New York City, Washington D.C., Atlantic City, Hindu Temple and more."
+  canonicalURL="https://jltoursboston.com/en/tours/"
+  hreflangEs="https://jltoursboston.com/tours/"
+  hreflangEn="https://jltoursboston.com/en/tours/"
+>
+  <script slot="head-schemas" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Header lang={lang} />
+  <main class="pt-16 md:pt-20">
+    <Tours lang={lang} />
+    <UpcomingDates lang={lang} />
+  </main>
+  <Footer lang={lang} />
+  <WhatsAppFloat lang={lang} />
+</BaseLayout>

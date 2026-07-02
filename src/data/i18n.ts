@@ -126,9 +126,8 @@ export const ui = {
     'homefaq.a5': 'Somos 100% familiares. Los niños menores de 2 años viajan gratis; entre 2 y 10 años tienen precio especial. Nuestras rutas incluyen paradas para descansar, comidas y momentos pensados para todas las edades. Para adultos mayores o personas con movilidad reducida, tenemos asientos preferenciales y el guía siempre está atento a las necesidades del grupo. Si tienes algún requerimiento especial — silla de ruedas, alergia alimentaria, necesidad médica — cuéntanos al reservar para que podamos prepararnos con anticipación.',
 
     // SEO
-    'seo.title': 'JL Tours Boston | Tours desde Boston en Español — Niágara, Nueva York, Washington',
+    'seo.title': 'Tours desde Boston en Español | JL Tours Boston',
     'seo.description': 'Tours y excursiones desde East Boston en español: Cataratas del Niágara, Nueva York, Washington D.C., Atlantic City. Transporte incluido, guía profesional. Reserva con 50%. ☎ +1 857-389-9523.',
-    'seo.og.title': 'JL Tours Boston — Viaja con Nosotros',
   },
   en: {
     // Nav
@@ -255,9 +254,8 @@ export const ui = {
     'homefaq.a5': 'Absolutely. We are a 100% family-friendly operator. Children under 2 travel free; ages 2 to 10 receive special pricing. Our itineraries include rest stops, meal breaks, and activities designed for all ages. For seniors or guests with limited mobility, priority seating is available and our guide is always attentive to each group\'s needs. If you have any special requirements — wheelchair, dietary restriction, or medical need — let us know when booking so we can prepare in advance and make sure everyone has a wonderful experience.',
 
     // SEO
-    'seo.title': 'JL Tours Boston | Tours from Boston in Spanish — Niagara, NYC, Washington DC',
+    'seo.title': 'Tours from Boston in Spanish | JL Tours Boston',
     'seo.description': 'Tours from East Boston in Spanish: Niagara Falls, New York City, Washington D.C., Atlantic City. Transportation included, bilingual guide. Book with 50% deposit. ☎ +1 857-389-9523.',
-    'seo.og.title': 'JL Tours Boston — Travel With Us',
   },
 } as const;
 

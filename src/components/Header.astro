@@ -30,7 +30,7 @@ const { lang } = Astro.props;
       </a>
 
       <!-- Desktop nav -->
-      <nav class="hidden md:flex items-center gap-6 lg:gap-8" aria-label="Navegación principal">
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8" aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}>
         <a href={lang === 'es' ? '#tours' : '/en/#tours'}
            class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
           {t(lang, 'nav.tours')}
@@ -38,6 +38,10 @@ const { lang } = Astro.props;
         <a href={lang === 'es' ? '#calendario' : '/en/#calendario'}
            class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
           {t(lang, 'nav.dates')}
+        </a>
+        <a href={lang === 'es' ? '#galeria' : '/en/#galeria'}
+           class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
+          {lang === 'es' ? 'Galería' : 'Gallery'}
         </a>
         <a href={lang === 'es' ? '#contacto' : '/en/#contacto'}
            class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
@@ -78,7 +82,9 @@ const { lang } = Astro.props;
           id="mobile-menu-btn"
           type="button"
           class="md:hidden p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
-          aria-label="Abrir menú"
+          aria-label={lang === 'es' ? 'Abrir menú' : 'Open menu'}
+          data-label-open={lang === 'es' ? 'Abrir menú' : 'Open menu'}
+          data-label-close={lang === 'es' ? 'Cerrar menú' : 'Close menu'}
           aria-expanded="false"
           aria-controls="mobile-menu"
         >
@@ -93,8 +99,8 @@ const { lang } = Astro.props;
     </div>
 
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 py-4" aria-label="Navegación móvil">
-      <nav class="flex flex-col gap-1">
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 py-4">
+      <nav class="flex flex-col gap-1" aria-label={lang === 'es' ? 'Navegación móvil' : 'Mobile navigation'}>
         <a href={lang === 'es' ? '#tours' : '/en/#tours'}
            class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
           {t(lang, 'nav.tours')}
@@ -102,6 +108,10 @@ const { lang } = Astro.props;
         <a href={lang === 'es' ? '#calendario' : '/en/#calendario'}
            class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
           {t(lang, 'nav.dates')}
+        </a>
+        <a href={lang === 'es' ? '#galeria' : '/en/#galeria'}
+           class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
+          {lang === 'es' ? 'Galería' : 'Gallery'}
         </a>
         <a href={lang === 'es' ? '#contacto' : '/en/#contacto'}
            class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
@@ -128,21 +138,29 @@ const { lang } = Astro.props;
   const hamburger = document.getElementById('hamburger-icon');
   const closeIcon = document.getElementById('close-icon');
 
+  function setMenu(open: boolean) {
+    menu?.classList.toggle('hidden', !open);
+    hamburger?.classList.toggle('hidden', open);
+    closeIcon?.classList.toggle('hidden', !open);
+    btn?.setAttribute('aria-expanded', String(open));
+    const label = open ? btn?.dataset.labelClose : btn?.dataset.labelOpen;
+    if (label) btn?.setAttribute('aria-label', label);
+  }
+
   btn?.addEventListener('click', () => {
-    const isOpen = !menu?.classList.contains('hidden');
-    menu?.classList.toggle('hidden', isOpen);
-    hamburger?.classList.toggle('hidden', !isOpen);
-    closeIcon?.classList.toggle('hidden', isOpen);
-    btn.setAttribute('aria-expanded', String(!isOpen));
+    setMenu(menu?.classList.contains('hidden') ?? false);
+  });
+
+  // Escape cierra el menú y devuelve el foco al botón
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu && !menu.classList.contains('hidden')) {
+      setMenu(false);
+      btn?.focus();
+    }
   });
 
   // Close mobile menu on nav link click
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      menu?.classList.add('hidden');
-      hamburger?.classList.remove('hidden');
-      closeIcon?.classList.add('hidden');
-      btn?.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', () => setMenu(false));
   });
 </script>

@@ -7,6 +7,8 @@ import CalendarWidget from '../../../components/ui/CalendarWidget.astro';
 import { tours } from '../../../data/tours';
 import { t } from '../../../data/i18n';
 import { styledAmpersand } from '../../../utils/text';
+import { Image } from 'astro:assets';
+import { tourImg, heroImage, ogImage } from '../../../utils/images';
 
 export async function getStaticPaths() {
   return tours.map(tour => ({
@@ -18,6 +20,9 @@ export async function getStaticPaths() {
 const { tour } = Astro.props;
 const lang = 'en';
 const content = tour[lang];
+
+const heroImg = await heroImage(tourImg(tour.image));
+const ogImg = await ogImage(tourImg(tour.image));
 
 const waBook = tour.whatsappMessage[lang];
 
@@ -32,7 +37,7 @@ const touristTripSchema = {
   name: `${content.name} Tour from Boston in Spanish`,
   description: content.description,
   url: pageUrl,
-  image: tour.image,
+  image: `https://jltoursboston.com${ogImg.src}`,
   touristType: { '@type': 'Audience', audienceType: 'Spanish-speaking travelers from Boston' },
   availableLanguage: { '@type': 'Language', name: 'Spanish' },
   duration: content.duration,
@@ -88,11 +93,12 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
   lang={lang}
   title={pageTitle}
   description={content.description}
-  ogImage={tour.image}
+  ogImage={ogImg.src}
   canonicalURL={pageUrl}
   hreflangEs={`https://jltoursboston.com/tours/${tour.slug}`}
   hreflangEn={pageUrl}
-  preloadImage={tour.image}
+  preloadImage={heroImg.src}
+  preloadImageSrcset={heroImg.srcSet.attribute}
 >
   <script slot="head-schemas" type="application/ld+json" set:html={JSON.stringify(schemas)} />
   <Header lang={lang} />
@@ -103,11 +109,13 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
     <section class="relative h-[55vh] min-h-[380px] flex items-end overflow-hidden">
       <div class="absolute inset-0">
         <img
-          src={tour.image}
+          src={heroImg.src}
+          srcset={heroImg.srcSet.attribute}
+          sizes="100vw"
           alt={tour.imageAlt[lang]}
           class="w-full h-full object-cover"
-          width="1200"
-          height="600"
+          width="1600"
+          height="1067"
           loading="eager"
           fetchpriority="high"
         />
@@ -158,13 +166,14 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
                 style={gi === 0 && tour.gallery!.length >= 4 ? 'aspect-ratio: 16/9' : 'aspect-ratio: 4/3'}
                 data-lightbox={gi}
               >
-                <img
-                  src={img}
+                <Image
+                  src={tourImg(img)}
                   alt={`${tour.imageAlt[lang]} ${gi + 1}`}
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-107"
                   loading="lazy"
-                  width="600"
-                  height="400"
+                  widths={[400, 800, 1200]}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  format="webp"
                 />
                 <div class="absolute inset-0 bg-navy/0 group-hover:bg-navy/25 transition-colors duration-400 flex items-center justify-center">
                   <svg class="w-9 h-9 text-white opacity-0 group-hover:opacity-90 transition-opacity duration-300 drop-shadow-lg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
@@ -198,7 +207,7 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
         <div class="flex items-center gap-3 text-sm text-navy/70 overflow-hidden">
           <span class="font-display font-bold text-navy text-base truncate" set:html={styledAmpersand(content.name)} />
           <span class="hidden sm:inline text-navy/30">·</span>
-          <span class="hidden sm:inline font-bold text-amber">{content.price}</span>
+          <span class="hidden sm:inline font-bold text-amber-text">{content.price}</span>
         </div>
         <a
           href={waBook}

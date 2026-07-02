@@ -15,8 +15,11 @@ import FinalCTA from '../../components/sections/FinalCTA.astro';
 import Marquee from '../../components/ui/Marquee.astro';
 import Stats from '../../components/sections/Stats.astro';
 import { t } from '../../data/i18n';
+import { tourImg, heroImage } from '../../utils/images';
 
 const lang = 'en' as const;
+
+const heroLcp = await heroImage(tourImg('niagara.jpg'));
 
 const faqPairs: Array<[keyof typeof import('../../data/i18n').ui.es, keyof typeof import('../../data/i18n').ui.es]> = [
   ['homefaq.q1', 'homefaq.a1'],
@@ -39,8 +42,8 @@ const homeFaqSchema = {
 
 <BaseLayout
   lang={lang}
-  preloadImage="/images/tours/niagara-828w.jpg"
-  preloadImageSrcset="/images/tours/niagara-828w.jpg 828w, /images/tours/niagara.jpg 1600w"
+  preloadImage={heroLcp.src}
+  preloadImageSrcset={heroLcp.srcSet.attribute}
 >
   <script slot="head-schemas" type="application/ld+json" set:html={JSON.stringify(homeFaqSchema)} />
   <Header lang={lang} />

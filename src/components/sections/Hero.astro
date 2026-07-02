@@ -1,6 +1,7 @@
 ---
 import type { Lang } from '../../data/i18n';
 import { t, WA_GENERAL } from '../../data/i18n';
+import { tourImg, heroImage } from '../../utils/images';
 
 interface Props {
   lang: Lang;
@@ -9,24 +10,18 @@ const { lang } = Astro.props;
 
 const waBook = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'hero.cta.book.message'));
 
-// Cada slide tiene variante 828w (móvil) y original 1600w (desktop)
-const slides = [
-  {
-    src: '/images/tours/niagara-828w.jpg',
-    srcset: '/images/tours/niagara-828w.jpg 828w, /images/tours/niagara.jpg 1600w',
-    alt: lang === 'es' ? 'Cataratas del Niágara' : 'Niagara Falls',
-  },
-  {
-    src: '/images/tours/nyc-completa-828w.jpg',
-    srcset: '/images/tours/nyc-completa-828w.jpg 828w, /images/tours/nyc-completa.jpg 1600w',
-    alt: lang === 'es' ? 'Nueva York' : 'New York City',
-  },
-  {
-    src: '/images/tours/atlantic-city-828w.jpg',
-    srcset: '/images/tours/atlantic-city-828w.jpg 828w, /images/tours/atlantic-city.jpg 1600w',
-    alt: lang === 'es' ? 'Atlantic City' : 'Atlantic City',
-  },
+// Slides optimizados vía astro:assets (WebP + srcset responsive)
+const slideDefs = [
+  { file: 'niagara.jpg', alt: lang === 'es' ? 'Cataratas del Niágara' : 'Niagara Falls' },
+  { file: 'nyc-completa.jpg', alt: lang === 'es' ? 'Nueva York' : 'New York City' },
+  { file: 'atlantic-city.jpg', alt: lang === 'es' ? 'Atlantic City' : 'Atlantic City' },
 ];
+const slides = await Promise.all(
+  slideDefs.map(async (s) => {
+    const img = await heroImage(tourImg(s.file));
+    return { src: img.src, srcset: img.srcSet.attribute, alt: s.alt };
+  })
+);
 
 // Placeholder transparente para los slides diferidos (cargan tras window.load)
 const BLANK = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="1600" height="900"%3E%3C/svg%3E';

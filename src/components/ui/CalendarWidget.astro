@@ -10,10 +10,12 @@ interface Props {
 }
 const { lang, tours: tourList, singleTour = false } = Astro.props;
 
-// Build a map of date → tour(s) for JS
+// Build a map of date → tour(s) for JS (solo fechas futuras: reduce el HTML inline)
+const todayISO = new Date().toISOString().slice(0, 10);
 const dateMap: Record<string, { name: string; wa: string; slug: string }[]> = {};
 for (const tour of tourList) {
   for (const date of tour.nextDates) {
+    if (date < todayISO) continue;
     if (!dateMap[date]) dateMap[date] = [];
     dateMap[date].push({
       name: tour[lang].name,
@@ -173,6 +175,13 @@ const monthNames = lang === 'es'
     if (month > 11) { month = 0; year++; }
     popup.classList.add('hidden');
     render();
+  });
+
+  // Escape cierra el popup de fechas
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
+      popup.classList.add('hidden');
+    }
   });
 
   render();

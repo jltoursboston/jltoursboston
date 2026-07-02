@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import type { Lang } from '../../data/i18n';
 import { t } from '../../data/i18n';
+import { tourImg } from '../../utils/images';
 
 interface Props {
   lang: Lang;
@@ -36,13 +38,14 @@ const placeholders = [
     <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
       {placeholders.map((img, i) => (
         <div class={`overflow-hidden rounded-xl ${i === 0 || i === 4 ? 'md:col-span-1 row-span-1' : ''} group`}>
-          <img
-            src={img.src}
+          <Image
+            src={tourImg(img.src)}
             alt={img.alt}
             class="w-full h-44 sm:h-56 object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
-            width="400"
-            height="224"
+            widths={[400, 640]}
+            sizes="(min-width: 768px) 33vw, 50vw"
+            format="webp"
           />
         </div>
       ))}

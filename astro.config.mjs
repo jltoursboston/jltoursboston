@@ -10,6 +10,14 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   integrations: [
-    sitemap()
+    sitemap({
+      i18n: {
+        defaultLocale: 'es',
+        locales: {
+          es: 'es-US',
+          en: 'en-US',
+        },
+      },
+    })
   ]
 });

@@ -19,17 +19,13 @@ const {
   lang,
   title = t(lang, 'seo.title'),
   description = t(lang, 'seo.description'),
-  ogImage = 'https://jltoursboston.com/logo.jpeg',
+  ogImage = 'https://jltoursboston.com/og-home.jpg',
   canonicalURL = Astro.url.href,
   hreflangEs,
   hreflangEn,
   preloadImage,
   preloadImageSrcset,
 } = Astro.props;
-
-const canonicalHref = lang === 'es'
-  ? `https://jltoursboston.com/`
-  : `https://jltoursboston.com/en/`;
 
 const ogImageAbsolute = ogImage.startsWith('http')
   ? ogImage
@@ -52,6 +48,14 @@ const localBusinessSchema = {
     postalCode: '02128',
     addressCountry: 'US',
   },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 42.3702,
+    longitude: -71.0389,
+  },
+  image: 'https://jltoursboston.com/og-home.jpg',
+  logo: 'https://jltoursboston.com/logo.jpeg',
+  priceRange: '$190 - $430',
   openingHours: ['Mo-Su 09:00-19:00'],
   areaServed: ['Boston, MA', 'East Boston, MA', 'Massachusetts, US'],
   sameAs: [
@@ -105,7 +109,7 @@ const localBusinessSchema = {
     <!-- Primary SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL ?? canonicalHref} />
+    <link rel="canonical" href={canonicalURL} />
 
     <!-- Hreflang — dinámico para páginas de tour, fallback al homepage -->
     <link rel="alternate" hreflang="es" href={hreflangEs ?? 'https://jltoursboston.com/'} />
@@ -114,7 +118,7 @@ const localBusinessSchema = {
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL ?? canonicalHref} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageAbsolute} />

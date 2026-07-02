@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import type { Lang } from '../../data/i18n';
+import { tourImg } from '../../utils/images';
 import { t } from '../../data/i18n';
 import { familyParks } from '../../data/tours';
 
@@ -72,37 +74,41 @@ const waLink = familyParks.whatsappMessage[lang];
 
       <!-- Image grid -->
       <div class="grid grid-cols-2 gap-3">
-        <img
-          src="/images/tours/parks-sixflags.jpg"
+        <Image
+          src={tourImg('parks-sixflags.jpg')}
           alt={lang === 'es' ? 'Six Flags New England — montañas rusas' : 'Six Flags New England — roller coasters'}
           class="rounded-2xl h-44 w-full object-cover"
           loading="lazy"
-          width="200"
-          height="176"
+          widths={[300, 480]}
+          sizes="(min-width: 1024px) 280px, 45vw"
+          format="webp"
         />
-        <img
-          src="/images/tours/parks-agua.jpg"
+        <Image
+          src={tourImg('parks-agua.jpg')}
           alt={lang === 'es' ? 'Parque acuático — diversión en el agua' : 'Water park — aquatic fun'}
           class="rounded-2xl h-44 w-full object-cover mt-6"
           loading="lazy"
-          width="200"
-          height="176"
+          widths={[300, 480]}
+          sizes="(min-width: 1024px) 280px, 45vw"
+          format="webp"
         />
-        <img
-          src="/images/tours/parks-zoo.jpg"
+        <Image
+          src={tourImg('parks-zoo.jpg')}
           alt={lang === 'es' ? 'Zoo — animales exóticos' : 'Zoo — exotic animals'}
           class="rounded-2xl h-44 w-full object-cover"
           loading="lazy"
-          width="200"
-          height="176"
+          widths={[300, 480]}
+          sizes="(min-width: 1024px) 280px, 45vw"
+          format="webp"
         />
-        <img
-          src="/images/tours/parks-familia.jpg"
+        <Image
+          src={tourImg('parks-familia.jpg')}
           alt={lang === 'es' ? 'Familia disfrutando un parque' : 'Family enjoying a theme park'}
           class="rounded-2xl h-44 w-full object-cover mt-6"
           loading="lazy"
-          width="200"
-          height="176"
+          widths={[300, 480]}
+          sizes="(min-width: 1024px) 280px, 45vw"
+          format="webp"
         />
       </div>
     </div>
