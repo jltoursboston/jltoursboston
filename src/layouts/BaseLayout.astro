@@ -164,10 +164,11 @@ const localBusinessSchema = {
           if (!link) return;
           const tour = link.dataset.waTour || 'general';
           if (typeof gtag !== 'undefined') {
-            // transport_type: 'beacon' — en movil, tocar el link cambia a la app
-            // de WhatsApp casi al instante; sin beacon la peticion de red se
-            // cancela a mitad de camino (confirmado: ni el evento "click" nativo
-            // de GA4 llega en ese escenario). sendBeacon sobrevive el cambio de app.
+            // Los links de WhatsApp son target="_blank", asi que en desktop la pagina
+            // no se descarga y el evento tiene tiempo de sobra para enviarse. En movil,
+            // GA4/gtag ya usa sendBeacon/fetch keepalive por defecto, asi que el envio
+            // sobrevive el cambio a la app. transport_type: 'beacon' es un remanente de
+            // Universal Analytics, inofensivo pero no imprescindible; se mantiene explicito.
             gtag('event', 'whatsapp_click', { tour: tour, language: lang, transport_type: 'beacon' });
           }
         });
