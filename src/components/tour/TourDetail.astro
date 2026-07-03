@@ -1,0 +1,511 @@
+---
+import type { Lang } from '../../data/i18n';
+import type { Tour, TourContent } from '../../data/tours';
+import { t } from '../../data/i18n';
+import { styledAmpersand } from '../../utils/text';
+import { Image } from 'astro:assets';
+import { tourImg } from '../../utils/images';
+import Icon from '../ui/Icon.astro';
+import CalendarWidget from '../ui/CalendarWidget.astro';
+
+interface Props {
+  lang: Lang;
+  tour: Tour;
+  content: TourContent;
+  heroImg: { src: string; srcSet: { attribute: string } };
+  waBook: string;
+}
+const { lang, tour, content, heroImg, waBook } = Astro.props;
+const es = lang === 'es';
+
+const priceMain = content.price.split(' ')[0];
+
+// Banda de datos rápidos (bento) — icono SVG + etiqueta + valor
+const facts = [
+  { icon: 'clock' as const, label: es ? 'Duración' : 'Duration', value: content.duration },
+  { icon: 'bus' as const, label: es ? 'Salida' : 'Departure', value: content.departure },
+  { icon: 'flag' as const, label: es ? 'Regreso' : 'Return', value: content.return },
+];
+---
+
+<main class="pt-16">
+
+  <!-- ═══ Hero ═══ -->
+  <section class="relative h-[62vh] min-h-[440px] flex items-end overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <img
+        id="tour-hero-img"
+        src={heroImg.src}
+        srcset={heroImg.srcSet.attribute}
+        sizes="100vw"
+        alt={tour.imageAlt[lang]}
+        class="w-full h-full object-cover scale-[1.08] will-change-transform"
+        width="1600"
+        height="1067"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/55 to-navy/10"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-navy/40 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-11 w-full">
+      <!-- Breadcrumb chips -->
+      <div class="flex flex-wrap items-center gap-2 mb-6">
+        <a href={es ? '/' : '/en/'}
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/12 hover:bg-white/25 backdrop-blur-sm border border-white/20 text-white/90 text-xs font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">
+          <Icon name="arrow-left" class="w-3.5 h-3.5" />
+          {es ? 'Inicio' : 'Home'}
+        </a>
+        <a href={es ? '/tours/' : '/en/tours/'}
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber/90 hover:bg-amber text-navy text-xs font-bold transition-colors shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">
+          {es ? 'Todos los tours' : 'All tours'}
+          <Icon name="arrow-right" class="w-3.5 h-3.5" />
+        </a>
+      </div>
+
+      <div class="flex flex-wrap items-end justify-between gap-5">
+        <div class="max-w-2xl">
+          <p class="flex items-center gap-2 text-amber text-xs font-semibold uppercase tracking-[0.18em] mb-3">
+            <Icon name="sparkle" class="w-4 h-4" />
+            {content.tagline}
+          </p>
+          <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.05] text-balance drop-shadow-sm" set:html={styledAmpersand(content.name)} />
+          <div class="flex flex-wrap items-center gap-x-5 gap-y-1.5 mt-5 text-white/85 text-sm">
+            <span class="inline-flex items-center gap-1.5"><Icon name="clock" class="w-4 h-4 text-amber" /> {content.duration}</span>
+            <span class="inline-flex items-center gap-1.5"><Icon name="map-pin" class="w-4 h-4 text-amber" /> {tour.departurePoints[0] ?? 'East Boston, MA'}</span>
+          </div>
+        </div>
+        <div class="rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 px-5 py-3.5">
+          <p class="text-white/70 text-xs uppercase tracking-wider">{t(lang, 'tours.card.from')}</p>
+          <p class="font-display font-black text-3xl sm:text-4xl text-amber leading-none mt-0.5">{priceMain}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Sticky book bar ═══ -->
+  <div class="sticky top-16 z-40 bg-white/95 backdrop-blur border-b border-navy/10 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3 text-sm overflow-hidden">
+        <span class="font-display font-bold text-navy text-base truncate" set:html={styledAmpersand(content.name)} />
+        <span class="hidden sm:inline text-navy/25">·</span>
+        <span class="hidden sm:inline font-bold text-amber-text">{content.price}</span>
+      </div>
+      <a href={waBook} target="_blank" rel="noopener noreferrer" data-magnetic
+        class="inline-flex items-center gap-2 px-5 py-2.5 bg-whatsapp hover:bg-whatsapp-dark text-white font-bold text-sm rounded-xl transition-colors flex-shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-whatsapp">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.847L.057 23.49a.5.5 0 0 0 .609.61l5.71-1.494A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.852 0-3.587-.504-5.073-1.383l-.364-.217-3.77.987.998-3.686-.237-.381A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        {t(lang, 'tour.book')}
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══ Quick facts (bento) ═══ -->
+  <section class="bg-white border-b border-navy/5">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {facts.map((f, i) => (
+          <div class="flex items-center gap-3 rounded-2xl bg-cream/70 border border-navy/5 px-4 py-3.5" data-reveal style={`--rd: ${i * 70}ms`}>
+            <span class="flex-shrink-0 grid place-items-center w-10 h-10 rounded-xl bg-sky/10 text-sky-text">
+              <Icon name={f.icon} class="w-5 h-5" />
+            </span>
+            <div class="min-w-0">
+              <p class="text-[0.68rem] text-navy/55 uppercase tracking-wider">{f.label}</p>
+              <p class="font-semibold text-navy text-sm leading-snug truncate">{f.value}</p>
+            </div>
+          </div>
+        ))}
+        {content.capacity ? (
+          <div class="flex items-center gap-3 rounded-2xl bg-amber/10 border border-amber/25 px-4 py-3.5" data-reveal style="--rd: 210ms">
+            <span class="flex-shrink-0 grid place-items-center w-10 h-10 rounded-xl bg-amber/20 text-amber-text">
+              <Icon name="ticket" class="w-5 h-5" />
+            </span>
+            <div class="min-w-0">
+              <p class="text-[0.68rem] text-amber-text/80 uppercase tracking-wider">{es ? 'Cupos' : 'Spots'}</p>
+              <p class="font-bold text-navy text-sm leading-snug">{content.capacity}</p>
+            </div>
+          </div>
+        ) : (
+          <div class="flex items-center gap-3 rounded-2xl bg-cream/70 border border-navy/5 px-4 py-3.5" data-reveal style="--rd: 210ms">
+            <span class="flex-shrink-0 grid place-items-center w-10 h-10 rounded-xl bg-sky/10 text-sky-text">
+              <Icon name="ticket" class="w-5 h-5" />
+            </span>
+            <div class="min-w-0">
+              <p class="text-[0.68rem] text-navy/55 uppercase tracking-wider">{es ? 'Precio' : 'Price'}</p>
+              <p class="font-semibold text-navy text-sm leading-snug">{content.price}</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-16 lg:space-y-20">
+
+    <!-- ═══ Intro / descripción ═══ -->
+    <section data-reveal>
+      <p class="text-navy/75 text-lg sm:text-xl leading-relaxed max-w-3xl">{content.description}</p>
+      {content.priceNote && (
+        <div class="mt-6 flex items-start gap-3 text-sm text-amber-text bg-amber/10 border border-amber/20 rounded-2xl px-5 py-4 max-w-3xl">
+          <Icon name="info" class="w-5 h-5 flex-shrink-0 mt-0.5" />
+          <span class="font-medium">{content.priceNote}</span>
+        </div>
+      )}
+    </section>
+
+    <!-- ═══ Galería ═══ -->
+    {tour.gallery && tour.gallery.length > 0 && (
+      <section data-reveal>
+        <header class="section-head">
+          <p class="section-eyebrow"><Icon name="camera" class="w-4 h-4" /> {es ? 'Galería' : 'Gallery'}</p>
+          <h2 class="section-title">{es ? 'Fotos reales del tour' : 'Real photos from the tour'}</h2>
+        </header>
+        <div class="tour-gallery">
+          {tour.gallery.map((img, gi) => (
+            <button
+              type="button"
+              class:list={[
+                'gal-item group relative overflow-hidden rounded-2xl bg-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky',
+                gi === 0 ? 'gal-hero' : '',
+              ]}
+              data-lightbox={gi}
+              aria-label={`${es ? 'Ampliar foto' : 'Open photo'} ${gi + 1}`}
+            >
+              <Image
+                src={tourImg(img)}
+                alt={`${tour.imageAlt[lang]} — ${gi + 1}`}
+                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                loading="lazy"
+                widths={[400, 800, 1200]}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                format="webp"
+              />
+              <span class="absolute inset-0 bg-navy/0 group-hover:bg-navy/25 transition-colors duration-300"></span>
+              <span class="absolute bottom-3 right-3 grid place-items-center w-9 h-9 rounded-full bg-white/85 text-navy opacity-0 translate-y-1.5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-md">
+                <Icon name="zoom" class="w-4 h-4" />
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- ═══ Lo que vivirás ═══ -->
+    <section data-reveal>
+      <header class="section-head">
+        <p class="section-eyebrow"><Icon name="check" class="w-4 h-4" /> {es ? 'Todo incluido' : 'All included'}</p>
+        <h2 class="section-title">{t(lang, 'tour.experiences')}</h2>
+      </header>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {content.includes.map((item, i) => (
+          <div class="flex items-start gap-3 bg-white rounded-2xl p-4 border border-navy/5 shadow-sm transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-md" data-reveal style={`--rd: ${i * 55}ms`}>
+            <span class="text-xl flex-shrink-0 leading-none mt-0.5">{item.slice(0, 2)}</span>
+            <span class="text-navy/80 text-sm leading-relaxed">{item.slice(2).trim()}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ═══ Calendario ═══ -->
+    {tour.nextDates.length > 0 ? (
+      <section data-reveal>
+        <header class="section-head">
+          <p class="section-eyebrow"><Icon name="calendar" class="w-4 h-4" /> {es ? 'Fechas' : 'Dates'}</p>
+          <h2 class="section-title">{t(lang, 'tour.calendar')}</h2>
+        </header>
+        <div class="bg-white rounded-3xl shadow-md border border-navy/5 p-6 sm:p-8">
+          <CalendarWidget lang={lang} tours={[tour]} singleTour={true} />
+        </div>
+      </section>
+    ) : (
+      <section data-reveal class="bg-amber/10 border border-amber/20 rounded-3xl p-8 text-center">
+        <span class="inline-grid place-items-center w-14 h-14 rounded-2xl bg-amber/20 text-amber-text mb-3"><Icon name="calendar" class="w-7 h-7" /></span>
+        <p class="font-bold text-navy text-lg">{t(lang, 'tour.nodates')}</p>
+        <p class="text-navy/70 text-sm mt-1">{t(lang, 'tour.nodates.sub')}</p>
+        <a href={waBook} target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 mt-5 px-6 py-3 bg-whatsapp hover:bg-whatsapp-dark text-white font-bold text-sm rounded-xl transition-colors">
+          {t(lang, 'tour.book')}
+        </a>
+      </section>
+    )}
+
+    <!-- ═══ Itinerario ═══ -->
+    <section data-reveal>
+      <header class="section-head">
+        <p class="section-eyebrow"><Icon name="route" class="w-4 h-4" /> {es ? 'Paso a paso' : 'Step by step'}</p>
+        <h2 class="section-title">{t(lang, 'tour.itinerary')}</h2>
+      </header>
+      <div class="timeline">
+        {content.itinerary.map((item, i) => (
+          <div class="tl-row">
+            <div class="tl-time">{item.time}</div>
+            <div class="tl-node"><span class={i === 0 ? 'is-first' : ''}></span></div>
+            <p class="tl-label">{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ═══ Actividades opcionales ═══ -->
+    {content.addons && content.addons.length > 0 && (
+      <section data-reveal>
+        <header class="section-head">
+          <p class="section-eyebrow"><Icon name="ticket" class="w-4 h-4" /> {es ? 'Opcionales' : 'Optional'}</p>
+          <h2 class="section-title">{t(lang, 'tour.addons')}</h2>
+        </header>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {content.addons.map((addon, i) => (
+            <div class="relative bg-white border border-navy/10 rounded-2xl p-5 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md" data-reveal style={`--rd: ${i * 70}ms`}>
+              <span class="absolute top-4 right-4 text-[0.65rem] font-bold uppercase tracking-wide text-whatsapp bg-whatsapp/10 rounded-full px-2 py-0.5">{t(lang, 'tour.discount')}</span>
+              <p class="font-semibold text-navy text-sm mb-3 pr-16">{addon.name}</p>
+              <div class="flex items-baseline gap-2">
+                <span class="font-display font-black text-2xl text-amber-text">${addon.price}</span>
+                {addon.originalPrice && <span class="text-sm text-navy/50 line-through">${addon.originalPrice}</span>}
+              </div>
+              {addon.originalPrice && <p class="text-xs text-navy/55 mt-1">vs. {t(lang, 'tour.regular')}</p>}
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- ═══ Puntos de encuentro ═══ -->
+    {tour.departurePoints.length > 0 && (
+      <section data-reveal>
+        <header class="section-head">
+          <p class="section-eyebrow"><Icon name="map-pin" class="w-4 h-4" /> {es ? 'Encuentro' : 'Meeting point'}</p>
+          <h2 class="section-title">{t(lang, 'tour.departure')}</h2>
+        </header>
+        <div class="flex flex-wrap gap-3">
+          {tour.departurePoints.map(point => (
+            <div class="inline-flex items-center gap-2.5 bg-cream border border-navy/10 rounded-2xl px-5 py-3.5">
+              <Icon name="map-pin" class="w-5 h-5 text-sky-text flex-shrink-0" />
+              <span class="font-semibold text-navy text-sm">{point}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- ═══ FAQ ═══ -->
+    {content.faq && content.faq.length > 0 && (
+      <section data-reveal>
+        <header class="section-head">
+          <p class="section-eyebrow"><Icon name="info" class="w-4 h-4" /> FAQ</p>
+          <h2 class="section-title">{t(lang, 'tour.faq')}</h2>
+        </header>
+        <div class="space-y-3" id="faq-list">
+          {content.faq.map((item, i) => (
+            <div class="faq-item bg-white border border-navy/10 rounded-2xl overflow-hidden shadow-sm" itemscope itemtype="https://schema.org/Question">
+              <button type="button" class="faq-trigger w-full flex items-center justify-between gap-4 px-5 sm:px-6 py-5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky" aria-expanded="false" data-faq={i}>
+                <span class="font-semibold text-navy" itemprop="name">{item.q}</span>
+                <span class="faq-arrow flex-shrink-0 text-navy/40 transition-transform duration-300"><Icon name="chevron-down" class="w-5 h-5" /></span>
+              </button>
+              <div class="faq-answer-wrap" itemscope itemtype="https://schema.org/Answer" itemprop="acceptedAnswer">
+                <div class="overflow-hidden">
+                  <p class="px-5 sm:px-6 pb-5 pt-1 text-navy/70 text-sm leading-relaxed" itemprop="text">{item.a}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- ═══ Métodos de pago ═══ -->
+    <section data-reveal>
+      <header class="section-head">
+        <p class="section-eyebrow"><Icon name="credit-card" class="w-4 h-4" /> {es ? 'Pagos' : 'Payment'}</p>
+        <h2 class="section-title">{t(lang, 'tour.payment')}</h2>
+      </header>
+      <div class="bg-cream rounded-3xl p-6 sm:p-7">
+        <p class="text-navy/70 text-sm mb-5 font-medium">{t(lang, 'tour.payment.note')}</p>
+        <div class="flex flex-wrap gap-3">
+          {['Zelle', 'PayPal', es ? 'Tarjeta' : 'Card'].map(m => (
+            <div class="inline-flex items-center gap-2 bg-white border border-navy/10 rounded-xl px-4 py-3 shadow-sm">
+              <Icon name="credit-card" class="w-4 h-4 text-sky-text" />
+              <span class="font-bold text-navy text-sm">{m}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA final ═══ -->
+    <section data-reveal class="relative overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-navy via-navy to-[#0b1c30] p-9 sm:p-11 text-center text-white">
+      <div class="absolute -top-16 -right-10 w-56 h-56 rounded-full bg-amber/10 blur-2xl" aria-hidden="true"></div>
+      <div class="relative">
+        <p class="font-display font-black text-3xl sm:text-4xl mb-2 text-balance">{t(lang, 'tour.cta.title')}</p>
+        <p class="text-white/70 mb-7 max-w-md mx-auto">{t(lang, 'tour.cta.subtitle')}</p>
+        <a href={waBook} target="_blank" rel="noopener noreferrer" data-magnetic
+          class="inline-flex items-center gap-3 px-8 py-4 bg-whatsapp hover:bg-whatsapp-dark text-white text-lg font-bold rounded-2xl transition-all hover:-translate-y-0.5 shadow-lg hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+          <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.847L.057 23.49a.5.5 0 0 0 .609.61l5.71-1.494A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.852 0-3.587-.504-5.073-1.383l-.364-.217-3.77.987.998-3.686-.237-.381A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          {t(lang, 'tour.book')}
+        </a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ═══ Lightbox ═══ -->
+{tour.gallery && tour.gallery.length > 0 && (
+  <div id="lightbox" class="fixed inset-0 z-[100] bg-navy/95 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300 items-center justify-center p-4 sm:p-8" role="dialog" aria-modal="true" aria-label={es ? 'Galería de fotos' : 'Photo gallery'}>
+    <button id="lb-close" class="absolute top-4 right-4 sm:top-6 sm:right-6 grid place-items-center w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white" aria-label={es ? 'Cerrar' : 'Close'}><Icon name="close" class="w-6 h-6" /></button>
+    <button id="lb-prev" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 grid place-items-center w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white" aria-label={es ? 'Anterior' : 'Previous'}><Icon name="arrow-left" class="w-6 h-6" /></button>
+    <figure class="relative max-h-[86vh] max-w-5xl flex flex-col items-center gap-3">
+      <img id="lb-img" src="" alt="" class="max-h-[78vh] max-w-full rounded-xl shadow-2xl object-contain" />
+      <figcaption class="flex items-center gap-3 text-white/80 text-sm">
+        <span id="lb-counter" class="font-semibold tabular-nums"></span>
+        <span class="text-white/40">·</span>
+        <span class="truncate max-w-[60vw]">{content.name}</span>
+      </figcaption>
+    </figure>
+    <button id="lb-next" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 grid place-items-center w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white" aria-label={es ? 'Siguiente' : 'Next'}><Icon name="arrow-right" class="w-6 h-6" /></button>
+  </div>
+)}
+
+<style>
+  /* Encabezados de sección */
+  .section-head { margin-bottom: 1.75rem; }
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    color: var(--color-sky-text, #1E5FA8);
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; margin-bottom: 0.55rem;
+  }
+  .section-title {
+    font-family: var(--font-display, 'Playfair Display', serif);
+    font-weight: 700; color: var(--color-navy, #10243E);
+    font-size: clamp(1.55rem, 3.5vw, 2rem); line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  /* Galería editorial (bento): la primera foto ocupa 2×2 */
+  .tour-gallery {
+    display: grid; gap: 0.6rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 8.5rem;
+  }
+  .gal-item { cursor: pointer; padding: 0; border: 0; }
+  .gal-item :global(img) { height: 100%; }
+  @media (min-width: 640px) {
+    .tour-gallery { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 9.5rem; gap: 0.75rem; }
+    .gal-hero { grid-column: span 2; grid-row: span 2; }
+  }
+
+  /* Timeline itinerario */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; top: 0.4rem; bottom: 0.4rem;
+    left: calc(5rem + 0.5px); width: 2px;
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--color-amber, #F2A541) 60%, transparent), var(--color-navy, #10243E) 12%, rgba(16,36,62,0.08));
+  }
+  .tl-row { display: grid; grid-template-columns: 5rem 1.5rem 1fr; align-items: start; column-gap: 0.5rem; padding: 0.45rem 0; }
+  .tl-time { text-align: right; font-size: 0.72rem; font-weight: 600; color: var(--color-navy, #10243E); opacity: 0.65; line-height: 1.3; padding-top: 0.1rem; }
+  .tl-node { display: flex; justify-content: center; padding-top: 0.28rem; }
+  .tl-node span {
+    width: 0.7rem; height: 0.7rem; border-radius: 999px;
+    background: #fff; border: 2px solid rgba(16,36,62,0.28); z-index: 1;
+  }
+  .tl-node span.is-first { background: var(--color-amber, #F2A541); border-color: var(--color-amber, #F2A541); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-amber, #F2A541) 22%, transparent); }
+  .tl-label { color: rgba(16,36,62,0.82); font-size: 0.875rem; line-height: 1.55; }
+
+  /* FAQ acordeón con animación de altura suave */
+  .faq-answer-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.32s ease; }
+  .faq-item.open .faq-answer-wrap { grid-template-rows: 1fr; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    #tour-hero-img { transform: none !important; }
+  }
+</style>
+
+<script>
+  // ── Hero parallax sutil (respeta reduced-motion) ──
+  (function () {
+    const img = document.getElementById('tour-hero-img');
+    if (!img) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let ticking = false;
+    function update() {
+      const y = window.scrollY;
+      if (y < 700) img!.style.transform = `translate3d(0, ${y * 0.12}px, 0) scale(1.08)`;
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+  })();
+
+  // ── FAQ acordeón (un solo abierto) ──
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      if (!item) return;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-trigger')?.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // ── Lightbox ──
+  (function () {
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img') as HTMLImageElement | null;
+    const counter = document.getElementById('lb-counter');
+    if (!lb || !lbImg) return;
+
+    const triggers = Array.from(document.querySelectorAll<HTMLElement>('[data-lightbox]'));
+    const sources: string[] = [];
+    triggers.forEach(el => {
+      const idx = parseInt(el.dataset.lightbox ?? '0');
+      sources[idx] = el.querySelector('img')?.currentSrc || el.querySelector('img')?.src || '';
+      el.addEventListener('click', () => open(idx));
+    });
+    const total = sources.length;
+    let current = 0;
+
+    function render() {
+      lbImg!.src = sources[current] ?? '';
+      if (counter) counter.textContent = `${current + 1} / ${total}`;
+    }
+    function open(n: number) {
+      current = n; render();
+      lb!.classList.remove('hidden');
+      lb!.classList.add('flex');
+      requestAnimationFrame(() => lb!.classList.remove('opacity-0'));
+      document.body.classList.add('modal-open');
+    }
+    function close() {
+      lb!.classList.add('opacity-0');
+      document.body.classList.remove('modal-open');
+      setTimeout(() => { lb!.classList.add('hidden'); lb!.classList.remove('flex'); }, 280);
+    }
+    const go = (d: number) => { current = (current + d + total) % total; render(); };
+
+    document.getElementById('lb-close')?.addEventListener('click', close);
+    document.getElementById('lb-prev')?.addEventListener('click', () => go(-1));
+    document.getElementById('lb-next')?.addEventListener('click', () => go(1));
+    lb.addEventListener('click', e => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', e => {
+      if (lb!.classList.contains('hidden')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') go(-1);
+      if (e.key === 'ArrowRight') go(1);
+    });
+    // Swipe en móvil
+    let sx = 0;
+    lb.addEventListener('touchstart', e => { sx = e.changedTouches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 45) go(dx < 0 ? 1 : -1);
+    }, { passive: true });
+  })();
+</script>

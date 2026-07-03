@@ -60,6 +60,7 @@ export const ui = {
     'calendar.all': 'Todos los Tours',
 
     // Why us section
+    'whyus.eyebrow': 'Por qué elegirnos',
     'whyus.title': 'La Experiencia JL Tours',
     'whyus.subtitle': 'Todo lo que necesitas para viajar tranquilo y disfrutar al máximo.',
     'whyus.1.title': 'Transporte Cómodo',
@@ -76,6 +77,7 @@ export const ui = {
     'whyus.6.desc': 'Solo el 50% para asegurar tu lugar.',
 
     // Family parks section
+    'family.eyebrow': 'Planes familiares',
     'family.title': 'Diversión para Toda la Familia',
     'family.subtitle': 'Excursiones a los mejores parques de atracciones y entretenimiento del noreste. JL Tours se encarga del transporte.',
     'family.cta': 'Consultar fechas y precios',
@@ -188,6 +190,7 @@ export const ui = {
     'calendar.all': 'All Tours',
 
     // Why us section
+    'whyus.eyebrow': 'Why choose us',
     'whyus.title': 'The JL Tours Experience',
     'whyus.subtitle': 'Everything you need to travel worry-free and enjoy every moment.',
     'whyus.1.title': 'Comfortable Transport',
@@ -204,6 +207,7 @@ export const ui = {
     'whyus.6.desc': 'Only 50% deposit to secure your spot.',
 
     // Family parks section
+    'family.eyebrow': 'Family plans',
     'family.title': 'Fun for the Whole Family',
     'family.subtitle': 'Excursions to the best theme parks and entertainment in the Northeast. JL Tours handles all transportation.',
     'family.cta': 'Check dates and prices',

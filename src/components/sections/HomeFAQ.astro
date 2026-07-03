@@ -1,6 +1,7 @@
 ---
 import type { Lang } from '../../data/i18n';
 import { t } from '../../data/i18n';
+import Icon from '../ui/Icon.astro';
 
 interface Props {
   lang: Lang;
@@ -20,9 +21,9 @@ const faqs = [
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- Header -->
-    <div class="text-center mb-12">
+    <div class="text-center mb-12" data-reveal>
       <p class="text-sky-text font-semibold text-sm tracking-widest uppercase mb-3">FAQ</p>
-      <h2 class="font-display font-bold text-4xl lg:text-5xl text-navy mb-4">{t(lang, 'homefaq.title')}</h2>
+      <h2 class="font-display font-bold text-4xl lg:text-5xl text-navy mb-4 text-balance">{t(lang, 'homefaq.title')}</h2>
       <p class="text-navy/75 text-lg">{t(lang, 'homefaq.subtitle')}</p>
     </div>
 
@@ -30,34 +31,32 @@ const faqs = [
     <div class="space-y-3" id="home-faq-list">
       {faqs.map((item, i) => (
         <div
-          class="home-faq-item bg-white border border-navy/10 rounded-2xl overflow-hidden shadow-sm"
+          class="home-faq-item bg-white border border-navy/10 rounded-2xl overflow-hidden shadow-sm transition-colors hover:border-navy/20"
           itemscope
           itemtype="https://schema.org/Question"
+          data-reveal
+          style={`--rd: ${i * 55}ms`}
         >
           <button
             type="button"
-            class="home-faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+            class="home-faq-trigger w-full flex items-center justify-between gap-4 px-5 sm:px-6 py-5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky"
             aria-expanded="false"
             data-idx={i}
           >
             <span class="font-semibold text-navy" itemprop="name">{item.q}</span>
-            <svg
-              class="home-faq-arrow w-5 h-5 text-navy/40 flex-shrink-0 transition-transform duration-200"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
+            <span class="home-faq-arrow flex-shrink-0 text-navy/40 transition-transform duration-300">
+              <Icon name="chevron-down" class="w-5 h-5" />
+            </span>
           </button>
           <div
-            class="home-faq-answer hidden px-6 pb-5 text-navy/70 text-sm leading-relaxed border-t border-navy/5 pt-4"
+            class="home-faq-answer-wrap"
             itemscope
             itemtype="https://schema.org/Answer"
             itemprop="acceptedAnswer"
           >
-            <span itemprop="text">{item.a}</span>
+            <div class="overflow-hidden">
+              <p class="px-5 sm:px-6 pb-5 pt-1 text-navy/70 text-sm leading-relaxed" itemprop="text">{item.a}</p>
+            </div>
           </div>
         </div>
       ))}
@@ -65,24 +64,24 @@ const faqs = [
   </div>
 </section>
 
+<style>
+  .home-faq-answer-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.32s ease; }
+  .home-faq-item.open .home-faq-answer-wrap { grid-template-rows: 1fr; }
+  .home-faq-item.open .home-faq-arrow { transform: rotate(180deg); }
+</style>
+
 <script>
-  document.querySelectorAll('.home-faq-trigger').forEach(btn => {
+  document.querySelectorAll<HTMLButtonElement>('.home-faq-trigger').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.home-faq-item');
-      const answer = item?.querySelector('.home-faq-answer');
-      const arrow = btn.querySelector('.home-faq-arrow');
-      const isOpen = !answer?.classList.contains('hidden');
-
-      // Close all others
-      document.querySelectorAll('.home-faq-item').forEach(el => {
-        el.querySelector('.home-faq-answer')?.classList.add('hidden');
-        el.querySelector('.home-faq-arrow')?.classList.remove('rotate-180');
+      if (!item) return;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.home-faq-item.open').forEach(el => {
+        el.classList.remove('open');
         el.querySelector('.home-faq-trigger')?.setAttribute('aria-expanded', 'false');
       });
-
       if (!isOpen) {
-        answer?.classList.remove('hidden');
-        arrow?.classList.add('rotate-180');
+        item.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
       }
     });
