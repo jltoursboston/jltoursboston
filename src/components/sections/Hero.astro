@@ -13,8 +13,7 @@ const waBook = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'h
 // Slides optimizados vía astro:assets (WebP + srcset responsive)
 const slideDefs = [
   { file: 'niagara.jpg', alt: lang === 'es' ? 'Cataratas del Niágara' : 'Niagara Falls', objectPosition: 'center' },
-  // Foto vertical (contrapicado): object-position sube el foco para no perder corona/antorcha/rostro en pantallas anchas
-  { file: 'nyc-completa.jpg', alt: lang === 'es' ? 'Nueva York' : 'New York City', objectPosition: '50% 16%' },
+  { file: 'nyc-completa.jpg', alt: lang === 'es' ? 'Nueva York' : 'New York City', objectPosition: 'center' },
   { file: 'atlantic-city.jpg', alt: lang === 'es' ? 'Atlantic City' : 'Atlantic City', objectPosition: 'center' },
 ];
 const slides = await Promise.all(
