@@ -73,7 +73,7 @@ const monthNames = lang === 'es'
   <!-- Legend -->
   <div class="flex items-center gap-4 mt-4 text-sm text-navy/75">
     <span class="flex items-center gap-1.5">
-      <span class="w-3 h-3 rounded-full bg-amber inline-block"></span>
+      <span class="w-3 h-3 rounded-full bg-sky-text inline-block"></span>
       {t(lang, 'calendar.available')}
     </span>
   </div>
@@ -125,7 +125,7 @@ const monthNames = lang === 'es'
       btn.className = [
         'text-center py-2 rounded-xl text-sm font-medium transition-all',
         isPast ? 'text-navy/25' : 'text-navy',
-        tours && !isPast ? 'bg-amber text-navy font-bold cursor-pointer hover:scale-105 hover:shadow-md' : '',
+        tours && !isPast ? 'bg-sky-text text-white font-bold cursor-pointer hover:scale-105 hover:shadow-md' : '',
         !tours && !isPast ? 'hover:bg-navy/5' : '',
       ].join(' ');
       btn.textContent = String(d);

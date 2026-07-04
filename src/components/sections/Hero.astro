@@ -49,8 +49,8 @@ const BLANK = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" widt
         />
       </div>
     ))}
-    <!-- Gradient overlay -->
-    <div class="absolute inset-0 bg-gradient-to-b from-navy/85 via-navy/70 to-navy/92 pointer-events-none"></div>
+    <!-- Gradient overlay (suave para que la foto se vea a color) -->
+    <div class="absolute inset-0 bg-gradient-to-b from-navy/40 via-transparent to-navy/55 pointer-events-none"></div>
   </div>
 
   <!-- Content -->
@@ -63,12 +63,12 @@ const BLANK = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" widt
     </div>
 
     <!-- Main headline -->
-    <h1 class="hero-title font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6">
+    <h1 class="hero-title font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6 [text-shadow:0_2px_18px_rgba(0,0,0,0.65)]">
       {t(lang, 'hero.title')}
     </h1>
 
     <!-- Subtitle -->
-    <p class="hero-sub text-white/80 text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
+    <p class="hero-sub text-white/80 text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl mx-auto [text-shadow:0_2px_12px_rgba(0,0,0,0.7)]">
       {t(lang, 'hero.subtitle')}
     </p>
 

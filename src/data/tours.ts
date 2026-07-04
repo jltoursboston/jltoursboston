@@ -92,7 +92,7 @@ export const tours: Tour[] = [
       price: '$410 USD/persona',
       priceNote: 'Cuarto privado para pareja: +$55/persona. Reserva con 50%.',
       duration: '2 días / 1 noche',
-      capacity: 'Cuartos compartidos (3+ personas)',
+      capacity: 'Cuartos compartidos (3+) y privados',
       departure: '4:00 AM — Walgreens East Boston, MA',
       return: '10:00 PM del día siguiente',
       itinerary: [
@@ -109,14 +109,6 @@ export const tours: Tour[] = [
       ],
       faq: [
         {
-          q: '¿Qué documentos necesito para el tour?',
-          a: 'Solo necesitas una identificación válida (pasaporte, licencia de conducir o ID estatal). Para cruzar al lado canadiense de las cataratas se requiere pasaporte vigente.',
-        },
-        {
-          q: '¿El tour en barco (Maid of the Mist) está incluido?',
-          a: 'No está incluido en el precio base, pero lo ofrecemos como actividad opcional por $25/persona (precio regular $31.50). Puedes pagarlo en efectivo el día del tour.',
-        },
-        {
           q: '¿Cómo reservo mi lugar?',
           a: 'Escríbenos por WhatsApp al +1 857-389-9523. Para asegurar tu cupo solo necesitas el 50% del valor del tour. El saldo restante se paga antes o el día de la salida.',
         },
@@ -126,8 +118,8 @@ export const tours: Tour[] = [
         },
       ],
       addons: [
-        { name: '⛴️ Maid of the Mist (tour en barco)', price: 25, originalPrice: 31.50 },
-        { name: '💦 Cueva de los Vientos', price: 17, originalPrice: 23 },
+        { name: '💦 Cueva de los Vientos', price: 23, originalPrice: 28 },
+        { name: '🎈 Paseo en globo', price: 72, originalPrice: 85 },
       ],
     },
     en: {
@@ -147,7 +139,7 @@ export const tours: Tour[] = [
       price: '$410 USD/person',
       priceNote: 'Private room for couples: +$55/person. 50% deposit to book.',
       duration: '2 days / 1 night',
-      capacity: 'Shared rooms (3+ people)',
+      capacity: 'Shared (3+) & private rooms',
       departure: '4:00 AM — Walgreens East Boston, MA',
       return: '10:00 PM next day',
       itinerary: [
@@ -164,14 +156,6 @@ export const tours: Tour[] = [
       ],
       faq: [
         {
-          q: 'What documents do I need for the tour?',
-          a: 'You only need a valid ID (passport, driver\'s license, or state ID). To cross to the Canadian side of the falls, a valid passport is required.',
-        },
-        {
-          q: 'Is the Maid of the Mist boat tour included?',
-          a: 'It\'s not included in the base price, but we offer it as an optional activity for $25/person (regular price $31.50). You can pay in cash on the day of the tour.',
-        },
-        {
           q: 'How do I book my spot?',
           a: 'Message us on WhatsApp at +1 857-389-9523. To secure your spot you only need 50% of the tour price. The remaining balance is due before or on the day of departure.',
         },
@@ -181,8 +165,8 @@ export const tours: Tour[] = [
         },
       ],
       addons: [
-        { name: '⛴️ Maid of the Mist (boat tour)', price: 25, originalPrice: 31.50 },
-        { name: '💦 Cave of the Winds', price: 17, originalPrice: 23 },
+        { name: '💦 Cave of the Winds', price: 23, originalPrice: 28 },
+        { name: '🎈 Balloon ride', price: 72, originalPrice: 85 },
       ],
     },
   },
@@ -219,7 +203,7 @@ export const tours: Tour[] = [
       description:
         'El tour más completo de Nueva York: Ferry a la Estatua de la Libertad, el World Trade Center, Times Square y más. Solo 13 cupos disponibles para una experiencia personalizada.',
       includes: [
-        '🗽 Ferry e ingreso a la Estatua de la Libertad',
+        '🗽 Ferry e ingreso a la Isla de la Estatua de la Libertad',
         '🏛️ World Trade Center (Memorial del 9/11)',
         '🐂 Charging Bull · Rockefeller Center · St. Patrick\'s Cathedral',
         '⭐ Times Square',
@@ -251,10 +235,6 @@ export const tours: Tour[] = [
           a: 'Este tour tiene un máximo de 13 personas. Esto garantiza una experiencia personalizada y atención directa del guía. ¡Reserva con anticipación!',
         },
         {
-          q: '¿El ingreso a la Corona de la Estatua de la Libertad está incluido?',
-          a: 'El ferry y el ingreso a la isla están incluidos. El acceso a la Corona tiene un costo adicional de $24/persona (reserva con anticipación ya que los cupos son muy limitados).',
-        },
-        {
           q: '¿Qué pasa si llueve?',
           a: 'El tour sale igualmente en caso de lluvia leve. En caso de mal tiempo severo, te contactamos con anticipación para reprogramar sin costo adicional.',
         },
@@ -270,7 +250,7 @@ export const tours: Tour[] = [
       description:
         'The most complete New York City tour: Statue of Liberty ferry, World Trade Center, Times Square and more. Only 13 spots available for a personalized experience.',
       includes: [
-        '🗽 Ferry and entry to Statue of Liberty',
+        '🗽 Ferry and entry to Liberty Island',
         '🏛️ World Trade Center (9/11 Memorial)',
         '🐂 Charging Bull · Rockefeller Center · St. Patrick\'s Cathedral',
         '⭐ Times Square',
@@ -300,10 +280,6 @@ export const tours: Tour[] = [
         {
           q: 'How many spots are available?',
           a: 'This tour has a maximum of 13 people. This guarantees a personalized experience and direct attention from the guide. Book early!',
-        },
-        {
-          q: 'Is access to the Statue of Liberty Crown included?',
-          a: 'The ferry and island entry are included. Crown access has an additional cost of $24/person (book in advance as spots are very limited).',
         },
         {
           q: 'What happens if it rains?',
