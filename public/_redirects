@@ -1,5 +1,0 @@
-# Redirect internal pages.dev URL to the public domain
-https://jltoursboston-b40.pages.dev/* https://www.jltoursboston.com/:splat 301
-
-# Redirect www to non-www (configure in Cloudflare dashboard instead if preferred)
-# https://www.jltoursboston.com/* https://jltoursboston.com/:splat 301
