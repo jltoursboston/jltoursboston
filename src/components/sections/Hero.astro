@@ -1,6 +1,7 @@
 ---
 import type { Lang } from '../../data/i18n';
 import { t, WA_GENERAL } from '../../data/i18n';
+import { tours } from '../../data/tours';
 import { tourImg, heroImage } from '../../utils/images';
 
 interface Props {
@@ -10,12 +11,14 @@ const { lang } = Astro.props;
 
 const waBook = 'https://wa.me/18573899523?text=' + encodeURIComponent(t(lang, 'hero.cta.book.message'));
 
-// Slides optimizados vía astro:assets (WebP + srcset responsive)
-const slideDefs = [
-  { file: 'niagara.jpg', alt: lang === 'es' ? 'Cataratas del Niágara' : 'Niagara Falls', objectPosition: 'center' },
-  { file: 'nyc-completa.jpg', alt: lang === 'es' ? 'Nueva York' : 'New York City', objectPosition: 'center' },
-  { file: 'atlantic-city.jpg', alt: lang === 'es' ? 'Atlantic City' : 'Atlantic City', objectPosition: 'center' },
-];
+// Slides optimizados vía astro:assets (WebP + srcset responsive).
+// Se derivan del array de tours para que rote la portada de cada destino;
+// el primero (niagara) debe coincidir con el preload LCP de index.astro.
+const slideDefs = tours.map((tour) => ({
+  file: tour.image.split('/').pop() as string,
+  alt: tour.imageAlt[lang],
+  objectPosition: 'center',
+}));
 const slides = await Promise.all(
   slideDefs.map(async (s) => {
     const img = await heroImage(tourImg(s.file));

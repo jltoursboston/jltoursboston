@@ -83,6 +83,10 @@ export const ui = {
     'family.cta': 'Consultar fechas y precios',
     'family.transport': 'Transporte incluido',
 
+    // Gallery
+    'gallery.title': 'Momentos Reales',
+    'gallery.subtitle': 'Fotos de nuestros viajeros en cada destino. Síguenos en Instagram.',
+
     // Testimonials
     'testimonials.title': 'Lo Que Dicen Nuestros Viajeros',
     'testimonials.subtitle': 'Más de 2,500 familias ya han viajado con nosotros. Esta es su experiencia.',
@@ -212,6 +216,10 @@ export const ui = {
     'family.subtitle': 'Excursions to the best theme parks and entertainment in the Northeast. JL Tours handles all transportation.',
     'family.cta': 'Check dates and prices',
     'family.transport': 'Transportation included',
+
+    // Gallery
+    'gallery.title': 'Real Moments',
+    'gallery.subtitle': 'Photos from our travelers at every destination. Follow us on Instagram.',
 
     // Testimonials
     'testimonials.title': 'What Our Travelers Say',
