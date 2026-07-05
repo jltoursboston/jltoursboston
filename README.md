@@ -1,6 +1,6 @@
 # JL Tours Boston — Landing Page
 
-Sitio web de JL Tours Inc. Construido con Astro 7 + Tailwind CSS v4. Deploy automático en Cloudflare Pages al hacer push a `master`.
+Sitio web de JL Tours Inc. Construido con Astro 7 + Tailwind CSS v4. Deploy automático en Cloudflare Workers al hacer push a `master`.
 
 ## Desarrollo local
 
@@ -61,4 +61,4 @@ Busca `18573899523` en `src/data/tours.ts` y `src/data/i18n.ts` y reemplaza con 
 
 ## Deploy
 
-El proyecto está conectado a GitHub. Cada push a `master` dispara un build y deploy automático en Cloudflare Pages (cuenta `jltoursboston@gmail.com`).
+Producción corre en **Cloudflare Workers** (migrado desde Cloudflare Pages). El proyecto está conectado a GitHub: cada push a `master` dispara Workers Builds (`npm run build` + `npx wrangler deploy`) en la cuenta `jltoursboston@gmail.com`.
