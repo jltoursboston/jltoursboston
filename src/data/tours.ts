@@ -374,10 +374,6 @@ export const tours: Tour[] = [
           a: 'En diciembre y enero los precios pueden variar por el árbol de Navidad del Rockefeller y mayor demanda. Consulta disponibilidad por WhatsApp.',
         },
       ],
-      addons: [
-        { name: '🏙️ Edge at Hudson Yards (upgrade)', price: 40, originalPrice: 55 },
-        { name: '🌆 SUMMIT One Vanderbilt (upgrade)', price: 45, originalPrice: 60 },
-      ],
     },
     en: {
       name: 'New York VIP – Skylines & Icons',
@@ -421,10 +417,6 @@ export const tours: Tour[] = [
           q: 'Is there a surcharge during the holiday season?',
           a: 'In December and January prices may vary due to the Rockefeller Christmas tree and higher demand. Check availability via WhatsApp.',
         },
-      ],
-      addons: [
-        { name: '🏙️ Edge at Hudson Yards (upgrade)', price: 40, originalPrice: 55 },
-        { name: '🌆 SUMMIT One Vanderbilt (upgrade)', price: 45, originalPrice: 60 },
       ],
     },
   },

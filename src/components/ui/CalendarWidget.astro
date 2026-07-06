@@ -100,6 +100,19 @@ const monthNames = lang === 'es'
   let year = today.getFullYear();
   let month = today.getMonth();
 
+  if (singleTour) {
+    const isoDates = Object.keys(dateMap).sort();
+    const hasCurrentMonth = isoDates.some((d) => {
+      const [y, m] = d.split('-').map(Number);
+      return y === year && (m - 1) === month;
+    });
+    if (!hasCurrentMonth && isoDates.length > 0) {
+      const [y, m] = isoDates[0].split('-').map(Number);
+      year = y;
+      month = m - 1;
+    }
+  }
+
   function isoDate(y, m, d) {
     return `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
   }
