@@ -43,6 +43,10 @@ const { lang } = Astro.props;
            class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
           {lang === 'es' ? 'Galería' : 'Gallery'}
         </a>
+        <a href={lang === 'es' ? '/sobre-nosotros' : '/en/sobre-nosotros'}
+           class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
+          {t(lang, 'nav.about')}
+        </a>
         <a href={lang === 'es' ? '/#contacto' : '/en/#contacto'}
            class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
           {t(lang, 'nav.contact')}
@@ -112,6 +116,10 @@ const { lang } = Astro.props;
         <a href={lang === 'es' ? '/#galeria' : '/en/#galeria'}
            class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
           {lang === 'es' ? 'Galería' : 'Gallery'}
+        </a>
+        <a href={lang === 'es' ? '/sobre-nosotros' : '/en/sobre-nosotros'}
+           class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
+          {t(lang, 'nav.about')}
         </a>
         <a href={lang === 'es' ? '/#contacto' : '/en/#contacto'}
            class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">

@@ -5,6 +5,7 @@ export const ui = {
     // Nav
     'nav.tours': 'Tours',
     'nav.dates': 'Calendario',
+    'nav.about': 'Nosotros',
     'nav.contact': 'Contacto',
     'nav.whatsapp': 'WhatsApp',
     'nav.lang': 'English',
@@ -92,6 +93,8 @@ export const ui = {
     'about.dot.label': 'Registro DOT',
     'about.dot.number': '3866673',
     'about.dot.note': 'Empresa legítima reconocida por el estado de Massachusetts y el City Hall de Boston.',
+    'about.seo.title': 'Sobre Nosotros | JL Tours Boston',
+    'about.seo.description': 'Conoce a JL Tours: compañía hispana de turismo en Boston con más de 32 años de experiencia. Nuestra misión, visión y propuesta de valor. Registro DOT #3866673.',
 
     // Gallery
     'gallery.title': 'Momentos Reales',
@@ -149,6 +152,7 @@ export const ui = {
     // Nav
     'nav.tours': 'Tours',
     'nav.dates': 'Calendar',
+    'nav.about': 'About',
     'nav.contact': 'Contact',
     'nav.whatsapp': 'WhatsApp',
     'nav.lang': 'Español',
@@ -236,6 +240,8 @@ export const ui = {
     'about.dot.label': 'DOT Registration',
     'about.dot.number': '3866673',
     'about.dot.note': 'A legitimate company recognized by the State of Massachusetts and the Boston City Hall.',
+    'about.seo.title': 'About Us | JL Tours Boston',
+    'about.seo.description': 'Meet JL Tours: a Hispanic-owned tour company in Boston with 32+ years of experience. Our mission, vision, and value proposition. DOT Registration #3866673.',
 
     // Gallery
     'gallery.title': 'Real Moments',

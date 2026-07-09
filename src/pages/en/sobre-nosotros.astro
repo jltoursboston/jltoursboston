@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
+import About from '../../components/sections/About.astro';
+import FinalCTA from '../../components/sections/FinalCTA.astro';
+import Icon from '../../components/ui/Icon.astro';
+import { t } from '../../data/i18n';
+
+const lang = 'en' as const;
+
+const pageUrl = 'https://jltoursboston.com/en/sobre-nosotros';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'JL Tours Boston', item: 'https://jltoursboston.com/en/' },
+    { '@type': 'ListItem', position: 2, name: 'About Us', item: pageUrl },
+  ],
+};
+---
+
+<BaseLayout
+  lang={lang}
+  title={t(lang, 'about.seo.title')}
+  description={t(lang, 'about.seo.description')}
+  canonicalURL={pageUrl}
+  hreflangEs="https://jltoursboston.com/sobre-nosotros"
+  hreflangEn={pageUrl}
+>
+  <script slot="head-schemas" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Header lang={lang} />
+  <main>
+    <!-- Breadcrumb -->
+    <div class="bg-navy pt-24 pb-2">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex items-center gap-2 text-sm" aria-label="Breadcrumb">
+          <a href="/en/" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white/80 text-xs font-medium transition-colors">
+            <Icon name="arrow-left" class="w-3.5 h-3.5" />
+            Home
+          </a>
+          <span class="text-white/40 text-xs">/</span>
+          <span class="text-amber text-xs font-semibold">About Us</span>
+        </nav>
+      </div>
+    </div>
+
+    <About lang={lang} />
+    <FinalCTA lang={lang} />
+  </main>
+  <Footer lang={lang} />
+  <WhatsAppFloat lang={lang} />
+</BaseLayout>

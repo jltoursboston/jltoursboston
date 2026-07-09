@@ -16,15 +16,15 @@ const pillars = [
 ];
 ---
 
-<section id="nosotros" class="py-20 lg:py-28 bg-white">
+<section class="py-20 lg:py-28 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- Section header -->
     <div class="text-center mb-14 max-w-3xl mx-auto" data-reveal>
       <p class="text-sky-text font-semibold text-sm tracking-widest uppercase mb-3">{t(lang, 'about.eyebrow')}</p>
-      <h2 class="font-display font-bold text-4xl lg:text-5xl text-navy mb-4 leading-tight text-balance">
+      <h1 class="font-display font-bold text-4xl lg:text-5xl text-navy mb-4 leading-tight text-balance">
         {t(lang, 'about.title')}
-      </h2>
+      </h1>
       <p class="text-navy/70 text-lg leading-relaxed">{t(lang, 'about.subtitle')}</p>
     </div>
 
@@ -39,7 +39,7 @@ const pillars = [
           <span class="inline-grid place-items-center w-14 h-14 rounded-2xl bg-sky/10 text-sky-text mb-5 group-hover:bg-amber/15 group-hover:text-amber-text transition-colors">
             <Icon name={p.icon} class="w-7 h-7" />
           </span>
-          <h3 class="font-display font-bold text-xl text-navy mb-3">{t(lang, p.titleKey)}</h3>
+          <h2 class="font-display font-bold text-xl text-navy mb-3">{t(lang, p.titleKey)}</h2>
           <p class="text-navy/70 text-sm leading-relaxed">{t(lang, p.textKey)}</p>
         </div>
       ))}
