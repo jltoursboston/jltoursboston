@@ -16,6 +16,7 @@ const quickLinks = [
   { href: `${base}/tours/washington-dc`,             label: 'Washington D.C.'                                                  },
   { href: `${base}/tours/templo-hindu-new-jersey`,   label: lang === 'es' ? 'Templo Hindú & NJ'      : 'Hindu Temple & NJ'    },
   { href: `${base}/tours/cavernas-nueva-york`,       label: lang === 'es' ? 'Cavernas de NY'          : 'NY Caverns'           },
+  { href: `${base}/tours/parques-familiares`,       label: lang === 'es' ? 'Parques Familiares'      : 'Family Parks'         },
 ];
 ---
 
@@ -52,6 +53,18 @@ const quickLinks = [
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
           </svg>
           <span>{t(lang, 'footer.ceo')}</span>
+        </div>
+
+        <!-- DOT legitimacy badge -->
+        <div class="inline-flex items-center gap-2.5 bg-amber/10 border border-amber/30 rounded-2xl px-4 py-2.5" data-reveal>
+          <svg class="w-5 h-5 text-amber flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/>
+            <polyline points="9 11.5 11 13.5 15 9.5"/>
+          </svg>
+          <div class="leading-tight">
+            <p class="text-[0.62rem] font-semibold text-amber/80 uppercase tracking-wider">{t(lang, 'about.dot.label')}</p>
+            <p class="text-white font-display font-bold text-sm">#3866673</p>
+          </div>
         </div>
 
         <!-- Social icons -->

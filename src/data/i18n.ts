@@ -76,12 +76,22 @@ export const ui = {
     'whyus.6.title': 'Reserva Segura',
     'whyus.6.desc': 'Solo el 50% para asegurar tu lugar.',
 
-    // Family parks section
-    'family.eyebrow': 'Planes familiares',
-    'family.title': 'Diversión para Toda la Familia',
-    'family.subtitle': 'Excursiones a los mejores parques de atracciones y entretenimiento del noreste. JL Tours se encarga del transporte.',
-    'family.cta': 'Consultar fechas y precios',
-    'family.transport': 'Transporte incluido',
+    // About / Misión · Visión · Valor
+    'about.eyebrow': 'Nuestra Esencia',
+    'about.title': 'Más que tours, recuerdos para toda la vida',
+    'about.subtitle': 'Somos una compañía hispana nacida en Boston, creada para servir a nuestra comunidad y al público en general con pasión, compromiso y responsabilidad.',
+    'about.mission.title': 'Nuestra Misión',
+    'about.mission.text': 'Crear experiencias de viaje inolvidables que conecten personas, familias y culturas a través del turismo. Por más de 32 años hemos trabajado con pasión, compromiso y responsabilidad para transformar cada destino en un recuerdo para toda la vida. Ofrecemos tours seguros, organizados y llenos de momentos especiales: más que transportar viajeros, cumplimos sueños y construimos historias felices en cada recorrido.',
+    'about.vision.title': 'Nuestra Visión',
+    'about.vision.text': 'Ser reconocidos como una de las compañías de turismo más confiables y queridas de Nueva Inglaterra, destacándonos por nuestra calidad humana, innovación y excelencia en el servicio. Seguiremos evolucionando, llevando a miles de personas a descubrir nuevos lugares y demostrando que viajar es vivir momentos que permanecen para siempre.',
+    'about.value.title': 'Propuesta de Valor',
+    'about.value.text': 'En JL TOURS cada viaje tiene un propósito: hacer felices a nuestros turistas. Nuestra experiencia de más de 32 años, nuestra cercanía con la comunidad hispana y nuestro compromiso con cada detalle nos permiten ofrecer mucho más que un tour: tranquilidad, confianza y experiencias cuidadosamente diseñadas. Nos encargamos de la logística para que solo tengas que disfrutar.',
+    'about.essence.title': 'Nuestra Esencia',
+    'about.essence.text': 'Nacimos en Boston como una compañía hispana con el compromiso de acercar a nuestra comunidad y al mundo a destinos extraordinarios. No ofrecemos solamente tours: creamos momentos, unimos familias, cumplimos sueños y acompañamos a nuestros viajeros a descubrir la magia de cada destino.',
+    'about.essence.kicker': 'Tu próximo recuerdo comienza aquí.',
+    'about.dot.label': 'Registro DOT',
+    'about.dot.number': '3866673',
+    'about.dot.note': 'Empresa legítima reconocida por el estado de Massachusetts y el City Hall de Boston.',
 
     // Gallery
     'gallery.title': 'Momentos Reales',
@@ -210,12 +220,22 @@ export const ui = {
     'whyus.6.title': 'Safe Booking',
     'whyus.6.desc': 'Only 50% deposit to secure your spot.',
 
-    // Family parks section
-    'family.eyebrow': 'Family plans',
-    'family.title': 'Fun for the Whole Family',
-    'family.subtitle': 'Excursions to the best theme parks and entertainment in the Northeast. JL Tours handles all transportation.',
-    'family.cta': 'Check dates and prices',
-    'family.transport': 'Transportation included',
+    // About / Mission · Vision · Value
+    'about.eyebrow': 'Our Essence',
+    'about.title': 'More than tours, memories for a lifetime',
+    'about.subtitle': 'We are a Hispanic-owned company born in Boston, created to serve our community and the general public with passion, commitment, and responsibility.',
+    'about.mission.title': 'Our Mission',
+    'about.mission.text': 'To create unforgettable travel experiences that connect people, families, and cultures through tourism. For more than 32 years we have worked with passion, commitment, and responsibility to turn every destination into a lifelong memory. We offer safe, well-organized tours full of special moments — more than moving travelers, we fulfill dreams and build happy stories on every trip.',
+    'about.vision.title': 'Our Vision',
+    'about.vision.text': 'To be recognized as one of the most trusted and beloved tourism companies in New England, standing out for our human warmth, innovation, and service excellence. We will keep evolving, taking thousands of people to discover new places and proving that travel is about living moments that last forever.',
+    'about.value.title': 'Value Proposition',
+    'about.value.text': 'At JL TOURS every trip has a purpose: to make our travelers happy. Our 32+ years of experience, our closeness to the Hispanic community, and our attention to every detail let us offer much more than a tour: peace of mind, trust, and carefully crafted experiences. We handle the logistics so all you have to do is enjoy.',
+    'about.essence.title': 'Our Essence',
+    'about.essence.text': 'We were born in Boston as a Hispanic-owned company committed to bringing our community and the world to extraordinary destinations. We don\'t just offer tours — we create moments, bring families together, fulfill dreams, and guide our travelers to discover the magic of every destination.',
+    'about.essence.kicker': 'Your next memory starts here.',
+    'about.dot.label': 'DOT Registration',
+    'about.dot.number': '3866673',
+    'about.dot.note': 'A legitimate company recognized by the State of Massachusetts and the Boston City Hall.',
 
     // Gallery
     'gallery.title': 'Real Moments',

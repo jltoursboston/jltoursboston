@@ -23,10 +23,12 @@ const ogImg = await ogImage(tourImg(tour.image));
 
 const waBook = tour.whatsappMessage[lang];
 
-const priceAmount = /\$(\d+)/.exec(content.price)?.[1] ?? '0';
+const priceMatch = /\$(\d+)/.exec(content.price);
+const priceAmount = priceMatch?.[1];
 
 const pageUrl = `https://jltoursboston.com/en/tours/${tour.slug}`;
-const pageTitle = `${content.name} Tour from Boston | ${content.price.split(' ')[0]} | JL Tours Boston`;
+const priceToken = priceMatch ? content.price.split(' ')[0] : 'Quote';
+const pageTitle = `${content.name} Tour from Boston | ${priceToken} | JL Tours Boston`;
 
 const touristTripSchema = {
   '@context': 'https://schema.org',
@@ -40,10 +42,9 @@ const touristTripSchema = {
   duration: content.duration,
   offers: {
     '@type': 'Offer',
-    price: priceAmount,
-    priceCurrency: 'USD',
     availability: 'https://schema.org/InStock',
     url: waBook,
+    ...(priceAmount ? { price: priceAmount, priceCurrency: 'USD' } : { description: content.price }),
   },
   provider: {
     '@type': 'TravelAgency',

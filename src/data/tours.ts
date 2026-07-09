@@ -888,25 +888,112 @@ export const tours: Tour[] = [
       ],
     },
   },
-];
-
-export const familyParks = {
-  parks: [
-    'Six Flags New England',
-    'Water Country',
-    'Zoo New England (Franklin Park Zoo & Stone Zoo)',
-    'Parques acuáticos',
-    'Eventos de temporada',
-  ],
-  parksEn: [
-    'Six Flags New England',
-    'Water Country',
-    'Zoo New England (Franklin Park Zoo & Stone Zoo)',
-    'Water parks',
-    'Seasonal events',
-  ],
-  whatsappMessage: {
-    es: WA_BASE + encodeURIComponent('Hola, me interesan los tours a parques familiares (Six Flags, Water Country, Zoo). ¿Cuáles son las próximas fechas y precios?'),
-    en: WA_BASE + encodeURIComponent('Hello, I\'m interested in the family parks tours (Six Flags, Water Country, Zoo). What are the upcoming dates and prices?'),
+  {
+    id: 'parques-familiares',
+    slug: 'parques-familiares',
+    image: '/images/tours/parks-familia.jpg',
+    imageAlt: {
+      es: 'Familia disfrutando un parque de diversiones',
+      en: 'Family enjoying a theme park',
+    },
+    gallery: [
+      '/images/tours/parks-sixflags.jpg',
+      '/images/tours/parks-agua.jpg',
+      '/images/tours/parks-zoo.jpg',
+    ],
+    whatsappMessage: {
+      es: WA_BASE + encodeURIComponent('Hola, me interesan los tours a parques familiares (Six Flags, Water Country, Zoo). ¿Cuáles son las próximas fechas y precios?'),
+      en: WA_BASE + encodeURIComponent('Hello, I\'m interested in the family parks tours (Six Flags, Water Country, Zoo). What are the upcoming dates and prices?'),
+    },
+    departurePoints: ['East Boston, MA'],
+    nextDates: [],
+    es: {
+      name: 'Parques Familiares',
+      tagline: 'Six Flags, Water Country, Zoo y más',
+      description:
+        'Diversión garantizada para toda la familia en los mejores parques de atracciones del noreste. Nosotros nos encargamos del transporte — tú solo disfruta. Cotiza tu salida personalizada por WhatsApp.',
+      includes: [
+        '🎢 Six Flags New England, Water Country y Zoo New England',
+        '🚐 Transporte ida y vuelta en vans y buses modernos con WiFi, TV y audio',
+        '👨‍👩‍👧‍👦 Plan ideal para familias, grupos de amigos e iglesias',
+        '📅 Fechas flexibles — tú eliges el día del paseo',
+      ],
+      schedule: 'Salida coordinada según el parque y la temporada',
+      price: 'Cotiza con nosotros',
+      priceNote: 'El precio varía según el parque, la temporada y el tamaño del grupo. Escríbenos por WhatsApp para tu cotización personalizada.',
+      duration: '1 día',
+      departure: 'A coordinar — Walgreens East Boston, MA',
+      return: 'Al cierre del parque',
+      itinerary: [
+        { time: 'A coordinar', label: 'Salida desde East Boston 🚌' },
+        { time: 'Mañana', label: 'Llegada al parque seleccionado 🎢' },
+        { time: 'Día libre', label: 'Atracciones, juegos y shows para toda la familia' },
+        { time: 'Almuerzo', label: 'Comida dentro del parque 🍽️' },
+        { time: 'Cierre', label: 'Salida de regreso a Boston 🚌' },
+        { time: 'A coordinar', label: 'Llegada a East Boston' },
+      ],
+      faq: [
+        {
+          q: '¿Cómo funciona la cotización?',
+          a: 'Cada parque y temporada tiene un precio distinto. Escríbenos por WhatsApp al +1 857-389-9523 indicando el parque que quieres, la fecha tentativa y el número de personas, y te enviamos tu cotización personalizada.',
+        },
+        {
+          q: '¿Qué parques cubren?',
+          a: 'Six Flags New England, Water Country, Zoo New England (Franklin Park Zoo & Stone Zoo), parques acuáticos y eventos de temporada. Si tienes otro parque en mente, consúltanos.',
+        },
+        {
+          q: '¿Las entradas al parque están incluidas?',
+          a: 'El transporte con JL Tours siempre está incluido. Las entradas al parque pueden gestionarse con nosotros o comprarse directamente. Te asesoramos para conseguir el mejor precio.',
+        },
+        {
+          q: '¿Cuál es la salida mínima?',
+          a: 'Trabajamos con grupos familiares pequeños y grandes. Consúltanos para grupos, iglesias o celebraciones especiales.',
+        },
+      ],
+    },
+    en: {
+      name: 'Family Parks',
+      tagline: 'Six Flags, Water Country, Zoo & more',
+      description:
+        'Guaranteed fun for the whole family at the best theme parks in the Northeast. We handle the transportation — you just enjoy. Get your custom quote on WhatsApp.',
+      includes: [
+        '🎢 Six Flags New England, Water Country, and Zoo New England',
+        '🚐 Round-trip transportation in modern vans and buses with WiFi, TV, and audio',
+        '👨‍👩‍👧‍👦 Perfect for families, groups of friends, and church groups',
+        '📅 Flexible dates — you choose the day of the trip',
+      ],
+      schedule: 'Departure coordinated based on the park and season',
+      price: 'Get a quote',
+      priceNote: 'Price varies based on the park, season, and group size. Message us on WhatsApp for your personalized quote.',
+      duration: '1 day',
+      departure: 'To be coordinated — Walgreens East Boston, MA',
+      return: 'At park closing',
+      itinerary: [
+        { time: 'TBD', label: 'Departure from East Boston 🚌' },
+        { time: 'Morning', label: 'Arrival at the selected park 🎢' },
+        { time: 'Free time', label: 'Rides, games, and shows for the whole family' },
+        { time: 'Lunch', label: 'Food inside the park 🍽️' },
+        { time: 'Closing', label: 'Departure back to Boston 🚌' },
+        { time: 'TBD', label: 'Arrival in East Boston' },
+      ],
+      faq: [
+        {
+          q: 'How does the quote work?',
+          a: 'Each park and season has a different price. Message us on WhatsApp at +1 857-389-9523 with the park you want, a tentative date, and the number of people, and we\'ll send you a personalized quote.',
+        },
+        {
+          q: 'Which parks do you cover?',
+          a: 'Six Flags New England, Water Country, Zoo New England (Franklin Park Zoo & Stone Zoo), water parks, and seasonal events. If you have another park in mind, just ask.',
+        },
+        {
+          q: 'Are park tickets included?',
+          a: 'Transportation with JL Tours is always included. Park tickets can be arranged through us or purchased directly. We\'ll help you find the best price.',
+        },
+        {
+          q: 'What is the minimum group size?',
+          a: 'We work with both small family groups and large ones. Ask us about groups, churches, or special celebrations.',
+        },
+      ],
+    },
   },
-};
+];

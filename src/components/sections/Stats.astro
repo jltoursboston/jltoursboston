@@ -8,28 +8,37 @@ const { lang } = Astro.props;
 
 const stats = lang === 'es'
   ? [
-      { value: 7,    suffix: '',    label: 'Destinos',         note: 'Niágara, NYC, DC y más' },
-      { value: 5,    suffix: '+',   label: 'Años en Boston',   note: 'Operando desde 2019' },
-      { value: 2500, suffix: '+',   label: 'Familias',         note: 'Que ya viajaron con nosotros' },
-      { value: 100,  suffix: '%',   label: 'Recomendados',     note: 'Por nuestros viajeros' },
+      { value: 7,    suffix: '',    label: 'Destinos',           note: 'Niágara, NYC, DC y más' },
+      { value: 32,   suffix: '+',   label: 'Años en el mercado', note: 'En el mercado desde 1994' },
+      { value: 2500, suffix: '+',   label: 'Familias',           note: 'Que ya viajaron con nosotros' },
+      { value: 100,  suffix: '%',   label: 'Recomendados',       note: 'Por nuestros viajeros' },
+      { value: 0,    suffix: '',    label: 'Registro DOT',       note: '#3866673 · Empresa legítima', dot: true },
     ]
   : [
-      { value: 7,    suffix: '',    label: 'Destinations',     note: 'Niagara, NYC, DC & more' },
-      { value: 5,    suffix: '+',   label: 'Years in Boston',  note: 'Operating since 2019' },
-      { value: 2500, suffix: '+',   label: 'Families',         note: 'Who traveled with us' },
-      { value: 100,  suffix: '%',   label: 'Recommended',      note: 'By our travelers' },
+      { value: 7,    suffix: '',    label: 'Destinations',       note: 'Niagara, NYC, DC & more' },
+      { value: 32,   suffix: '+',   label: 'Years in business',  note: 'In business since 1994' },
+      { value: 2500, suffix: '+',   label: 'Families',           note: 'Who traveled with us' },
+      { value: 100,  suffix: '%',   label: 'Recommended',        note: 'By our travelers' },
+      { value: 0,    suffix: '',    label: 'DOT Registration',   note: '#3866673 · Legitimate company', dot: true },
     ];
 ---
 
 <section class="py-14 bg-cream border-y border-navy/8">
   <h2 class="sr-only">{lang === 'es' ? 'JL Tours en números' : 'JL Tours in numbers'}</h2>
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 items-start">
       {stats.map((stat, i) => (
         <div class="text-center" data-reveal style={`--rd: ${i * 80}ms`}>
-          <p class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-navy leading-none">
-            <span data-count={stat.value} data-suffix={stat.suffix}>0{stat.suffix}</span>
-          </p>
+          {stat.dot ? (
+            <p class="flex items-center justify-center gap-1.5 font-display font-black text-2xl sm:text-3xl lg:text-4xl text-amber-text leading-none">
+              <svg class="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 text-amber-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><polyline points="9 11.5 11 13.5 15 9.5"/></svg>
+              <span>#3866673</span>
+            </p>
+          ) : (
+            <p class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-navy leading-none">
+              <span data-count={stat.value} data-suffix={stat.suffix}>0{stat.suffix}</span>
+            </p>
+          )}
           <p class="font-semibold text-navy text-base mt-1">{stat.label}</p>
           <p class="text-navy/70 text-xs mt-0.5">{stat.note}</p>
         </div>

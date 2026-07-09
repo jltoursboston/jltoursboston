@@ -24,10 +24,12 @@ const ogImg = await ogImage(tourImg(tour.image));
 const waBook = tour.whatsappMessage[lang];
 
 // Extraer precio numérico para schema (e.g. "$410 USD/persona" → "410")
-const priceAmount = /\$(\d+)/.exec(content.price)?.[1] ?? '0';
+const priceMatch = /\$(\d+)/.exec(content.price);
+const priceAmount = priceMatch?.[1];
 
 const pageUrl = `https://jltoursboston.com/tours/${tour.slug}`;
-const pageTitle = `Tour ${content.name} desde Boston | ${content.price.split(' ')[0]} | JL Tours Boston`;
+const priceToken = priceMatch ? content.price.split(' ')[0] : 'Cotización';
+const pageTitle = `Tour ${content.name} desde Boston | ${priceToken} | JL Tours Boston`;
 
 // TouristTrip schema
 const touristTripSchema = {
@@ -42,10 +44,9 @@ const touristTripSchema = {
   duration: content.duration,
   offers: {
     '@type': 'Offer',
-    price: priceAmount,
-    priceCurrency: 'USD',
     availability: 'https://schema.org/InStock',
     url: waBook,
+    ...(priceAmount ? { price: priceAmount, priceCurrency: 'USD' } : { description: content.price }),
   },
   provider: {
     '@type': 'TravelAgency',
