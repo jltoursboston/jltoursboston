@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import type { Lang } from '../../data/i18n';
 import { t } from '../../data/i18n';
 import { tours } from '../../data/tours';
@@ -37,14 +37,15 @@ const { lang } = Astro.props;
           >
             <!-- Card image -->
             <div class="relative h-52 overflow-hidden">
-              <Image
+              <Picture
                 src={tourImg(tour.image)}
                 alt={tour.imageAlt[lang]}
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
                 widths={[400, 640, 960]}
                 sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
-                format="webp"
+                formats={['avif', 'webp']}
+                quality={55}
               />
               <!-- Duration badge -->
               <span class="absolute top-3 right-3 bg-navy/90 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-full">

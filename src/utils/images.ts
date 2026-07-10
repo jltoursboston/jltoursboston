@@ -13,9 +13,12 @@ export function tourImg(path: string): ImageMetadata {
   return mod.default;
 }
 
-/** Variantes responsive para imágenes hero a ancho completo (LCP). */
+/** Variantes responsive para imágenes hero a ancho completo (LCP).
+ *  Calidad 62: el hero va tras un degradado navy + text-shadow, así que la
+ *  pérdida es imperceptible y recorta el peso del LCP. Tope 1280 w (la fuente
+ *  ronda los ~1344 px; 1600 no aportaba variante real). */
 export function heroImage(src: ImageMetadata) {
-  return getImage({ src, widths: [640, 828, 1280, 1600], sizes: '100vw', format: 'webp' });
+  return getImage({ src, widths: [640, 828, 1280], sizes: '100vw', format: 'webp', quality: 62 });
 }
 
 /** JPEG 1200px para og:image (los crawlers sociales no siempre soportan WebP). */

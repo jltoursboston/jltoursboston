@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import type { Lang } from '../data/i18n';
 import { t, WA_GENERAL } from '../data/i18n';
+import logo from '../assets/logo.jpeg';
 
 interface Props {
   lang: Lang;
@@ -29,12 +31,13 @@ const quickLinks = [
       <div class="space-y-5">
         <a href={lang === 'es' ? '/' : '/en/'} class="flex items-center gap-3 group">
           <div class="bg-white rounded-2xl p-1.5 shadow-md flex-shrink-0">
-            <img
-              src="/logo.jpeg"
+            <Image
+              src={logo}
               alt="JL Tours Inc"
               class="h-12 w-auto object-contain rounded-xl"
-              width="50"
-              height="50"
+              width={132}
+              height={104}
+              format="webp"
               loading="lazy"
             />
           </div>

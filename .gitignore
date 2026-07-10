@@ -32,7 +32,8 @@ AGENTS.md
 
 # Project brief and source assets (no van al repo)
 PROMPT_JLTours_ClaudeCode.md
-logo.jpeg
+# Solo el logo fuente en la raiz; src/assets/logo.jpeg SI va al repo (lo usa el build)
+/logo.jpeg
 
 # Internal docs/manuals (no van al repo)
 docs/

@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import type { Lang } from '../../data/i18n';
 import { t, WA_GENERAL } from '../../data/i18n';
+import logo from '../../assets/logo.jpeg';
 
 interface Props {
   lang: Lang;
@@ -15,12 +17,14 @@ const { lang } = Astro.props;
 
   <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <!-- Logo mark -->
-    <img
-      src="/logo.jpeg"
+    <Image
+      src={logo}
       alt="JL Tours Inc"
       class="w-20 h-20 object-contain mx-auto mb-8 rounded-full shadow-lg"
-      width="80"
-      height="80"
+      width={160}
+      height={126}
+      format="webp"
+      loading="lazy"
     />
 
     <h2 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl mb-6 leading-tight">

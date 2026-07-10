@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import type { Lang } from '../data/i18n';
 import { t, WA_GENERAL } from '../data/i18n';
+import logo from '../assets/logo.jpeg';
 
 interface Props {
   lang: Lang;
@@ -15,12 +17,13 @@ const { lang } = Astro.props;
       <!-- Logo -->
       <a href={lang === 'es' ? '/' : '/en/'} class="flex items-center gap-3 flex-shrink-0">
         <div class="bg-white rounded-2xl p-1.5 shadow-md flex-shrink-0">
-          <img
-            src="/logo.jpeg"
+          <Image
+            src={logo}
             alt="JL Tours Boston"
             class="h-10 md:h-12 w-auto object-contain rounded-xl"
-            width="52"
-            height="52"
+            width={132}
+            height={104}
+            format="webp"
           />
         </div>
         <div class="hidden sm:block">

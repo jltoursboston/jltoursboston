@@ -9,3 +9,11 @@
 
 /*.html
   Cache-Control: public, max-age=60, must-revalidate
+
+# Estaticos servidos desde la raiz de /public (rutas exactas para no pisar la regla immutable de /_astro/*)
+/og-home.jpg
+  Cache-Control: public, max-age=604800
+/logo.jpeg
+  Cache-Control: public, max-age=604800
+/favicon.svg
+  Cache-Control: public, max-age=604800
