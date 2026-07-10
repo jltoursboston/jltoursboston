@@ -14,6 +14,8 @@ interface Props {
   hreflangEn?: string;
   preloadImage?: string;
   preloadImageSrcset?: string;
+  preloadImageAvif?: string;
+  preloadImageAvifSrcset?: string;
   noindex?: boolean;
 }
 
@@ -27,6 +29,8 @@ const {
   hreflangEn,
   preloadImage,
   preloadImageSrcset,
+  preloadImageAvif,
+  preloadImageAvifSrcset,
   noindex = false,
 } = Astro.props;
 
@@ -106,11 +110,16 @@ const localBusinessSchema = {
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" />
     </noscript>
 
-    <!-- Preload de la imagen LCP (hero); con srcset el navegador elige la variante correcta -->
-    {preloadImage && preloadImageSrcset && (
+    <!-- Preload de la imagen LCP (hero); con srcset el navegador elige la variante correcta.
+         Si hay AVIF se preloadea SOLO ese (type="image/avif"): los navegadores sin soporte
+         omiten el preload y cargan el WebP del <picture>, sin doble descarga. -->
+    {preloadImageAvif && preloadImageAvifSrcset && (
+      <link rel="preload" as="image" href={preloadImageAvif} imagesrcset={preloadImageAvifSrcset} imagesizes="100vw" type="image/avif" fetchpriority="high" />
+    )}
+    {!preloadImageAvifSrcset && preloadImage && preloadImageSrcset && (
       <link rel="preload" as="image" href={preloadImage} imagesrcset={preloadImageSrcset} imagesizes="100vw" fetchpriority="high" />
     )}
-    {preloadImage && !preloadImageSrcset && (
+    {!preloadImageAvifSrcset && preloadImage && !preloadImageSrcset && (
       <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />
     )}
 

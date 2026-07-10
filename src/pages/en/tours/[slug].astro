@@ -5,7 +5,7 @@ import Footer from '../../../components/Footer.astro';
 import WhatsAppFloat from '../../../components/WhatsAppFloat.astro';
 import TourDetail from '../../../components/tour/TourDetail.astro';
 import { tours } from '../../../data/tours';
-import { tourImg, heroImage, ogImage } from '../../../utils/images';
+import { tourImg, heroImage, heroAvif, ogImage } from '../../../utils/images';
 
 export async function getStaticPaths() {
   return tours.map(tour => ({
@@ -19,6 +19,7 @@ const lang = 'en';
 const content = tour[lang];
 
 const heroImg = await heroImage(tourImg(tour.image));
+const heroImgAvif = await heroAvif(tourImg(tour.image));
 const ogImg = await ogImage(tourImg(tour.image));
 
 const waBook = tour.whatsappMessage[lang];
@@ -97,11 +98,13 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
   hreflangEn={pageUrl}
   preloadImage={heroImg.src}
   preloadImageSrcset={heroImg.srcSet.attribute}
+  preloadImageAvif={heroImgAvif.src}
+  preloadImageAvifSrcset={heroImgAvif.srcSet.attribute}
 >
   <script slot="head-schemas" type="application/ld+json" set:html={JSON.stringify(schemas)} />
 
   <Header lang={lang} />
-  <TourDetail lang={lang} tour={tour} content={content} heroImg={heroImg} waBook={waBook} />
+  <TourDetail lang={lang} tour={tour} content={content} heroImg={heroImg} heroImgAvif={heroImgAvif} waBook={waBook} />
   <Footer lang={lang} />
   <WhatsAppFloat lang={lang} />
 </BaseLayout>

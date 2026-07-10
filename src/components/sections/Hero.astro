@@ -2,7 +2,7 @@
 import type { Lang } from '../../data/i18n';
 import { t, WA_GENERAL } from '../../data/i18n';
 import { tours } from '../../data/tours';
-import { tourImg, heroImage } from '../../utils/images';
+import { tourImg, heroImage, heroAvif } from '../../utils/images';
 
 interface Props {
   lang: Lang;
@@ -25,6 +25,8 @@ const slides = await Promise.all(
     return { src: img.src, srcset: img.srcSet.attribute, alt: s.alt, objectPosition: s.objectPosition };
   })
 );
+// AVIF solo para el slide 0 (el LCP); los diferidos siguen en WebP.
+const heroAvifSet = await heroAvif(tourImg(slideDefs[0].file));
 
 // Placeholder transparente para los slides diferidos (cargan tras window.load)
 const BLANK = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="1600" height="900"%3E%3C/svg%3E';
@@ -36,20 +38,35 @@ const BLANK = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" widt
   <div class="absolute inset-0">
     {slides.map((slide, i) => (
       <div class:list={['hero-slide', { 'hero-slide--first': i === 0 }]} aria-hidden={i > 0 ? 'true' : undefined}>
-        <img
-          src={i === 0 ? slide.src : BLANK}
-          srcset={i === 0 ? slide.srcset : undefined}
-          sizes={i === 0 ? '100vw' : undefined}
-          data-src={i > 0 ? slide.src : undefined}
-          data-srcset={i > 0 ? slide.srcset : undefined}
-          alt={slide.alt}
-          class="w-full h-full object-cover"
-          style={`object-position: ${slide.objectPosition}`}
-          loading={i === 0 ? 'eager' : 'lazy'}
-          width="1600"
-          height="900"
-          fetchpriority={i === 0 ? 'high' : 'auto'}
-        />
+        {i === 0 ? (
+          <picture>
+            <source type="image/avif" srcset={heroAvifSet.srcSet.attribute} sizes="100vw" />
+            <source type="image/webp" srcset={slide.srcset} sizes="100vw" />
+            <img
+              src={slide.src}
+              alt={slide.alt}
+              class="w-full h-full object-cover"
+              style={`object-position: ${slide.objectPosition}`}
+              loading="eager"
+              width="1600"
+              height="900"
+              fetchpriority="high"
+            />
+          </picture>
+        ) : (
+          <img
+            src={BLANK}
+            data-src={slide.src}
+            data-srcset={slide.srcset}
+            alt={slide.alt}
+            class="w-full h-full object-cover"
+            style={`object-position: ${slide.objectPosition}`}
+            loading="lazy"
+            width="1600"
+            height="900"
+            fetchpriority="auto"
+          />
+        )}
       </div>
     ))}
     <!-- Gradient overlay (suave para que la foto se vea a color) -->

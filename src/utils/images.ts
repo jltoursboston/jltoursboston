@@ -21,6 +21,12 @@ export function heroImage(src: ImageMetadata) {
   return getImage({ src, widths: [640, 828, 1280], sizes: '100vw', format: 'webp', quality: 62 });
 }
 
+/** Variante AVIF del hero (LCP): ~30-40% más liviana que WebP. Se sirve vía <picture>
+ *  con fallback WebP, y se preloadea con type="image/avif" para navegadores que lo soportan. */
+export function heroAvif(src: ImageMetadata) {
+  return getImage({ src, widths: [640, 828, 1280], sizes: '100vw', format: 'avif', quality: 50 });
+}
+
 /** JPEG 1200px para og:image (los crawlers sociales no siempre soportan WebP). */
 export function ogImage(src: ImageMetadata) {
   return getImage({ src, width: 1200, format: 'jpeg' });
