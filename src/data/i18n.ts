@@ -110,6 +110,7 @@ export const ui = {
     // Testimonials
     'testimonials.title': 'Lo Que Dicen Nuestros Viajeros',
     'testimonials.subtitle': 'Más de 2,500 familias ya han viajado con nosotros. Esta es su experiencia.',
+    'testimonials.reviewCta': 'Déjanos una reseña en Google',
 
     // CTA section
     'cta.title': '¿Listo para tu próxima aventura?',
@@ -264,6 +265,7 @@ export const ui = {
     // Testimonials
     'testimonials.title': 'What Our Travelers Say',
     'testimonials.subtitle': 'Over 2,500 families have traveled with us. Here\'s their experience.',
+    'testimonials.reviewCta': 'Leave us a review on Google',
 
     // CTA section
     'cta.title': 'Ready for your next adventure?',
@@ -319,3 +321,6 @@ export const WA_GENERAL = {
   es: 'https://wa.me/18573899523?text=' + encodeURIComponent('Hola, quiero información sobre los tours disponibles desde Boston.'),
   en: 'https://wa.me/18573899523?text=' + encodeURIComponent('Hello, I want information about available tours from Boston.'),
 };
+
+// Perfil de Google Business (acortador oficial). Fuente única para schema sameAs, footer y CTA de reseñas.
+export const GOOGLE_BUSINESS = 'https://share.google/zYfRCs0FK0dKftrf7';
