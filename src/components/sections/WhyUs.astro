@@ -9,13 +9,17 @@ interface Props {
 const { lang } = Astro.props;
 
 const cards = [
-  { icon: 'bus', titleKey: 'whyus.1.title', descKey: 'whyus.1.desc' },
-  { icon: 'globe', titleKey: 'whyus.2.title', descKey: 'whyus.2.desc' },
-  { icon: 'sparkle', titleKey: 'whyus.3.title', descKey: 'whyus.3.desc' },
-  { icon: 'camera', titleKey: 'whyus.4.title', descKey: 'whyus.4.desc' },
-  { icon: 'calendar', titleKey: 'whyus.5.title', descKey: 'whyus.5.desc' },
-  { icon: 'shield', titleKey: 'whyus.6.title', descKey: 'whyus.6.desc' },
+  { icon: 'bus', titleKey: 'whyus.1.title', descKey: 'whyus.1.desc', accent: false },
+  { icon: 'globe', titleKey: 'whyus.2.title', descKey: 'whyus.2.desc', accent: false },
+  { icon: 'sparkle', titleKey: 'whyus.3.title', descKey: 'whyus.3.desc', accent: false },
+  { icon: 'camera', titleKey: 'whyus.4.title', descKey: 'whyus.4.desc', accent: false },
+  { icon: 'calendar', titleKey: 'whyus.5.title', descKey: 'whyus.5.desc', accent: false },
+  { icon: 'shield', titleKey: 'whyus.6.title', descKey: 'whyus.6.desc', accent: false },
+  { icon: 'star', titleKey: 'whyus.7.title', descKey: 'whyus.7.desc', accent: true },
+  { icon: 'shield', titleKey: 'whyus.8.title', descKey: 'whyus.8.desc', accent: true },
 ] as const;
+
+const aboutHref = lang === 'es' ? '/sobre-nosotros/' : '/en/sobre-nosotros/';
 ---
 
 <section class="py-20 lg:py-28 bg-navy text-white">
@@ -28,18 +32,38 @@ const cards = [
       <p class="text-white/70 text-lg max-w-2xl mx-auto">{t(lang, 'whyus.subtitle')}</p>
     </div>
 
-    <!-- 6-card grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Card grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
       {cards.map((card, i) => (
-        <div class="group bg-white/[0.07] border border-white/10 rounded-2xl p-6 hover:border-amber/40 hover:bg-white/[0.11] hover:-translate-y-1 transition-all duration-300"
-             data-reveal style={`--rd: ${i * 70}ms`}>
-          <span class="inline-grid place-items-center w-12 h-12 rounded-xl bg-amber/15 text-amber mb-4 group-hover:bg-amber/25 transition-colors">
+        <div class:list={[
+              'group rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1',
+              card.accent
+                ? 'bg-amber/[0.09] border border-amber/45 hover:border-amber hover:bg-amber/[0.14]'
+                : 'bg-white/[0.07] border border-white/10 hover:border-amber/40 hover:bg-white/[0.11]',
+            ]}
+             data-reveal style={`--rd: ${i * 60}ms`}>
+          <span class:list={[
+                'inline-grid place-items-center w-12 h-12 rounded-xl mb-4 transition-colors',
+                card.accent ? 'bg-amber/25 text-amber' : 'bg-amber/15 text-amber group-hover:bg-amber/25',
+              ]}>
             <Icon name={card.icon} class="w-6 h-6" />
           </span>
           <h3 class="font-display font-bold text-lg text-white mb-2">{t(lang, card.titleKey)}</h3>
           <p class="text-white/65 text-sm leading-relaxed">{t(lang, card.descKey)}</p>
         </div>
       ))}
+    </div>
+
+    <!-- CTA a la página Sobre Nosotros -->
+    <div class="text-center mt-12" data-reveal>
+      <a href={aboutHref}
+         class="inline-flex items-center gap-2 px-7 py-3.5 bg-amber hover:bg-amber/90 text-navy font-bold text-sm rounded-2xl transition-all duration-300 hover:-translate-y-0.5 shadow-lg">
+        {t(lang, 'whyus.cta')}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
     </div>
   </div>
 </section>

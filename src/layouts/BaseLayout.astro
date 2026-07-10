@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import type { Lang } from '../data/i18n';
 import { t } from '../data/i18n';
+import { testimonials } from '../data/testimonials';
 
 interface Props {
   lang: Lang;
@@ -13,6 +14,7 @@ interface Props {
   hreflangEn?: string;
   preloadImage?: string;
   preloadImageSrcset?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -25,6 +27,7 @@ const {
   hreflangEn,
   preloadImage,
   preloadImageSrcset,
+  noindex = false,
 } = Astro.props;
 
 const ogImageAbsolute = ogImage.startsWith('http')
@@ -77,7 +80,7 @@ const localBusinessSchema = {
     ratingValue: '5.0',
     bestRating: '5',
     worstRating: '1',
-    reviewCount: '6',
+    reviewCount: String(testimonials.length),
   },
 };
 ---
@@ -114,6 +117,7 @@ const localBusinessSchema = {
     <!-- Primary SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Hreflang — dinámico para páginas de tour, fallback al homepage -->
@@ -127,6 +131,8 @@ const localBusinessSchema = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content={lang === 'es' ? 'es_US' : 'en_US'} />
     <meta property="og:site_name" content="JL Tours Boston" />
 
@@ -137,7 +143,9 @@ const localBusinessSchema = {
     <meta name="twitter:image" content={ogImageAbsolute} />
 
     <!-- Favicon & manifest -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/jpeg" href="/logo.jpeg" />
+    <link rel="apple-touch-icon" href="/logo.jpeg" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#10243E" />
 
@@ -184,13 +192,7 @@ const localBusinessSchema = {
       <div class="scroll-progress-bar" id="scroll-bar"></div>
     </div>
 
-    <!-- Custom cursor (desktop only) -->
-    <div class="cursor-root" data-cursor-root aria-hidden="true">
-      <span class="cursor-dot" id="cursor-dot"></span>
-      <span class="cursor-ring" id="cursor-ring"></span>
-    </div>
-
-    <!-- Global animation system: scroll reveals + card tilt + cursor + scroll bar + magnetic -->
+    <!-- Global animation system: scroll reveals + card tilt + scroll bar + magnetic -->
     <script>
       (function () {
         const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -269,36 +271,6 @@ const localBusinessSchema = {
           };
           window.addEventListener('scroll', updateBar, { passive: true });
           updateBar();
-        }
-
-        // ── Custom cursor ──
-        const cursorRoot = document.querySelector<HTMLElement>('[data-cursor-root]');
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorRing = document.getElementById('cursor-ring');
-        if (cursorRoot && cursorDot && cursorRing) {
-          let tx = 0, ty = 0, rx = 0, ry = 0, firstMove = false, cursorRaf: number | null = null;
-          const HOVERABLES = 'a, button, [data-tilt], [data-magnetic], label, input, select, textarea';
-          window.addEventListener('mousemove', (e) => {
-            tx = e.clientX; ty = e.clientY;
-            cursorDot.style.transform = `translate3d(${tx}px,${ty}px,0)`;
-            if (!firstMove) {
-              firstMove = true; rx = tx; ry = ty;
-              cursorRing.style.transform = `translate3d(${rx}px,${ry}px,0)`;
-              cursorRoot.classList.add('is-ready');
-            }
-            if (!cursorRaf) cursorRaf = requestAnimationFrame(tickCursor);
-          }, { passive: true });
-          function tickCursor() {
-            rx += (tx - rx) * 0.15; ry += (ty - ry) * 0.15;
-            cursorRing!.style.transform = `translate3d(${rx}px,${ry}px,0)`;
-            cursorRaf = (Math.abs(tx - rx) > 0.1 || Math.abs(ty - ry) > 0.1) ? requestAnimationFrame(tickCursor) : null;
-          }
-          document.addEventListener('mouseover', (e) => {
-            if ((e.target as Element).closest(HOVERABLES)) cursorRoot.classList.add('is-hovering');
-          });
-          document.addEventListener('mouseout', (e) => {
-            if ((e.target as Element).closest(HOVERABLES)) cursorRoot.classList.remove('is-hovering');
-          });
         }
 
         // ── Magnetic buttons ──

@@ -26,7 +26,7 @@ const { lang } = Astro.props;
     <div class="flex flex-wrap justify-center gap-6 lg:gap-8">
       {tours.map((tour, i) => {
         const content = tour[lang];
-        const tourUrl = lang === 'es' ? `/tours/${tour.slug}` : `/en/tours/${tour.slug}`;
+        const tourUrl = lang === 'es' ? `/tours/${tour.slug}/` : `/en/tours/${tour.slug}/`;
         return (
           <a
             href={tourUrl}

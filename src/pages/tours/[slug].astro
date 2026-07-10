@@ -27,7 +27,7 @@ const waBook = tour.whatsappMessage[lang];
 const priceMatch = /\$(\d+)/.exec(content.price);
 const priceAmount = priceMatch?.[1];
 
-const pageUrl = `https://jltoursboston.com/tours/${tour.slug}`;
+const pageUrl = `https://jltoursboston.com/tours/${tour.slug}/`;
 const priceToken = priceMatch ? content.price.split(' ')[0] : 'Cotización';
 const pageTitle = `Tour ${content.name} desde Boston | ${priceToken} | JL Tours Boston`;
 
@@ -101,7 +101,7 @@ const schemas = [touristTripSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
   ogImage={ogImg.src}
   canonicalURL={pageUrl}
   hreflangEs={pageUrl}
-  hreflangEn={`https://jltoursboston.com/en/tours/${tour.slug}`}
+  hreflangEn={`https://jltoursboston.com/en/tours/${tour.slug}/`}
   preloadImage={heroImg.src}
   preloadImageSrcset={heroImg.srcSet.attribute}
 >

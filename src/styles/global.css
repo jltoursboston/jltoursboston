@@ -133,56 +133,6 @@ body.modal-open {
   will-change: transform;
 }
 
-/* ── Custom cursor (desktop only) ── */
-.cursor-root {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  display: none;
-}
-@media (hover: hover) and (pointer: fine) {
-  .cursor-root { display: block; }
-  body, a, button, [data-tilt], [data-magnetic], label, input, select, textarea { cursor: none; }
-}
-.cursor-root.is-ready { opacity: 1; }
-.cursor-dot,
-.cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  will-change: transform;
-}
-.cursor-dot {
-  width: 6px;
-  height: 6px;
-  margin: -3px;
-  background: #F2A541;
-  border-radius: 50%;
-}
-.cursor-ring {
-  width: 30px;
-  height: 30px;
-  margin: -15px;
-  border: 1.5px solid rgba(242, 165, 65, 0.55);
-  border-radius: 50%;
-  transition:
-    width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    margin 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.25s ease;
-}
-.cursor-root.is-hovering .cursor-ring {
-  width: 46px;
-  height: 46px;
-  margin: -23px;
-  border-color: #F2A541;
-}
-
 /* ── Magnetic button inner ── */
 .magnetic-inner {
   display: inline-flex;
@@ -209,12 +159,6 @@ body.modal-open {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  .cursor-root {
-    display: none !important;
-  }
-  body, a, button, [data-tilt], [data-magnetic], label, input, select, textarea {
-    cursor: auto !important;
   }
   [data-reveal] {
     opacity: 1 !important;

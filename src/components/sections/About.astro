@@ -95,5 +95,62 @@ const pillars = [
       </div>
     </div>
 
+    <!-- Datos de la empresa (ficha legible para personas, Google y asistentes de IA) -->
+    <div class="mt-16 max-w-3xl mx-auto" data-reveal>
+      <div class="text-center mb-6">
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-navy mb-2">{t(lang, 'about.data.title')}</h2>
+        <p class="text-navy/60 text-sm">{t(lang, 'about.data.intro')}</p>
+      </div>
+      <div class="overflow-hidden rounded-2xl border border-navy/10">
+        <table class="w-full text-sm">
+          <caption class="sr-only">{t(lang, 'about.data.title')} — JL Tours Boston</caption>
+          <tbody class="divide-y divide-navy/8">
+            <tr class="odd:bg-cream/60">
+              <th scope="row" class="text-left font-semibold text-navy/70 align-top px-4 py-3 w-2/5">{es ? 'Nombre legal' : 'Legal name'}</th>
+              <td class="px-4 py-3 text-navy">JL Tours Inc</td>
+            </tr>
+            <tr class="odd:bg-cream/60">
+              <th scope="row" class="text-left font-semibold text-navy/70 align-top px-4 py-3">{t(lang, 'about.dot.label')}</th>
+              <td class="px-4 py-3 text-navy">US DOT #{t(lang, 'about.dot.number')}</td>
+            </tr>
+            <tr class="odd:bg-cream/60">
+              <th scope="row" class="text-left font-semibold text-navy/70 align-top px-4 py-3">{es ? 'Fundación' : 'Founded'}</th>
+              <td class="px-4 py-3 text-navy">1994 · {es ? '32+ años de experiencia' : '32+ years of experience'}</td>
+            </tr>
+            <tr class="odd:bg-cream/60">
+              <th scope="row" class="text-left font-semibold text-navy/70 align-top px-4 py-3">{es ? 'Dirección' : 'Address'}</th>
+              <td class="px-4 py-3 text-navy">East Boston, MA 02128, USA</td>
+            </tr>
+            <tr class="odd:bg-cream/60">
+              <th scope="row" class="text-left font-semibold text-navy/70 align-top px-4 py-3">{es ? 'Teléfono / WhatsApp' : 'Phone / WhatsApp'}</th>
+              <td class="px-4 py-3 text-navy">
+                <a href="tel:+18573899523" class="hover:text-sky-text transition-colors">+1 857-389-9523</a>
+              </td>
+            </tr>
+            <tr class="odd:bg-cream/60">
+              <th scope="row" class="text-left font-semibold text-navy/70 align-top px-4 py-3">{es ? 'Horario de atención' : 'Business hours'}</th>
+              <td class="px-4 py-3 text-navy">{es ? 'Lunes a domingo, 9:00 – 19:00' : 'Monday–Sunday, 9 AM – 7 PM'}</td>
+            </tr>
+            <tr class="odd:bg-cream/60">
+              <th scope="row" class="text-left font-semibold text-navy/70 align-top px-4 py-3">{es ? 'Idiomas' : 'Languages'}</th>
+              <td class="px-4 py-3 text-navy">Español · English</td>
+            </tr>
+            <tr class="odd:bg-cream/60">
+              <th scope="row" class="text-left font-semibold text-navy/70 align-top px-4 py-3">{es ? 'Zonas que servimos' : 'Areas served'}</th>
+              <td class="px-4 py-3 text-navy">{es ? 'East Boston, Chelsea, Revere, Lynn, Everett y el Gran Boston' : 'East Boston, Chelsea, Revere, Lynn, Everett & Greater Boston'}</td>
+            </tr>
+            <tr class="odd:bg-cream/60">
+              <th scope="row" class="text-left font-semibold text-navy/70 align-top px-4 py-3">{es ? 'Rango de precios' : 'Price range'}</th>
+              <td class="px-4 py-3 text-navy">$190 – $430 USD {es ? '(+ cotización según el tour)' : '(+ quote depending on the tour)'}</td>
+            </tr>
+            <tr class="odd:bg-cream/60">
+              <th scope="row" class="text-left font-semibold text-navy/70 align-top px-4 py-3">{es ? 'Redes sociales' : 'Social media'}</th>
+              <td class="px-4 py-3 text-navy">Instagram · Facebook · TikTok · @jltoursboston</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </section>

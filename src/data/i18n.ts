@@ -76,6 +76,11 @@ export const ui = {
     'whyus.5.desc': 'Reserva con anticipación tu cupo VIP.',
     'whyus.6.title': 'Reserva Segura',
     'whyus.6.desc': 'Solo el 50% para asegurar tu lugar.',
+    'whyus.7.title': '32+ Años de Experiencia',
+    'whyus.7.desc': 'Tres décadas creando viajes inolvidables para familias.',
+    'whyus.8.title': 'Empresa Registrada',
+    'whyus.8.desc': 'Registro DOT #3866673. Confianza y legitimidad respaldadas por MA y Boston.',
+    'whyus.cta': 'Conoce más sobre nosotros',
 
     // About / Misión · Visión · Valor
     'about.eyebrow': 'Nuestra Esencia',
@@ -93,6 +98,8 @@ export const ui = {
     'about.dot.label': 'Registro DOT',
     'about.dot.number': '3866673',
     'about.dot.note': 'Empresa legítima reconocida por el estado de Massachusetts y el City Hall de Boston.',
+    'about.data.title': 'Datos de la empresa',
+    'about.data.intro': 'Información oficial de JL Tours, verificable y transparente.',
     'about.seo.title': 'Sobre Nosotros | JL Tours Boston',
     'about.seo.description': 'Conoce a JL Tours: compañía hispana de turismo en Boston con más de 32 años de experiencia. Nuestra misión, visión y propuesta de valor. Registro DOT #3866673.',
 
@@ -223,6 +230,11 @@ export const ui = {
     'whyus.5.desc': 'Book your VIP spot in advance.',
     'whyus.6.title': 'Safe Booking',
     'whyus.6.desc': 'Only 50% deposit to secure your spot.',
+    'whyus.7.title': '32+ Years of Experience',
+    'whyus.7.desc': 'Three decades crafting unforgettable family trips.',
+    'whyus.8.title': 'Registered Company',
+    'whyus.8.desc': 'DOT Registration #3866673. Trust and legitimacy backed by MA and Boston.',
+    'whyus.cta': 'Learn more about us',
 
     // About / Mission · Vision · Value
     'about.eyebrow': 'Our Essence',
@@ -240,6 +252,8 @@ export const ui = {
     'about.dot.label': 'DOT Registration',
     'about.dot.number': '3866673',
     'about.dot.note': 'A legitimate company recognized by the State of Massachusetts and the Boston City Hall.',
+    'about.data.title': 'Company details',
+    'about.data.intro': 'Official, verifiable, and transparent information about JL Tours.',
     'about.seo.title': 'About Us | JL Tours Boston',
     'about.seo.description': 'Meet JL Tours: a Hispanic-owned tour company in Boston with 32+ years of experience. Our mission, vision, and value proposition. DOT Registration #3866673.',
 

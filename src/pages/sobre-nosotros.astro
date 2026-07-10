@@ -10,7 +10,7 @@ import { t } from '../data/i18n';
 
 const lang = 'es' as const;
 
-const pageUrl = 'https://jltoursboston.com/sobre-nosotros';
+const pageUrl = 'https://jltoursboston.com/sobre-nosotros/';
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -28,7 +28,7 @@ const breadcrumbSchema = {
   description={t(lang, 'about.seo.description')}
   canonicalURL={pageUrl}
   hreflangEs={pageUrl}
-  hreflangEn="https://jltoursboston.com/en/sobre-nosotros"
+  hreflangEn="https://jltoursboston.com/en/sobre-nosotros/"
 >
   <script slot="head-schemas" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <Header lang={lang} />

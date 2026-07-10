@@ -9,14 +9,14 @@ const { lang } = Astro.props;
 
 const base = lang === 'es' ? '' : '/en';
 const quickLinks = [
-  { href: `${base}/tours/cataratas-niagara`,         label: lang === 'es' ? 'Cataratas del Niágara'  : 'Niagara Falls'         },
-  { href: `${base}/tours/nueva-york-completa`,       label: lang === 'es' ? 'Nueva York Completa'    : 'New York Complete'     },
-  { href: `${base}/tours/nueva-york-vip`,            label: 'New York VIP'                                                     },
-  { href: `${base}/tours/atlantic-city-philadelphia`,label: 'Atlantic City & Philadelphia'                                     },
-  { href: `${base}/tours/washington-dc`,             label: 'Washington D.C.'                                                  },
-  { href: `${base}/tours/templo-hindu-new-jersey`,   label: lang === 'es' ? 'Templo Hindú & NJ'      : 'Hindu Temple & NJ'    },
-  { href: `${base}/tours/cavernas-nueva-york`,       label: lang === 'es' ? 'Cavernas de NY'          : 'NY Caverns'           },
-  { href: `${base}/tours/parques-familiares`,       label: lang === 'es' ? 'Parques Familiares'      : 'Family Parks'         },
+  { href: `${base}/tours/cataratas-niagara/`,         label: lang === 'es' ? 'Cataratas del Niágara'  : 'Niagara Falls'         },
+  { href: `${base}/tours/nueva-york-completa/`,       label: lang === 'es' ? 'Nueva York Completa'    : 'New York Complete'     },
+  { href: `${base}/tours/nueva-york-vip/`,            label: 'New York VIP'                                                     },
+  { href: `${base}/tours/atlantic-city-philadelphia/`,label: 'Atlantic City & Philadelphia'                                     },
+  { href: `${base}/tours/washington-dc/`,             label: 'Washington D.C.'                                                  },
+  { href: `${base}/tours/templo-hindu-new-jersey/`,   label: lang === 'es' ? 'Templo Hindú & NJ'      : 'Hindu Temple & NJ'    },
+  { href: `${base}/tours/cavernas-nueva-york/`,       label: lang === 'es' ? 'Cavernas de NY'          : 'NY Caverns'           },
+  { href: `${base}/tours/parques-familiares/`,       label: lang === 'es' ? 'Parques Familiares'      : 'Family Parks'         },
 ];
 ---
 
@@ -68,7 +68,7 @@ const quickLinks = [
         </div>
 
         <!-- About link -->
-        <a href={`${base}/sobre-nosotros`} class="inline-flex items-center gap-1.5 text-amber hover:text-white text-sm font-semibold transition-colors w-fit">
+        <a href={`${base}/sobre-nosotros/`} class="inline-flex items-center gap-1.5 text-amber hover:text-white text-sm font-semibold transition-colors w-fit">
           {t(lang, 'nav.about')}
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"/>

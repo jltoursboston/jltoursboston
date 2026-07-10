@@ -3,6 +3,7 @@
   "short_name": "JL Tours",
   "description": "Tours desde Boston en español — Niágara, Nueva York, Washington D.C.",
   "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
     { "src": "/logo.jpeg", "sizes": "any", "type": "image/jpeg" }
   ],
   "theme_color": "#10243E",
