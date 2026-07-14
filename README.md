@@ -45,9 +45,28 @@ image: '/images/tours/niagara.jpg',
 
 Las fotos del Hero se editan en `src/components/sections/Hero.astro`, array `slides`.
 
-### Agregar o editar testimonios
-Archivo: `src/components/sections/Testimonials.astro`, array `testimonials`.  
-Después de actualizar, también cambia `reviewCount` en `src/layouts/BaseLayout.astro` (dentro de `localBusinessSchema.aggregateRating`) para que el schema de Google refleje el número real.
+### Agregar o editar reseñas de Google
+Archivo: `src/data/testimonials.ts`, array `testimonials`.  
+Cada entrada lleva el texto **verbatim** (sin modificar), el nombre real del autor, `rating` (1–5), `date` en formato `YYYY-MM` (mes+año fijo, para que no envejezca) y `source: 'google'`. El texto se muestra igual en ES y EN — no se traduce: una reseña real bajo el nombre del autor debe ser lo que escribió.
+
+```ts
+{
+  name: 'Nombre Apellido',
+  rating: 5,
+  text: 'Copia aquí el texto exacto de la reseña…',
+  date: '2026-07',
+  source: 'google',
+},
+```
+
+### Actualizar el promedio y total de reseñas
+Archivo: `src/data/testimonials.ts`, constante `googleRating`. Lee los valores reales en tu **Google Business Profile** (o buscando el negocio en Google Maps): bajo el nombre aparece el promedio (ej. `5.0`) y entre paréntesis el total (ej. `(13)`). La cabecera de la sección y el `aggregateRating` del schema los leen de aquí:
+
+```ts
+export const googleRating = { rating: 5.0, reviewCount: 13 };
+```
+
+Sin costo: las reseñas viven en HTML estático (sin API ni facturación de Google Cloud).
 
 ### Cambiar número de WhatsApp
 Busca `18573899523` en `src/data/tours.ts` y `src/data/i18n.ts` y reemplaza con el nuevo número.

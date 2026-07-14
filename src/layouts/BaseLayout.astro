@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import type { Lang } from '../data/i18n';
 import { t, GOOGLE_BUSINESS } from '../data/i18n';
-import { testimonials } from '../data/testimonials';
+import { googleRating } from '../data/testimonials';
 
 interface Props {
   lang: Lang;
@@ -83,10 +83,10 @@ const localBusinessSchema = {
   },
   aggregateRating: {
     '@type': 'AggregateRating',
-    ratingValue: '5.0',
+    ratingValue: String(googleRating.rating),
     bestRating: '5',
     worstRating: '1',
-    reviewCount: String(testimonials.length),
+    reviewCount: String(googleRating.reviewCount),
   },
 };
 ---

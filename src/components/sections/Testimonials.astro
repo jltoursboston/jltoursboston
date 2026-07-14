@@ -1,12 +1,17 @@
 ---
 import type { Lang } from '../../data/i18n';
-import { t, GOOGLE_BUSINESS } from '../../data/i18n';
-import { testimonials } from '../../data/testimonials';
+import { t, GOOGLE_BUSINESS, formatMonth } from '../../data/i18n';
+import { testimonials, googleRating } from '../../data/testimonials';
+import GoogleG from '../GoogleG.astro';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
+
+const starLabel = (n: number) => lang === 'es' ? `${n} de 5 estrellas` : `${n} out of 5 stars`;
+const reviewCountLabel = t(lang, 'testimonials.reviewCountLabel').replace('{n}', String(googleRating.reviewCount));
+const aggFullStars = Math.round(googleRating.rating);
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify({
@@ -18,10 +23,11 @@ const { lang } = Astro.props;
     position: i + 1,
     item: {
       '@type': 'Review',
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      author: { '@type': 'Person', name: item[lang].name },
+      reviewRating: { '@type': 'Rating', ratingValue: String(item.rating), bestRating: '5', worstRating: '1' },
+      author: { '@type': 'Person', name: item.name },
       itemReviewed: { '@type': 'TravelAgency', name: 'JL Tours Boston', url: 'https://jltoursboston.com' },
-      reviewBody: item[lang].text,
+      reviewBody: item.text,
+      datePublished: item.date,
     },
   })),
 })} />
@@ -30,7 +36,7 @@ const { lang } = Astro.props;
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- Header -->
-    <div class="text-center mb-14" data-reveal>
+    <div class="text-center mb-10" data-reveal>
       <p class="text-amber font-semibold text-sm tracking-widest uppercase mb-3">
         {lang === 'es' ? 'Reseñas' : 'Reviews'}
       </p>
@@ -38,47 +44,64 @@ const { lang } = Astro.props;
       <p class="text-white/65 text-lg max-w-xl mx-auto">{t(lang, 'testimonials.subtitle')}</p>
     </div>
 
+    <!-- Aggregate de Google -->
+    <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 mb-14" data-reveal>
+      <div class="inline-flex items-center gap-2.5 bg-white/10 rounded-full pl-3 pr-5 py-2 border border-white/15">
+        <GoogleG class="w-5 h-5 flex-shrink-0" />
+        <span class="font-bold text-lg text-white">{googleRating.rating.toFixed(1)}</span>
+        <span class="flex gap-0.5" role="img" aria-label={starLabel(aggFullStars)}>
+          {Array.from({ length: 5 }).map((_, i) => (
+            <svg class={`w-4 h-4 ${i < aggFullStars ? 'text-amber' : 'text-white/25'}`} fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+          ))}
+        </span>
+        <span class="text-white/70 text-sm">· {reviewCountLabel}</span>
+      </div>
+      <a href={GOOGLE_BUSINESS} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-[#8AC2F8] hover:text-amber transition-colors">
+        {t(lang, 'testimonials.seeAll')}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+
     <!-- Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-      {testimonials.map((item, i) => {
-        const content = item[lang];
-        return (
-          <article class="bg-white/8 rounded-2xl p-7 border border-white/10 hover:border-amber/30 transition-colors"
-                   data-reveal style={`--rd: ${i * 100}ms`}>
-            <!-- Stars -->
-            <div class="flex gap-1 mb-4" role="img" aria-label={lang === 'es' ? '5 estrellas' : '5 stars'}>
-              {[1,2,3,4,5].map(() => (
-                <svg class="w-5 h-5 text-amber" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                </svg>
-              ))}
-            </div>
+      {testimonials.map((item, i) => (
+        <article class="bg-white/8 rounded-2xl p-7 border border-white/10 hover:border-amber/30 transition-colors" data-reveal style={`--rd: ${i * 100}ms`}>
+          <!-- Stars -->
+          <div class="flex gap-1 mb-4" role="img" aria-label={starLabel(item.rating)}>
+            {Array.from({ length: 5 }).map((_, si) => (
+              <svg class={`w-5 h-5 ${si < item.rating ? 'text-amber' : 'text-white/20'}`} fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            ))}
+          </div>
 
-            <!-- Quote -->
-            <blockquote class="text-white/80 leading-relaxed mb-6 italic">
-              "{content.text}"
-            </blockquote>
+          <!-- Quote -->
+          <blockquote class="text-white/80 leading-relaxed mb-6 italic">
+            "{item.text}"
+          </blockquote>
 
-            <!-- Author -->
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-amber/20 flex items-center justify-center flex-shrink-0">
-                <span class="text-amber font-display font-bold text-lg">{content.name[0]}</span>
-              </div>
-              <div>
-                <p class="font-semibold text-white">{content.name}</p>
-                <p class="text-white/70 text-sm">{content.location}</p>
-              </div>
+          <!-- Author -->
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-amber/20 flex items-center justify-center flex-shrink-0">
+              <span class="text-amber font-display font-bold text-lg">{item.name.charAt(0).toUpperCase()}</span>
             </div>
+            <div>
+              <p class="font-semibold text-white">{item.name}</p>
+              <p class="text-white/70 text-sm">{formatMonth(item.date, lang)}</p>
+            </div>
+          </div>
 
-            <!-- Tour tag -->
-            <div class="mt-4 pt-4 border-t border-white/10">
-              <span class="text-xs text-[#8AC2F8] font-medium">
-                ✓ {lang === 'es' ? 'Viajó en:' : 'Traveled on:'} {content.tour}
-              </span>
-            </div>
-          </article>
-        );
-      })}
+          <!-- Verified badge -->
+          <div class="mt-4 pt-4 border-t border-white/10">
+            <a href={GOOGLE_BUSINESS} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs text-[#8AC2F8] font-medium hover:text-amber transition-colors">
+              <GoogleG class="w-3.5 h-3.5 flex-shrink-0" />
+              {t(lang, 'testimonials.verified')}
+            </a>
+          </div>
+        </article>
+      ))}
     </div>
 
     <!-- CTA: dejar una reseña en Google (impulsa reseñas reales) -->
@@ -89,12 +112,7 @@ const { lang } = Astro.props;
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2.5 px-6 py-3.5 bg-white text-navy hover:bg-amber font-semibold rounded-full shadow-lg transition-colors"
       >
-        <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 48 48" aria-hidden="true">
-          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-        </svg>
+        <GoogleG class="w-5 h-5 flex-shrink-0" />
         {t(lang, 'testimonials.reviewCta')}
       </a>
     </div>

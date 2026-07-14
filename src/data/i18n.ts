@@ -111,6 +111,9 @@ export const ui = {
     'testimonials.title': 'Lo Que Dicen Nuestros Viajeros',
     'testimonials.subtitle': 'Más de 2,500 familias ya han viajado con nosotros. Esta es su experiencia.',
     'testimonials.reviewCta': 'Déjanos una reseña en Google',
+    'testimonials.verified': 'Verificado en Google',
+    'testimonials.reviewCountLabel': '{n} reseñas en Google',
+    'testimonials.seeAll': 'Ver todas en Google',
 
     // CTA section
     'cta.title': '¿Listo para tu próxima aventura?',
@@ -266,6 +269,9 @@ export const ui = {
     'testimonials.title': 'What Our Travelers Say',
     'testimonials.subtitle': 'Over 2,500 families have traveled with us. Here\'s their experience.',
     'testimonials.reviewCta': 'Leave us a review on Google',
+    'testimonials.verified': 'Verified on Google',
+    'testimonials.reviewCountLabel': '{n} reviews on Google',
+    'testimonials.seeAll': 'See all on Google',
 
     // CTA section
     'cta.title': 'Ready for your next adventure?',
@@ -315,6 +321,18 @@ export const ui = {
 
 export function t(lang: Lang, key: keyof typeof ui.es): string {
   return ui[lang][key] ?? ui.es[key];
+}
+
+const MONTHS: Record<Lang, string[]> = {
+  es: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+  en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+};
+
+export function formatMonth(iso: string, lang: Lang): string {
+  const [y, m] = iso.split('-').map(Number);
+  const name = MONTHS[lang][m - 1];
+  const display = lang === 'es' ? name.charAt(0).toUpperCase() + name.slice(1) : name;
+  return `${display} ${y}`;
 }
 
 export const WA_GENERAL = {
