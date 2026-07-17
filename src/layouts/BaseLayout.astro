@@ -175,8 +175,13 @@ const localBusinessSchema = {
       <>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} is:inline></script>
         <script define:vars={{ gaId }} is:inline>
+          // Astro envuelve cada <script define:vars> en su propia IIFE aislada, asi
+          // que una simple "function gtag(){}" queda atrapada en ese scope y nunca
+          // se expone como window.gtag para los demas scripts (listener de clics,
+          // QuickQuote, etc.). Se asigna explicitamente a window para que
+          // "typeof gtag !== 'undefined'" funcione en cualquier otro <script> de la pagina.
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
+          window.gtag = function(){ window.dataLayer.push(arguments); };
           gtag('js', new Date());
           gtag('config', gaId);
         </script>
