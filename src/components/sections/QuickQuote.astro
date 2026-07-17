@@ -108,8 +108,10 @@ const peopleOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, '10+'];
 
     // Este CTA abre WhatsApp con window.open (no es un <a href>), asi que el
     // listener delegado de BaseLayout no lo captura: hay que disparar el evento aqui.
+    // Nota: "lang", no "language" -- gtag.js descarta un parametro custom llamado
+    // "language" (colisiona con el campo de idioma automatico del navegador).
     if (typeof gtag !== 'undefined') {
-      gtag('event', 'whatsapp_click', { tour: 'quickquote', language: lang });
+      gtag('event', 'whatsapp_click', { tour: 'quickquote', lang: lang });
     }
 
     const url = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(message);

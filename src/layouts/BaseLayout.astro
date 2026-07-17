@@ -202,7 +202,12 @@ const localBusinessSchema = {
             // GA4/gtag ya usa sendBeacon/fetch keepalive por defecto, asi que el envio
             // sobrevive el cambio a la app. transport_type: 'beacon' es un remanente de
             // Universal Analytics, inofensivo pero no imprescindible; se mantiene explicito.
-            gtag('event', 'whatsapp_click', { tour: tour, language: lang, transport_type: 'beacon' });
+            // Nota: el parametro se llama "lang", NO "language" -- gtag.js descarta
+            // silenciosamente un parametro custom llamado "language" porque colisiona
+            // con el campo de idioma del navegador que ya recoge automaticamente (ul).
+            // Verificado empiricamente: con "language" el hit real a /g/collect nunca
+            // traia ese dato; con "lang" si.
+            gtag('event', 'whatsapp_click', { tour: tour, lang: lang, transport_type: 'beacon' });
           }
         });
       </script>
