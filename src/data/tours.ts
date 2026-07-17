@@ -86,7 +86,7 @@ export const tours: Tour[] = [
         '⛪ Visita a la Basílica de Fátima y Outlets',
         '🚌 Transporte en bus/van de lujo',
         '⛴️ Tour en barco en las cataratas',
-        '🗺️ Guía permanente en español',
+        '🗺️ Guía en español · tour guiado en español',
       ],
       schedule: 'Salida 4:00 AM · Regreso 10:00 PM (día siguiente)',
       price: '$410 USD/persona',
@@ -139,7 +139,7 @@ export const tours: Tour[] = [
         '⛪ Visit to Fatima Shrine and Outlets',
         '🚌 Luxury bus/van transportation',
         '⛴️ Maid of the Mist boat tour at the falls',
-        '🗺️ Permanent bilingual guide',
+        '🗺️ Spanish-speaking guide · tour in Spanish',
       ],
       schedule: 'Departure 4:00 AM · Return 10:00 PM (next day)',
       price: '$410 USD/person',
@@ -213,20 +213,19 @@ export const tours: Tour[] = [
       name: 'Nueva York – Experiencia Completa',
       tagline: 'Los íconos de NYC en un solo día',
       description:
-        'El tour más completo de Nueva York: Ferry a la Estatua de la Libertad, el World Trade Center, Times Square y más. Solo 13 cupos disponibles para una experiencia personalizada.',
+        'El tour más completo de Nueva York: Ferry a la Estatua de la Libertad, el World Trade Center, Times Square y más.',
       includes: [
         '🗽 Ferry e ingreso a la Isla de la Estatua de la Libertad',
         '🏛️ World Trade Center (Memorial del 9/11)',
         '🐂 Toro de Wall Street · Rockefeller Center · Catedral de San Patricio',
         '⭐ Times Square',
         '🥪 Almuerzo tipo picnic incluido',
-        '🗺️ Guía permanente en español',
+        '🗺️ Guía en español · tour guiado en español',
         '🚌 Transporte ida y vuelta',
       ],
       schedule: 'Salida 6:00 AM · Regreso 11:30 PM',
       price: '$275 USD/persona',
       duration: '1 día',
-      capacity: '⚡ Solo 13 cupos',
       departure: '6:00 AM — Walgreens East Boston, MA',
       return: '11:30 PM',
       itinerary: [
@@ -253,7 +252,7 @@ export const tours: Tour[] = [
         },
         {
           q: '¿Cuándo debo reservar?',
-          a: 'Los cupos son limitados y se reciben hasta agotar existencia. Te recomendamos reservar lo antes posible. Escríbenos por WhatsApp para verificar disponibilidad.',
+          a: 'Recibimos reservas hasta el momento de agotar la disponibilidad de cada salida. Escríbenos por WhatsApp para verificar disponibilidad.',
         },
       ],
     },
@@ -261,20 +260,19 @@ export const tours: Tour[] = [
       name: 'New York – Complete Experience',
       tagline: 'NYC\'s most iconic spots in one day',
       description:
-        'The most complete New York City tour: Statue of Liberty ferry, World Trade Center, Times Square and more. Only 13 spots available for a personalized experience.',
+        'The most complete New York City tour: Statue of Liberty ferry, World Trade Center, Times Square and more.',
       includes: [
         '🗽 Ferry and entry to Liberty Island',
         '🏛️ World Trade Center (9/11 Memorial)',
         '🐂 Charging Bull · Rockefeller Center · St. Patrick\'s Cathedral',
         '⭐ Times Square',
         '🥪 Picnic-style lunch included',
-        '🗺️ Permanent bilingual guide',
+        '🗺️ Spanish-speaking guide · tour in Spanish',
         '🚌 Round-trip transportation',
       ],
       schedule: 'Departure 6:00 AM · Return 11:30 PM',
       price: '$275 USD/person',
       duration: '1 day',
-      capacity: '⚡ Only 13 spots',
       departure: '6:00 AM — Walgreens East Boston, MA',
       return: '11:30 PM',
       itinerary: [
@@ -301,7 +299,7 @@ export const tours: Tour[] = [
         },
         {
           q: 'When should I book?',
-          a: 'Spots are limited and are accepted until sold out. We recommend booking as soon as possible. Message us on WhatsApp to check availability.',
+          a: 'We accept reservations until each departure sells out. Message us on WhatsApp to check availability.',
         },
       ],
     },
@@ -319,6 +317,7 @@ export const tours: Tour[] = [
       '/images/tours/nyc-vip-g02.jpg',
       '/images/tours/nyc-vip-g03.jpg',
       '/images/tours/nyc-vip-g04.jpg',
+      '/images/tours/nyc-vip-g05.jpg',
       '/images/tours/nyc-vip-g06.jpg',
     ],
     whatsappMessage: {
@@ -335,7 +334,7 @@ export const tours: Tour[] = [
       name: 'New York VIP – Miradores & Íconos',
       tagline: 'Manhattan desde las alturas',
       description:
-        'La experiencia premium de Nueva York: sube al Edge at Hudson Yards o SUMMIT One Vanderbilt y contempla Manhattan desde las alturas. Solo 13 cupos.',
+        'La experiencia premium de Nueva York: sube al Edge at Hudson Yards o SUMMIT One Vanderbilt y contempla Manhattan desde las alturas.',
       includes: [
         '🏙️ Ingreso a mirador premium (Edge o SUMMIT One Vanderbilt)',
         '🏛️ World Trade Center (Memorial del 9/11)',
@@ -344,9 +343,8 @@ export const tours: Tour[] = [
         '🚌 Transporte ida y vuelta',
       ],
       schedule: 'Salida 6:00 AM · Regreso 11:30 PM',
-      price: '$280 USD/persona',
+      price: '$295 USD/persona',
       duration: '1 día',
-      capacity: '⚡ Solo 13 cupos',
       departure: '6:00 AM — Walgreens East Boston, MA',
       return: '11:30 PM',
       itinerary: [
@@ -379,7 +377,7 @@ export const tours: Tour[] = [
       name: 'New York VIP – Skylines & Icons',
       tagline: 'Manhattan from above',
       description:
-        'The premium New York City experience: ascend Edge at Hudson Yards or SUMMIT One Vanderbilt and take in Manhattan from above. Only 13 spots.',
+        'The premium New York City experience: ascend Edge at Hudson Yards or SUMMIT One Vanderbilt and take in Manhattan from above.',
       includes: [
         '🏙️ Premium observation deck (Edge or SUMMIT One Vanderbilt)',
         '🏛️ World Trade Center (9/11 Memorial)',
@@ -388,9 +386,8 @@ export const tours: Tour[] = [
         '🚌 Round-trip transportation',
       ],
       schedule: 'Departure 6:00 AM · Return 11:30 PM',
-      price: '$280 USD/person',
+      price: '$295 USD/person',
       duration: '1 day',
-      capacity: '⚡ Only 13 spots',
       departure: '6:00 AM — Walgreens East Boston, MA',
       return: '11:30 PM',
       itinerary: [
@@ -453,7 +450,7 @@ export const tours: Tour[] = [
         '🏨 1 noche en hotel-casino en Atlantic City',
         '🚁 Playa, boardwalk y opción de paseo en helicóptero',
         '🍽️ Almuerzo buffet en Philadelphia incluido',
-        '🗺️ Guía permanente',
+        '🗺️ Guía en español · tour guiado en español',
         '🔔 Philadelphia: Liberty Bell, Betsy Ross House, Rocky steps, centro histórico',
         '🚌 Transporte ida y vuelta',
       ],
@@ -500,7 +497,7 @@ export const tours: Tour[] = [
         '🏨 1 night at casino hotel in Atlantic City',
         '🚁 Beach, boardwalk, and optional helicopter ride',
         '🍽️ Buffet lunch in Philadelphia included',
-        '🗺️ Permanent guide',
+        '🗺️ Spanish-speaking guide · tour in Spanish',
         '🔔 Philadelphia: Liberty Bell, Betsy Ross House, Rocky steps, historic district',
         '🚌 Round-trip transportation',
       ],
@@ -786,7 +783,6 @@ export const tours: Tour[] = [
       en: 'Underground caverns in New York',
     },
     gallery: [
-      '/images/tours/cavernas-g01.jpg',
       '/images/tours/cavernas-g02.jpg',
     ],
     whatsappMessage: {
@@ -803,7 +799,7 @@ export const tours: Tour[] = [
       includes: [
         '🎟️ Ticket de entrada a las cavernas',
         '🌑 Formaciones milenarias de estalactitas y estalagmitas',
-        '🚐 Vans de 14 pasajeros con WiFi, TV, audio y bodega — ideal para familias, grupos de amigos e iglesias',
+        '🚐 Furgonetas de 14 pasajeros con WiFi, TV, audio y bodega — ideal para familias, grupos de amigos e iglesias',
         '🚌 Transporte ida y vuelta',
       ],
       schedule: 'Salida 7:00 AM · Regreso al atardecer',

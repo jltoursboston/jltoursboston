@@ -45,9 +45,13 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['LocalBusiness', 'TravelAgency'],
   name: 'JL Tours Boston',
-  description: 'JL Tours Boston offers bilingual guided tours (Spanish & English) departing from East Boston to top destinations: Niagara Falls, New York City, Washington DC, Atlantic City, Philadelphia, Hindu Temple NJ, and more. Family-friendly trips with comfortable transportation and experienced guides. Easy booking via WhatsApp — no complicated reservations. Serving the Latino community of Greater Boston. Call or text: 857-389-9523.',
+  description: 'JL Tours Boston offers guided tours in Spanish departing from East Boston to top destinations: Niagara Falls, New York City, Washington DC, Atlantic City, Philadelphia, Hindu Temple NJ, and more. Family-friendly trips with comfortable transportation and experienced guides. Easy booking via WhatsApp — no complicated reservations. Serving the Latino community of Greater Boston. Call or text: 857-389-9523 or 617-669-0228.',
   url: 'https://jltoursboston.com',
   telephone: '+18573899523',
+  contactPoint: [
+    { '@type': 'ContactPoint', telephone: '+18573899523', contactType: 'reservations', areaServed: 'US', availableLanguage: ['Spanish', 'English'] },
+    { '@type': 'ContactPoint', telephone: '+16176690228', contactType: 'reservations', areaServed: 'US', availableLanguage: ['Spanish', 'English'] },
+  ],
   address: {
     '@type': 'PostalAddress',
     streetAddress: '119 London St',
@@ -70,7 +74,7 @@ const localBusinessSchema = {
   knowsLanguage: ['es', 'en'],
   identifier: [{ '@type': 'PropertyValue', name: 'USDOT', value: '3866673' }],
   openingHours: ['Mo-Su 09:00-19:00'],
-  areaServed: ['Boston, MA', 'East Boston, MA', 'Massachusetts, US'],
+  areaServed: ['Boston, MA', 'East Boston, MA', 'Lawrence, MA', 'Lowell, MA', 'Newton, MA', 'Massachusetts, US'],
   sameAs: [
     'https://www.instagram.com/jltoursboston',
     'https://www.facebook.com/jltoursboston',

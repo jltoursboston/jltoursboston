@@ -50,7 +50,9 @@ const { lang } = Astro.props;
     </a>
 
     <p class="text-white/60 text-sm">
-      {t(lang, 'cta.phone')}
+      <a href="tel:+18573899523" class="hover:text-white transition-colors">{t(lang, 'cta.phone')}</a>
+      <span class="mx-2" aria-hidden="true">·</span>
+      <a href="tel:+16176690228" class="hover:text-white transition-colors">{t(lang, 'cta.phone2')}</a>
     </p>
 
     <!-- Social links -->

@@ -84,7 +84,7 @@ export const ui = {
 
     // About / Misión · Visión · Valor
     'about.eyebrow': 'Nuestra Esencia',
-    'about.title': 'Más que tours, recuerdos para toda la vida',
+    'about.title': 'Más que un tour, una experiencia inolvidable',
     'about.subtitle': 'Somos una compañía hispana nacida en Boston, creada para servir a nuestra comunidad y al público en general con pasión, compromiso y responsabilidad.',
     'about.mission.title': 'Nuestra Misión',
     'about.mission.text': 'Crear experiencias de viaje inolvidables que conecten personas, familias y culturas a través del turismo. Por más de 32 años hemos trabajado con pasión, compromiso y responsabilidad para transformar cada destino en un recuerdo para toda la vida. Ofrecemos tours seguros, organizados y llenos de momentos especiales: más que transportar viajeros, cumplimos sueños y construimos historias felices en cada recorrido.',
@@ -120,6 +120,7 @@ export const ui = {
     'cta.subtitle': 'Escríbenos ahora y te ayudamos a elegir el tour perfecto para ti y tu familia.',
     'cta.button': 'Escríbenos por WhatsApp',
     'cta.phone': '+1 857-389-9523',
+    'cta.phone2': '+1 617-669-0228',
 
     // Footer
     'footer.tagline': 'Turismo en constante evolución',
@@ -147,9 +148,9 @@ export const ui = {
     'homefaq.q1': '¿Qué incluye el precio del tour?',
     'homefaq.a1': 'El precio de cada tour incluye transporte en van o bus moderno con aire acondicionado, guía profesional en español durante todo el recorrido, snacks para el camino, y una foto impresa de recuerdo que te llevas a casa. Las entradas a museos y atracciones se pagan en destino según cada lugar. No hay costos ocultos ni sorpresas — todo lo que necesitas para disfrutar el día está cubierto. Algunas actividades opcionales como el paseo en globo en Niágara o los casinos en Atlantic City tienen costo adicional, pero son completamente voluntarias.',
     'homefaq.q2': '¿Con cuánta anticipación debo reservar?',
-    'homefaq.a2': 'Recomendamos reservar con al menos una semana de anticipación para garantizar tu cupo, ya que los tours tienen plazas limitadas. Para temporada alta — veranos, vacaciones escolares y feriados como Acción de Gracias, Navidad y Año Nuevo — lo ideal es reservar con tres a cuatro semanas de anticipación. Para asegurar tu lugar basta el 50% del total; el saldo lo pagas el día del tour. Reservar temprano también te da acceso a mejores asientos y más tiempo para coordinar con tu grupo familiar.',
+    'homefaq.a2': 'Puedes reservar en cualquier momento: recibimos reservas hasta el momento de agotar la disponibilidad de cada salida. Para asegurar tu lugar basta el 50% del total y el saldo lo pagas el día del tour. Si viajas en temporada alta —veranos, vacaciones escolares o feriados— escríbenos con tiempo para confirmar disponibilidad.',
     'homefaq.q3': '¿Los tours son 100% en español?',
-    'homefaq.a3': 'Sí, todos nuestros tours se realizan completamente en español. Somos la operadora turística número uno de la comunidad latinoamericana de Boston y sus alrededores — East Boston, Chelsea, Revere, Lynn, Everett y más. Nuestros guías conducen cada recorrido en español, explicando la historia y curiosidades de cada destino con la misma calidez que le darían a un familiar. Si llevas personas que hablan inglés, no hay problema: nuestros guías son bilingües y pueden atender a ambos grupos sin que nadie se quede fuera.',
+    'homefaq.a3': 'Sí, todos nuestros tours son en español. Nuestros guías conducen cada recorrido en español, explicando la historia y las curiosidades de cada destino con la misma calidez que le darían a un familiar. Somos la operadora turística número uno de la comunidad latinoamericana de Boston y sus alrededores — East Boston, Chelsea, Revere, Lynn, Everett, Lawrence, Lowell, Newton y más. Muy pronto tendremos también tours en inglés.',
     'homefaq.q4': '¿Cuál es la política de cancelación?',
     'homefaq.a4': 'Puedes realizar cambios o cancelar tu reserva hasta 72 horas antes de la salida. En casos de emergencia familiar o médica, evaluamos cada situación con flexibilidad y comprensión. Si JL Tours cancela el tour por cualquier motivo — clima extremo, falta de cuórum — el depósito se devuelve completamente o se aplica al siguiente tour disponible. Para cualquier cambio, escríbenos por WhatsApp al +1 857-389-9523.',
     'homefaq.q5': '¿Los tours son aptos para niños y adultos mayores?',
@@ -170,9 +171,9 @@ export const ui = {
     'nav.lang.href': '/',
 
     // Hero
-    'hero.eyebrow': 'Expert Bilingual Guides · Boston\'s #1',
+    'hero.eyebrow': 'Spanish-Speaking Guides · Boston\'s #1',
     'hero.title': 'The best tours from Boston to the US East Coast',
-    'hero.subtitle': 'Niagara Falls, New York City, Washington D.C. and more — transportation included, bilingual guide, guaranteed departures.',
+    'hero.subtitle': 'Niagara Falls, New York City, Washington D.C. and more — transportation included, Spanish-speaking guide, guaranteed departures.',
     'hero.cta.tours': 'See Tours',
     'hero.cta.calendar': 'See Calendar',
     'hero.cta.book': 'Book Now',
@@ -182,7 +183,7 @@ export const ui = {
     // Tours section
     'tours.eyebrow': 'Excursions',
     'tours.title': 'Our Tours',
-    'tours.subtitle': 'Every tour includes transportation, a bilingual guide, and everything you need for a perfect experience.',
+    'tours.subtitle': 'Every tour includes transportation, a Spanish-speaking guide, and everything you need for a perfect experience.',
     'tours.card.from': 'From',
     'tours.card.cta': 'See details',
     'tours.card.limited': '⚡ Limited spots',
@@ -224,8 +225,8 @@ export const ui = {
     'whyus.subtitle': 'Everything you need to travel worry-free and enjoy every moment.',
     'whyus.1.title': 'Comfortable Transport',
     'whyus.1.desc': 'Modern vans and buses with a professional guide.',
-    'whyus.2.title': 'Bilingual Guides',
-    'whyus.2.desc': 'Our guides speak Spanish and English — every guest feels at home.',
+    'whyus.2.title': 'Tours in Spanish',
+    'whyus.2.desc': 'Our guides lead every tour in Spanish — you\'ll feel right at home.',
     'whyus.3.title': 'Snacks Included',
     'whyus.3.desc': 'Snacks and surprises on every tour.',
     'whyus.4.title': 'Souvenir Photo',
@@ -242,7 +243,7 @@ export const ui = {
 
     // About / Mission · Vision · Value
     'about.eyebrow': 'Our Essence',
-    'about.title': 'More than tours, memories for a lifetime',
+    'about.title': 'More than a tour, an unforgettable experience',
     'about.subtitle': 'We are a Hispanic-owned company born in Boston, created to serve our community and the general public with passion, commitment, and responsibility.',
     'about.mission.title': 'Our Mission',
     'about.mission.text': 'To create unforgettable travel experiences that connect people, families, and cultures through tourism. For more than 32 years we have worked with passion, commitment, and responsibility to turn every destination into a lifelong memory. We offer safe, well-organized tours full of special moments — more than moving travelers, we fulfill dreams and build happy stories on every trip.',
@@ -278,6 +279,7 @@ export const ui = {
     'cta.subtitle': 'Message us now and we\'ll help you find the perfect tour for you and your family.',
     'cta.button': 'Message us on WhatsApp',
     'cta.phone': '+1 857-389-9523',
+    'cta.phone2': '+1 617-669-0228',
 
     // Footer
     'footer.tagline': 'Tourism in constant evolution',
@@ -303,11 +305,11 @@ export const ui = {
     'homefaq.title': 'Frequently Asked Questions',
     'homefaq.subtitle': 'Everything you need to know before booking.',
     'homefaq.q1': 'What is included in the tour price?',
-    'homefaq.a1': 'Every tour includes modern van or bus transportation with air conditioning, a professional bilingual guide for the entire journey, snacks for the road, and a printed souvenir photo to take home. Museum and attraction entry fees are paid on-site, as they vary by destination. There are no hidden charges or surprises — everything you need for a great day is covered. Optional add-ons like the hot air balloon ride at Niagara Falls or casino visits in Atlantic City are available but entirely your choice.',
+    'homefaq.a1': 'Every tour includes modern van or bus transportation with air conditioning, a professional Spanish-speaking guide for the entire journey, snacks for the road, and a printed souvenir photo to take home. Museum and attraction entry fees are paid on-site, as they vary by destination. There are no hidden charges or surprises — everything you need for a great day is covered. Optional add-ons like the hot air balloon ride at Niagara Falls or casino visits in Atlantic City are available but entirely your choice.',
     'homefaq.q2': 'How far in advance should I book?',
-    'homefaq.a2': 'We recommend booking at least one week ahead to secure your spot, since tour capacity is limited. For peak travel periods — summer weekends, school breaks, Thanksgiving, Christmas, and New Year — booking three to four weeks early is strongly advised. Your spot is secured with just a 50% deposit upfront; the balance is due on the day of the tour. Booking early also gives you the best seat selection and more time to coordinate with your family or travel group.',
-    'homefaq.q3': 'Do guides speak both Spanish and English?',
-    'homefaq.a3': 'Yes. All our guides are fully bilingual in Spanish and English. Our tours are designed primarily for the Latino community of Greater Boston — serving East Boston, Chelsea, Revere, Lynn, Everett, and surrounding areas. Our guides lead every tour in Spanish, sharing the history and highlights of each destination with the warmth of a trusted local. English-speaking guests are always included and fully informed throughout the experience. We are proud to be Boston\'s #1 tour operator for the Spanish-speaking community.',
+    'homefaq.a2': 'You can book at any time — we accept reservations until each departure sells out. Your spot is secured with just a 50% deposit and the balance is due on the day of the tour. If you\'re traveling during peak season — summers, school breaks, or holidays — message us early to confirm availability.',
+    'homefaq.q3': 'What language are the tours in?',
+    'homefaq.a3': 'All our tours are currently conducted in Spanish. Our guides lead every tour in Spanish, sharing the history and highlights of each destination with the warmth of a trusted local. We proudly serve the Latino community of Greater Boston — East Boston, Chelsea, Revere, Lynn, Everett, Lawrence, Lowell, Newton, and surrounding areas. English-language tours are coming soon.',
     'homefaq.q4': 'What is the cancellation policy?',
     'homefaq.a4': 'You can make changes to or cancel your reservation up to 72 hours before departure. In cases of family or medical emergencies, we review each situation with flexibility and understanding. If JL Tours cancels a tour for any reason — extreme weather, insufficient bookings — your deposit is refunded in full or applied to the next available tour. For any changes, message us on WhatsApp at +1 857-389-9523.',
     'homefaq.q5': 'Are the tours suitable for children and seniors?',
@@ -315,7 +317,7 @@ export const ui = {
 
     // SEO
     'seo.title': 'Tours from Boston in Spanish | JL Tours Boston',
-    'seo.description': 'Tours from East Boston in Spanish: Niagara Falls, New York City, Washington D.C., Atlantic City. Transportation included, bilingual guide. Book with 50% deposit. ☎ +1 857-389-9523.',
+    'seo.description': 'Tours from East Boston in Spanish: Niagara Falls, New York City, Washington D.C., Atlantic City. Transportation included, Spanish-speaking guide. Book with 50% deposit. ☎ +1 857-389-9523.',
   },
 } as const;
 
