@@ -799,7 +799,7 @@ export const tours: Tour[] = [
       includes: [
         '🎟️ Ticket de entrada a las cavernas',
         '🌑 Formaciones milenarias de estalactitas y estalagmitas',
-        '🚐 Furgonetas de 14 pasajeros con WiFi, TV, audio y bodega — ideal para familias, grupos de amigos e iglesias',
+        '🚐 Vans de 14 pasajeros con WiFi, TV, audio y bodega — ideal para familias, grupos de amigos e iglesias',
         '🚌 Transporte ida y vuelta',
       ],
       schedule: 'Salida 7:00 AM · Regreso al atardecer',

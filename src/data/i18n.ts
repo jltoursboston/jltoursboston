@@ -27,7 +27,6 @@ export const ui = {
     'tours.subtitle': 'Cada tour incluye transporte, guía en español y todo lo que necesitas para una experiencia perfecta.',
     'tours.card.from': 'Desde',
     'tours.card.cta': 'Ver detalles',
-    'tours.card.limited': '⚡ Cupos limitados',
 
     // Tour detail page
     'tour.back': '← Volver a tours',
@@ -45,7 +44,7 @@ export const ui = {
     'tour.payment.paypal': 'PayPal',
     'tour.payment.card': 'Tarjeta',
     'tour.cta.title': '¿Listo para reservar?',
-    'tour.cta.subtitle': 'Cupos limitados — reserva con solo el 50%.',
+    'tour.cta.subtitle': 'Reserva tu lugar con solo el 50%.',
     'tour.discount': 'precio con nosotros',
     'tour.regular': 'precio regular',
     'tour.nodates': 'Consultar fechas por WhatsApp',
@@ -186,7 +185,6 @@ export const ui = {
     'tours.subtitle': 'Every tour includes transportation, a Spanish-speaking guide, and everything you need for a perfect experience.',
     'tours.card.from': 'From',
     'tours.card.cta': 'See details',
-    'tours.card.limited': '⚡ Limited spots',
 
     // Tour detail page
     'tour.back': '← Back to tours',
@@ -204,7 +202,7 @@ export const ui = {
     'tour.payment.paypal': 'PayPal',
     'tour.payment.card': 'Card',
     'tour.cta.title': 'Ready to book?',
-    'tour.cta.subtitle': 'Limited spots — reserve with just 50%.',
+    'tour.cta.subtitle': 'Reserve your spot with just 50%.',
     'tour.discount': 'our price',
     'tour.regular': 'regular price',
     'tour.nodates': 'Ask for dates via WhatsApp',
