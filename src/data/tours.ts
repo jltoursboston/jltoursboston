@@ -135,6 +135,18 @@ export const tours: Tour[] = [
       ],
       faq: [
         {
+          q: '¿Cuánto dura el viaje de Boston a las Cataratas del Niágara?',
+          a: 'El trayecto desde East Boston hasta las Cataratas del Niágara toma alrededor de 8 horas en cada sentido. Por eso el tour es de 2 días y 1 noche: salimos a las 4:00 AM y te hospedas a una cuadra de las cataratas para aprovechar el destino al máximo.',
+        },
+        {
+          q: '¿El tour a las Cataratas del Niágara incluye el transporte desde Boston?',
+          a: 'Sí. El tour incluye transporte ida y vuelta en bus o van de lujo desde East Boston, MA, con guía en español durante todo el recorrido. Tú solo te encargas de disfrutar.',
+        },
+        {
+          q: '¿Qué incluye el tour de 2 días a las Cataratas del Niágara desde Boston?',
+          a: 'Incluye transporte desde Boston, 1 noche de hotel a una cuadra de las cataratas, almuerzo buffet el día 1 y desayuno el día 2, tour en barco, visita a la Basílica de Fátima y a los outlets, y guía en español. Hay adicionales opcionales como la Cueva de los Vientos y el paseo en globo.',
+        },
+        {
           q: '¿Cómo reservo mi lugar?',
           a: 'Escríbenos por WhatsApp al +1 857-389-9523. Para asegurar tu cupo solo necesitas el 50% del valor del tour. El saldo restante se paga una semana antes de la salida.',
         },
@@ -187,6 +199,18 @@ export const tours: Tour[] = [
         { time: 'Day 2 — ~10:00 PM', label: 'Approximate arrival in East Boston' },
       ],
       faq: [
+        {
+          q: 'How long is the trip from Boston to Niagara Falls?',
+          a: 'The drive from East Boston to Niagara Falls takes about 8 hours each way. That is why this is a 2-day, 1-night tour: we leave at 4:00 AM and you stay one block from the falls to make the most of the destination.',
+        },
+        {
+          q: 'Does the Niagara Falls tour include transportation from Boston?',
+          a: 'Yes. The tour includes round-trip transportation in a luxury bus or van from East Boston, MA, with a Spanish-speaking guide throughout. All you have to do is enjoy.',
+        },
+        {
+          q: 'What does the 2-day Niagara Falls tour from Boston include?',
+          a: 'It includes transportation from Boston, 1 night at a hotel one block from the falls, buffet lunch on day 1 and breakfast on day 2, a boat tour, a visit to the Fatima Shrine and the outlets, and a Spanish-speaking guide. Optional add-ons include the Cave of the Winds and the balloon ride.',
+        },
         {
           q: 'How do I book my spot?',
           a: 'Message us on WhatsApp at +1 857-389-9523. To secure your spot you only need 50% of the tour price. The remaining balance is due one week before departure.',
@@ -263,6 +287,14 @@ export const tours: Tour[] = [
       ],
       faq: [
         {
+          q: '¿Cuánto dura el tour a Nueva York desde Boston?',
+          a: 'Es un tour de 1 día completo: salimos de East Boston a las 6:00 AM y regresamos cerca de las 11:30 PM. El viaje toma unas 4 horas por trayecto, así que aprovechamos el día al máximo en Manhattan.',
+        },
+        {
+          q: '¿Qué incluye el tour a Nueva York desde Boston?',
+          a: 'Incluye transporte ida y vuelta desde Boston, el ferry e ingreso a la Isla de la Estatua de la Libertad, el World Trade Center, Times Square, almuerzo tipo picnic y guía en español durante todo el recorrido.',
+        },
+        {
           q: '¿Cuántos cupos hay disponibles?',
           a: 'Este tour tiene un máximo de 13 personas. Esto garantiza una experiencia personalizada y atención directa del guía. ¡Reserva con anticipación!',
         },
@@ -309,6 +341,14 @@ export const tours: Tour[] = [
         { time: '~11:30 PM', label: 'Approximate arrival in East Boston' },
       ],
       faq: [
+        {
+          q: 'How long is the New York tour from Boston?',
+          a: 'It is a full 1-day tour: we leave East Boston at 6:00 AM and return around 11:30 PM. The drive is about 4 hours each way, so we make the most of the day in Manhattan.',
+        },
+        {
+          q: 'What is included in the New York tour from Boston?',
+          a: 'It includes round-trip transportation from Boston, the ferry and entry to Liberty Island, the World Trade Center, Times Square, a picnic-style lunch, and a Spanish-speaking guide throughout.',
+        },
         {
           q: 'How many spots are available?',
           a: 'This tour has a maximum of 13 people. This guarantees a personalized experience and direct attention from the guide. Book early!',
@@ -380,6 +420,14 @@ export const tours: Tour[] = [
       ],
       faq: [
         {
+          q: '¿Cuánto dura el tour New York VIP desde Boston?',
+          a: 'Es un tour de 1 día: salimos de East Boston a las 6:00 AM y regresamos alrededor de las 11:30 PM, con unas 4 horas de viaje por trayecto.',
+        },
+        {
+          q: '¿Qué incluye el tour New York VIP desde Boston?',
+          a: 'Incluye transporte ida y vuelta desde Boston, el ingreso a un mirador premium (Edge at Hudson Yards o SUMMIT One Vanderbilt), el World Trade Center, el Toro de Wall Street, la Plaza Rockefeller, la Catedral de San Patricio y Times Square.',
+        },
+        {
           q: '¿Cuál mirador visitamos, Edge o SUMMIT?',
           a: 'Dependiendo de la disponibilidad y la fecha, visitamos Edge at Hudson Yards o SUMMIT One Vanderbilt. Ambos ofrecen vistas espectaculares de 360° de Manhattan.',
         },
@@ -422,6 +470,14 @@ export const tours: Tour[] = [
         { time: '~11:30 PM', label: 'Approximate arrival in East Boston' },
       ],
       faq: [
+        {
+          q: 'How long is the New York VIP tour from Boston?',
+          a: 'It is a 1-day tour: we leave East Boston at 6:00 AM and return around 11:30 PM, with about 4 hours of driving each way.',
+        },
+        {
+          q: 'What is included in the New York VIP tour from Boston?',
+          a: 'It includes round-trip transportation from Boston, entry to a premium observation deck (Edge at Hudson Yards or SUMMIT One Vanderbilt), the World Trade Center, the Charging Bull, Rockefeller Plaza, St. Patrick\'s Cathedral, and Times Square.',
+        },
         {
           q: 'Which observation deck do we visit, Edge or SUMMIT?',
           a: 'Depending on availability and date, we visit Edge at Hudson Yards or SUMMIT One Vanderbilt. Both offer spectacular 360° views of Manhattan.',
@@ -495,6 +551,14 @@ export const tours: Tour[] = [
       ],
       faq: [
         {
+          q: '¿Cuánto dura el tour a Atlantic City y Philadelphia desde Boston?',
+          a: 'Es un tour de 2 días y 1 noche. Salimos de East Boston a las 4:00 AM, visitamos Philadelphia el primer día y nos hospedamos en un hotel-casino en Atlantic City; regresamos al día siguiente cerca de las 10:00 PM.',
+        },
+        {
+          q: '¿Qué incluye el tour a Atlantic City y Philadelphia desde Boston?',
+          a: 'Incluye transporte ida y vuelta desde Boston, 1 noche en hotel-casino en Atlantic City, almuerzo buffet en Philadelphia, guía en español y el recorrido por la Campana de la Libertad, la casa de Betsy Ross, las escalinatas de Rocky, la playa y el boardwalk.',
+        },
+        {
           q: '¿Puedo llevar menores de edad al casino?',
           a: 'El hospedaje es en un hotel-casino. Los menores de edad pueden alojarse pero no tienen acceso al área de juegos. Las playas y el boardwalk son aptos para toda la familia.',
         },
@@ -541,6 +605,14 @@ export const tours: Tour[] = [
         { time: 'Day 2 — ~10:00 PM', label: 'Arrival in East Boston' },
       ],
       faq: [
+        {
+          q: 'How long is the Atlantic City and Philadelphia tour from Boston?',
+          a: 'It is a 2-day, 1-night tour. We leave East Boston at 4:00 AM, visit Philadelphia on day one and stay at a casino hotel in Atlantic City; we return the next day around 10:00 PM.',
+        },
+        {
+          q: 'What is included in the Atlantic City and Philadelphia tour from Boston?',
+          a: 'It includes round-trip transportation from Boston, 1 night at a casino hotel in Atlantic City, a buffet lunch in Philadelphia, a Spanish-speaking guide, and visits to the Liberty Bell, the Betsy Ross House, the Rocky steps, the beach and the boardwalk.',
+        },
         {
           q: 'Can I bring minors to the casino?',
           a: 'The hotel is in a casino complex. Minors can stay at the hotel but do not have access to the gaming floor. The beaches and boardwalk are family-friendly.',
@@ -610,6 +682,14 @@ export const tours: Tour[] = [
       ],
       faq: [
         {
+          q: '¿Cuánto dura el tour a Washington D.C. desde Boston?',
+          a: 'Es un tour de 2 días y 1 noche. Salimos un sábado de madrugada desde East Boston (unas 8 horas de viaje) y regresamos el domingo cerca de las 11:00 PM.',
+        },
+        {
+          q: '¿Qué incluye el tour a Washington D.C. desde Boston?',
+          a: 'Incluye transporte ida y vuelta desde Boston, 1 noche de hotel, almuerzo del sábado, un tour guiado de 4 horas con historiador local por la Casa Blanca, el Capitolio, el Monumento a Lincoln y el National Mall, además de tiempo libre para los museos Smithsonian (de entrada gratuita).',
+        },
+        {
           q: '¿Los museos Smithsonian son realmente gratis?',
           a: 'Sí, todos los museos del Smithsonian Institution en el National Mall tienen entrada completamente gratuita. Incluyen el Museo Nacional del Aire y el Espacio, el Museo Nacional de Historia Natural, el Museo Nacional de Historia Americana, entre otros.',
         },
@@ -659,6 +739,14 @@ export const tours: Tour[] = [
         { time: 'Day 2 — 11:00 PM', label: 'Arrival in East Boston' },
       ],
       faq: [
+        {
+          q: 'How long is the Washington D.C. tour from Boston?',
+          a: 'It is a 2-day, 1-night tour. We leave East Boston early on Saturday (about 8 hours of travel) and return Sunday around 11:00 PM.',
+        },
+        {
+          q: 'What is included in the Washington D.C. tour from Boston?',
+          a: 'It includes round-trip transportation from Boston, 1 night hotel, Saturday lunch, a 4-hour guided tour with a local historian covering the White House, the Capitol, the Lincoln Memorial and the National Mall, plus free time for the Smithsonian museums (free admission).',
+        },
         {
           q: 'Are the Smithsonian museums really free?',
           a: 'Yes, all Smithsonian Institution museums on the National Mall have completely free admission. They include the National Air and Space Museum, National Museum of Natural History, National Museum of American History, among others.',
@@ -731,6 +819,14 @@ export const tours: Tour[] = [
       ],
       faq: [
         {
+          q: '¿Cuánto dura el tour al Templo Hindú y New Jersey desde Boston?',
+          a: 'Es un tour de 1 día: salimos de East Boston a las 5:00 AM y regresamos cerca de las 11:00 PM.',
+        },
+        {
+          q: '¿Qué incluye el tour al Templo Hindú BAPS desde Boston?',
+          a: 'Incluye transporte ida y vuelta desde Boston, la visita al Templo Hindú BAPS (el más grande fuera de India), tiempo en el American Dream Mall para almorzar y comprar, y una parada panorámica con vista a Manhattan desde New Jersey.',
+        },
+        {
           q: '¿Hay restricciones de vestimenta en el Templo?',
           a: 'Sí, en el Templo Hindú BAPS se requiere vestimenta modesta: cubrir hombros y rodillas. Pueden prestar telas o pañuelos a la entrada. No se permiten zapatos dentro del templo.',
         },
@@ -775,6 +871,14 @@ export const tours: Tour[] = [
         { time: '~11:00 PM', label: 'Arrival in East Boston' },
       ],
       faq: [
+        {
+          q: 'How long is the Hindu Temple and New Jersey tour from Boston?',
+          a: 'It is a 1-day tour: we leave East Boston at 5:00 AM and return around 11:00 PM.',
+        },
+        {
+          q: 'What is included in the BAPS Hindu Temple tour from Boston?',
+          a: 'It includes round-trip transportation from Boston, the visit to the BAPS Hindu Temple (the largest outside India), time at the American Dream Mall for lunch and shopping, and a scenic stop with Manhattan skyline views from New Jersey.',
+        },
         {
           q: 'Are there dress code requirements at the Temple?',
           a: 'Yes, the BAPS Hindu Temple requires modest dress: shoulders and knees must be covered. Shawls or fabric may be provided at the entrance. No shoes are allowed inside the temple.',
@@ -847,6 +951,14 @@ export const tours: Tour[] = [
       ],
       faq: [
         {
+          q: '¿Cuánto dura el tour a las Cavernas de Nueva York desde Boston?',
+          a: 'Es un tour de 1 día: salimos de East Boston a las 7:00 AM y regresamos al atardecer. El viaje toma unas 4 horas por trayecto.',
+        },
+        {
+          q: '¿Qué incluye el tour a las Cavernas de Nueva York desde Boston?',
+          a: 'Incluye transporte ida y vuelta desde Boston en vans modernas con WiFi, el ticket de entrada a las cavernas y el recorrido guiado por las formaciones de estalactitas a 47 metros bajo tierra.',
+        },
+        {
           q: '¿Cuándo es la próxima salida?',
           a: 'Las fechas de este tour se confirman según demanda. Escríbenos por WhatsApp al +1 857-389-9523 para saber la próxima fecha disponible.',
         },
@@ -892,6 +1004,14 @@ export const tours: Tour[] = [
         { time: '~8:00 PM', label: 'Arrival in East Boston' },
       ],
       faq: [
+        {
+          q: 'How long is the New York Caverns tour from Boston?',
+          a: 'It is a 1-day tour: we leave East Boston at 7:00 AM and return at sunset. The drive is about 4 hours each way.',
+        },
+        {
+          q: 'What is included in the New York Caverns tour from Boston?',
+          a: 'It includes round-trip transportation from Boston in modern vans with WiFi, the cave entry ticket, and the guided tour through the stalactite formations 47 meters underground.',
+        },
         {
           q: 'When is the next departure?',
           a: 'Dates for this tour are confirmed based on demand. Message us on WhatsApp at +1 857-389-9523 to find out the next available date.',
