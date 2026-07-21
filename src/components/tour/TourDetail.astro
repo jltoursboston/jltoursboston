@@ -163,17 +163,47 @@ const facts = [
       <section data-reveal>
         <header class="section-head">
           <p class="section-eyebrow"><Icon name="camera" class="w-4 h-4" /> {es ? 'Galería' : 'Gallery'}</p>
-          <h2 class="section-title">{es ? 'Fotos reales del tour' : 'Real photos from the tour'}</h2>
+          <h2 class="section-title">{es ? (tour.video ? 'Fotos y video reales del tour' : 'Fotos reales del tour') : (tour.video ? 'Real photos & video from the tour' : 'Real photos from the tour')}</h2>
         </header>
         <div class="tour-gallery">
+          {tour.video && (
+            <button
+              type="button"
+              class="gal-item gal-hero group relative overflow-hidden rounded-2xl bg-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky"
+              data-lightbox="0"
+              data-media="video"
+              data-mp4={tour.video.mp4}
+              aria-label={es ? 'Reproducir video del tour' : 'Play tour video'}
+            >
+              <Picture
+                src={tourImg(tour.video.poster)}
+                alt={tour.video.alt[lang]}
+                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                loading="lazy"
+                widths={[400, 800, 1200]}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                formats={['avif', 'webp']}
+                quality={55}
+              />
+              <span class="absolute inset-0 bg-navy/25 group-hover:bg-navy/35 transition-colors duration-300"></span>
+              <span class="absolute inset-0 grid place-items-center">
+                <span class="grid place-items-center w-16 h-16 rounded-full bg-white/90 text-navy shadow-lg transition-transform duration-300 group-hover:scale-110">
+                  <svg class="w-7 h-7 translate-x-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+              </span>
+              <span class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-navy/70 text-white text-xs font-semibold backdrop-blur-sm">
+                {es ? 'Video real' : 'Real video'}
+              </span>
+            </button>
+          )}
           {tour.gallery.map((img, gi) => (
             <button
               type="button"
               class:list={[
                 'gal-item group relative overflow-hidden rounded-2xl bg-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky',
-                gi === 0 ? 'gal-hero' : '',
+                !tour.video && gi === 0 ? 'gal-hero' : '',
               ]}
-              data-lightbox={gi}
+              data-lightbox={tour.video ? gi + 1 : gi}
               aria-label={`${es ? 'Ampliar foto' : 'Open photo'} ${gi + 1}`}
             >
               <Picture
@@ -355,12 +385,13 @@ const facts = [
 </main>
 
 <!-- ═══ Lightbox ═══ -->
-{tour.gallery && tour.gallery.length > 0 && (
+{(tour.gallery && tour.gallery.length > 0) || tour.video ? (
   <div id="lightbox" class="fixed inset-0 z-[100] bg-navy/95 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300 items-center justify-center p-4 sm:p-8" role="dialog" aria-modal="true" aria-label={es ? 'Galería de fotos' : 'Photo gallery'}>
     <button id="lb-close" class="absolute top-4 right-4 sm:top-6 sm:right-6 grid place-items-center w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white" aria-label={es ? 'Cerrar' : 'Close'}><Icon name="close" class="w-6 h-6" /></button>
     <button id="lb-prev" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 grid place-items-center w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white" aria-label={es ? 'Anterior' : 'Previous'}><Icon name="arrow-left" class="w-6 h-6" /></button>
     <figure class="relative max-h-[86vh] max-w-5xl flex flex-col items-center gap-3">
       <img id="lb-img" src="" alt="" class="max-h-[78vh] max-w-full rounded-xl shadow-2xl object-contain" />
+      <video id="lb-video" class="hidden max-h-[78vh] max-w-full rounded-xl shadow-2xl object-contain bg-black" controls playsinline preload="none"></video>
       <figcaption class="flex items-center gap-3 text-white/80 text-sm">
         <span id="lb-counter" class="font-semibold tabular-nums"></span>
         <span class="text-white/40">·</span>
@@ -369,7 +400,7 @@ const facts = [
     </figure>
     <button id="lb-next" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 grid place-items-center w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white" aria-label={es ? 'Siguiente' : 'Next'}><Icon name="arrow-right" class="w-6 h-6" /></button>
   </div>
-)}
+) : null}
 
 <style>
   /* Encabezados de sección */
@@ -465,21 +496,40 @@ const facts = [
   (function () {
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lb-img') as HTMLImageElement | null;
+    const lbVideo = document.getElementById('lb-video') as HTMLVideoElement | null;
     const counter = document.getElementById('lb-counter');
     if (!lb || !lbImg) return;
 
+    type Item = { type: 'image'; src: string } | { type: 'video'; src: string; poster: string };
     const triggers = Array.from(document.querySelectorAll<HTMLElement>('[data-lightbox]'));
-    const sources: string[] = [];
+    const items: Item[] = [];
     triggers.forEach(el => {
       const idx = parseInt(el.dataset.lightbox ?? '0');
-      sources[idx] = el.querySelector('img')?.currentSrc || el.querySelector('img')?.src || '';
+      if (el.dataset.media === 'video') {
+        items[idx] = { type: 'video', src: el.dataset.mp4 ?? '', poster: el.querySelector('img')?.currentSrc || '' };
+      } else {
+        items[idx] = { type: 'image', src: el.querySelector('img')?.currentSrc || el.querySelector('img')?.src || '' };
+      }
       el.addEventListener('click', () => open(idx));
     });
-    const total = sources.length;
+    const total = items.length;
     let current = 0;
 
     function render() {
-      lbImg!.src = sources[current] ?? '';
+      const it = items[current];
+      if (!it) return;
+      if (it.type === 'video' && lbVideo) {
+        lbImg!.classList.add('hidden');
+        lbImg!.src = '';
+        lbVideo.classList.remove('hidden');
+        if (it.poster) lbVideo.setAttribute('poster', it.poster);
+        if (lbVideo.getAttribute('src') !== it.src) lbVideo.setAttribute('src', it.src);
+        lbVideo.play().catch(() => {});
+      } else {
+        if (lbVideo) { lbVideo.pause(); lbVideo.classList.add('hidden'); }
+        lbImg!.classList.remove('hidden');
+        lbImg!.src = it.src;
+      }
       if (counter) counter.textContent = `${current + 1} / ${total}`;
     }
     function open(n: number) {
@@ -490,11 +540,12 @@ const facts = [
       document.body.classList.add('modal-open');
     }
     function close() {
+      if (lbVideo) lbVideo.pause();
       lb!.classList.add('opacity-0');
       document.body.classList.remove('modal-open');
       setTimeout(() => { lb!.classList.add('hidden'); lb!.classList.remove('flex'); }, 280);
     }
-    const go = (d: number) => { current = (current + d + total) % total; render(); };
+    const go = (d: number) => { if (lbVideo) lbVideo.pause(); current = (current + d + total) % total; render(); };
 
     document.getElementById('lb-close')?.addEventListener('click', close);
     document.getElementById('lb-prev')?.addEventListener('click', () => go(-1));

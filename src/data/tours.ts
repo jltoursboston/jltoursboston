@@ -39,6 +39,11 @@ export interface Tour {
   image: string;
   imageAlt: { es: string; en: string };
   gallery?: string[];
+  video?: {
+    mp4: string;
+    poster: string;
+    alt: { es: string; en: string };
+  };
   whatsappMessage: { es: string; en: string };
   departurePoints: string[];
   nextDates: string[];
@@ -63,7 +68,22 @@ export const tours: Tour[] = [
       '/images/tours/niagara-g03.jpg',
       '/images/tours/niagara-g04.jpg',
       '/images/tours/niagara-g05.jpg',
+      '/images/tours/niagara-g06.jpg',
+      '/images/tours/niagara-g07.jpg',
+      '/images/tours/niagara-g08.jpg',
+      '/images/tours/niagara-g09.jpg',
+      '/images/tours/niagara-g10.jpg',
+      '/images/tours/niagara-g11.jpg',
+      '/images/tours/niagara-g12.jpg',
     ],
+    video: {
+      mp4: '/videos/niagara-cataratas.mp4',
+      poster: '/images/tours/niagara-video.jpg',
+      alt: {
+        es: 'Video real de nuestros viajeros bajo las Cataratas del Niágara en la Cueva de los Vientos',
+        en: 'Real video of our travelers under Niagara Falls at the Cave of the Winds',
+      },
+    },
     whatsappMessage: {
       es: WA_BASE + encodeURIComponent('Hola, quiero reservar el tour a las Cataratas del Niágara. ¿Podrían darme más información?'),
       en: WA_BASE + encodeURIComponent('Hello, I want to book the Niagara Falls tour. Could you give me more information?'),
@@ -784,6 +804,13 @@ export const tours: Tour[] = [
     },
     gallery: [
       '/images/tours/cavernas-g02.jpg',
+      '/images/tours/cavernas-g03.jpg',
+      '/images/tours/cavernas-g04.jpg',
+      '/images/tours/cavernas-g05.jpg',
+      '/images/tours/cavernas-g06.jpg',
+      '/images/tours/cavernas-g07.jpg',
+      '/images/tours/cavernas-g08.jpg',
+      '/images/tours/cavernas-g09.jpg',
     ],
     whatsappMessage: {
       es: WA_BASE + encodeURIComponent('Hola, quiero reservar el tour a las Cavernas de NY. ¿Podrían darme más información?'),

@@ -10,6 +10,10 @@
 /*.html
   Cache-Control: public, max-age=60, must-revalidate
 
+# Videos servidos desde /public/videos (nombres sin hash → 30 dias)
+/videos/*
+  Cache-Control: public, max-age=2592000
+
 # Estaticos servidos desde la raiz de /public (rutas exactas para no pisar la regla immutable de /_astro/*)
 /og-home.jpg
   Cache-Control: public, max-age=604800
