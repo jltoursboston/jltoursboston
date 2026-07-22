@@ -40,3 +40,9 @@ PROMPT_JLTours_ClaudeCode.md
 
 # Internal docs/manuals (no van al repo)
 docs/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
