@@ -6,7 +6,7 @@ export interface Testimonial {
   source: 'google';
 }
 
-export const googleRating = { rating: 5.0, reviewCount: 13 };
+export const googleRating = { rating: 5.0, reviewCount: 21 };
 
 export const testimonials: Testimonial[] = [
   {
