@@ -135,9 +135,10 @@ const localBusinessSchema = {
     {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Hreflang — dinámico para páginas de tour, fallback al homepage -->
-    <link rel="alternate" hreflang="es" href={hreflangEs ?? 'https://jltoursboston.com/'} />
-    <link rel="alternate" hreflang="en" href={hreflangEn ?? 'https://jltoursboston.com/en/'} />
+    <!-- Hreflang — dinámico para páginas de tour, fallback al homepage.
+         Codigos es-US/en-US (no es/en) para coincidir con el sitemap y precisar geo (US). -->
+    <link rel="alternate" hreflang="es-US" href={hreflangEs ?? 'https://jltoursboston.com/'} />
+    <link rel="alternate" hreflang="en-US" href={hreflangEn ?? 'https://jltoursboston.com/en/'} />
     <link rel="alternate" hreflang="x-default" href="https://jltoursboston.com/" />
 
     <!-- Open Graph -->

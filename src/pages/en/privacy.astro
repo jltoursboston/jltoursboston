@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
+
+const lang = 'en' as const;
+const pageUrl = 'https://jltoursboston.com/en/privacy/';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'JL Tours Boston', item: 'https://jltoursboston.com/en/' },
+    { '@type': 'ListItem', position: 2, name: 'Privacy Notice' },
+  ],
+};
+---
+
+<BaseLayout
+  lang={lang}
+  title="Privacy Notice | JL Tours Boston"
+  description="How JL Tours Inc. handles your data: quote form, WhatsApp contact, and Google Analytics 4. We don't sell data or store cards."
+  canonicalURL={pageUrl}
+  hreflangEs="https://jltoursboston.com/aviso-de-privacidad/"
+  hreflangEn={pageUrl}
+>
+  <script slot="head-schemas" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Header lang={lang} />
+  <main class="pt-16 md:pt-20">
+    <section class="py-16 lg:py-24 bg-cream">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <p class="text-sky-text font-semibold text-sm tracking-widest uppercase mb-3">JL Tours Inc.</p>
+        <h1 class="font-display font-black text-4xl lg:text-5xl text-navy mb-4">Privacy Notice</h1>
+        <p class="text-navy/60 text-sm mb-10">Effective July 22, 2026</p>
+
+        <div class="space-y-8 text-navy/80 leading-relaxed">
+          <p class="text-lg">
+            JL Tours Inc. (DOT Registration #3866673, 119 London St, East Boston, MA 02128) operates the website
+            <a href="https://jltoursboston.com" class="text-sky-text underline underline-offset-2">jltoursboston.com</a>.
+            This notice explains, in plain terms, what data we handle and why.
+          </p>
+
+          <div>
+            <h2 class="font-display font-bold text-2xl text-navy mb-4">Data we collect</h2>
+            <ul class="space-y-4">
+              <li>
+                <strong class="text-navy">Quote form.</strong> When you use "Get a quick quote" you pick a destination,
+                number of people, and preferred month. That data <strong>stays in your browser</strong> until you click to
+                check availability: WhatsApp then opens with a pre-filled message that you choose whether to send.
+                We do not transmit or store that information on our servers.
+              </li>
+              <li>
+                <strong class="text-navy">WhatsApp.</strong> When you message us at +1 857-389-9523 you voluntarily share
+                whatever you include in the message (name, questions, contact details). That information stays in the
+                conversation between you and JL Tours, and we use it only to manage your booking.
+              </li>
+              <li>
+                <strong class="text-navy">Google Analytics 4.</strong> Anonymous, aggregated usage statistics (pages
+                visited, device type, approximate region). It does not identify individuals and only runs in production.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="font-display font-bold text-2xl text-navy mb-4">What we don't do</h2>
+            <p>
+              We don't sell or rent your data. We don't use third-party advertising cookies. We don't run user accounts on
+              this site. <strong>We don't store card details</strong>: bookings are confirmed with a 50% deposit and
+              payments are handled via WhatsApp, Zelle, PayPal, or card, always outside this website.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="font-display font-bold text-2xl text-navy mb-4">Your rights and contact</h2>
+            <p>
+              You can request access to, correction of, or deletion of any information you've shared with us by messaging
+              us on WhatsApp at
+              <a href="https://wa.me/18573899523" class="text-sky-text underline underline-offset-2">+1 857-389-9523</a>.
+              We'll respond to your request within a reasonable timeframe.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="font-display font-bold text-2xl text-navy mb-4">Changes to this notice</h2>
+            <p>
+              If our practices change, we'll update this page and the effective date. We recommend checking it occasionally.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+  <WhatsAppFloat lang={lang} />
+</BaseLayout>

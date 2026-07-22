@@ -28,8 +28,7 @@ const priceMatch = /\$(\d+)/.exec(content.price);
 const priceAmount = priceMatch?.[1];
 
 const pageUrl = `https://jltoursboston.com/en/tours/${tour.slug}/`;
-const priceToken = priceMatch ? content.price.split(' ')[0] : 'Quote';
-const pageTitle = `${content.name} Tour from Boston | ${priceToken} | JL Tours Boston`;
+const pageTitle = `${content.name} Tour from Boston | JL Tours`;
 
 const touristTripSchema = {
   '@context': 'https://schema.org',

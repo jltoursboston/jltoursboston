@@ -6,8 +6,27 @@ import logo from '../assets/logo.jpeg';
 
 interface Props {
   lang: Lang;
+  noindex?: boolean;
 }
-const { lang } = Astro.props;
+const { lang, noindex = false } = Astro.props;
+
+// En home, "Tours" lleva a la seccion ancla; en el resto de paginas, al catalogo /tours/.
+const path = Astro.url.pathname;
+const onHome = lang === 'es' ? path === '/' : path === '/en/';
+const toursHref = onHome
+  ? (lang === 'es' ? '/#tours' : '/en/#tours')
+  : (lang === 'es' ? '/tours/' : '/en/tours/');
+
+// Switcher de idioma: contraparte localizada de la pagina actual (no siempre al home).
+// En paginas noindex (404) va al home del otro idioma; en el resto, espejo de la ruta.
+// Algunos pares tienen slugs distintos entre idiomas (p.ej. privacidad) -> SLUG_MAP.
+const SLUG_MAP: Record<string, string> = {
+  '/aviso-de-privacidad/': '/en/privacy/',
+  '/en/privacy/': '/aviso-de-privacidad/',
+};
+const switchHref = noindex
+  ? (lang === 'es' ? '/en/' : '/')
+  : (SLUG_MAP[path] ?? (lang === 'es' ? '/en' + path : (path.replace(/^\/en/, '') || '/')));
 ---
 
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-navy/95 backdrop-blur-sm">
@@ -34,7 +53,7 @@ const { lang } = Astro.props;
 
       <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-6 lg:gap-8" aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}>
-        <a href={lang === 'es' ? '/#tours' : '/en/#tours'}
+        <a href={toursHref}
            class="text-white/90 hover:text-amber transition-colors font-medium text-sm lg:text-base">
           {t(lang, 'nav.tours')}
         </a>
@@ -60,7 +79,7 @@ const { lang } = Astro.props;
       <div class="flex items-center gap-3">
         <!-- Language switcher -->
         <a
-          href={t(lang, 'nav.lang.href')}
+          href={switchHref}
           class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/30 text-white/80 hover:border-amber hover:text-amber transition-all text-sm font-medium"
           aria-label={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
         >
@@ -108,7 +127,7 @@ const { lang } = Astro.props;
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 py-4">
       <nav class="flex flex-col gap-1" aria-label={lang === 'es' ? 'Navegación móvil' : 'Mobile navigation'}>
-        <a href={lang === 'es' ? '/#tours' : '/en/#tours'}
+        <a href={toursHref}
            class="mobile-nav-link px-3 py-2.5 text-white/90 hover:text-amber hover:bg-white/5 rounded-lg transition-colors font-medium">
           {t(lang, 'nav.tours')}
         </a>
@@ -130,7 +149,7 @@ const { lang } = Astro.props;
         </a>
         <div class="mt-3 pt-3 border-t border-white/10">
           <a
-            href={t(lang, 'nav.lang.href')}
+            href={switchHref}
             class="flex items-center gap-2 px-3 py-2.5 text-white/70 hover:text-amber transition-colors font-medium"
           >
             <span>{lang === 'es' ? '🇺🇸' : '🇲🇽'}</span>

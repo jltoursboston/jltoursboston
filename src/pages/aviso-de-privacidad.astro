@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+
+const lang = 'es' as const;
+const pageUrl = 'https://jltoursboston.com/aviso-de-privacidad/';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'JL Tours Boston', item: 'https://jltoursboston.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Aviso de Privacidad' },
+  ],
+};
+---
+
+<BaseLayout
+  lang={lang}
+  title="Aviso de Privacidad | JL Tours Boston"
+  description="Cómo JL Tours Inc. trata tus datos: formulario de cotización, contacto por WhatsApp y Google Analytics 4. No vendemos datos ni guardamos tarjetas."
+  canonicalURL={pageUrl}
+  hreflangEs={pageUrl}
+  hreflangEn="https://jltoursboston.com/en/privacy/"
+>
+  <script slot="head-schemas" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Header lang={lang} />
+  <main class="pt-16 md:pt-20">
+    <section class="py-16 lg:py-24 bg-cream">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <p class="text-sky-text font-semibold text-sm tracking-widest uppercase mb-3">JL Tours Inc.</p>
+        <h1 class="font-display font-black text-4xl lg:text-5xl text-navy mb-4">Aviso de Privacidad</h1>
+        <p class="text-navy/60 text-sm mb-10">Vigente desde el 22 de julio de 2026</p>
+
+        <div class="space-y-8 text-navy/80 leading-relaxed">
+          <p class="text-lg">
+            JL Tours Inc. (Registro DOT #3866673, 119 London St, East Boston, MA 02128) opera el sitio
+            <a href="https://jltoursboston.com" class="text-sky-text underline underline-offset-2">jltoursboston.com</a>.
+            Este aviso explica, de forma sencilla, qué datos tratamos y para qué.
+          </p>
+
+          <div>
+            <h2 class="font-display font-bold text-2xl text-navy mb-4">Datos que recopilamos</h2>
+            <ul class="space-y-4">
+              <li>
+                <strong class="text-navy">Formulario de cotización.</strong> Al usar "Cotiza tu tour" eliges un destino,
+                número de personas y mes preferido. Esos datos <strong>permanecen en tu navegador</strong> hasta que das clic
+                en ver disponibilidad: en ese momento se abre WhatsApp con un mensaje prellenado que tú decides si envías.
+                No enviamos ni guardamos esa información en nuestros servidores.
+              </li>
+              <li>
+                <strong class="text-navy">WhatsApp.</strong> Cuando nos escribes al +1 857-389-9523 compartes voluntariamente
+                lo que incluyas en el mensaje (nombre, dudas, datos de contacto). Esa información queda en la conversación
+                entre tú y JL Tours, y la usamos únicamente para gestionar tu reserva.
+              </li>
+              <li>
+                <strong class="text-navy">Google Analytics 4.</strong> Estadísticas anónimas y agregadas de uso (páginas
+                visitadas, tipo de dispositivo, región aproximada). No identifica a personas y solo se activa en producción.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="font-display font-bold text-2xl text-navy mb-4">Lo que no hacemos</h2>
+            <p>
+              No vendemos ni alquilamos tus datos. No usamos cookies publicitarias de terceros. No manejamos cuentas de
+              usuario en este sitio. <strong>No almacenamos datos de tarjetas</strong>: las reservas se confirman con el
+              50% y los pagos se gestionan por WhatsApp, Zelle, PayPal o tarjeta, siempre fuera de este sitio web.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="font-display font-bold text-2xl text-navy mb-4">Tus derechos y contacto</h2>
+            <p>
+              Puedes solicitar acceder, corregir o eliminar la información que hayas compartido con nosotros escribiéndonos
+              por WhatsApp al
+              <a href="https://wa.me/18573899523" class="text-sky-text underline underline-offset-2">+1 857-389-9523</a>.
+              Responderemos a tu solicitud en un plazo razonable.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="font-display font-bold text-2xl text-navy mb-4">Cambios a este aviso</h2>
+            <p>
+              Si modificamos nuestras prácticas, actualizaremos esta página y la fecha de vigencia. Te recomendamos
+              revisarla ocasionalmente.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+  <WhatsAppFloat lang={lang} />
+</BaseLayout>

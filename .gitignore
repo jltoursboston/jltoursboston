@@ -26,6 +26,9 @@ pnpm-debug.log*
 # AI tool files
 CLAUDE.md
 AGENTS.md
+.agents/
+.claude/
+skills-lock.json
 
 # VS Code
 .vscode/

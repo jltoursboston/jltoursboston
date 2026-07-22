@@ -195,7 +195,11 @@ const quickLinks = [
   <div class="border-t border-white/8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-2 text-white/70 text-xs">
-        <p>{t(lang, 'footer.rights')}</p>
+        <p class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+          <span>{t(lang, 'footer.rights')}</span>
+          <span class="text-white/30" aria-hidden="true">·</span>
+          <a href={lang === 'es' ? '/aviso-de-privacidad/' : '/en/privacy/'} class="hover:text-amber transition-colors underline underline-offset-2">{t(lang, 'footer.privacy')}</a>
+        </p>
         <address
           class="not-italic"
           itemscope
